@@ -1,0 +1,14 @@
+### Nix template
+# Ignore build outputs from performing a nix-build or `nix build` command
+result
+result-*
+
+# Ignore nohup
+nohup.out
+
+# IDE and Editors
+.vscode
+.idea
+
+# direnv
+.direnv

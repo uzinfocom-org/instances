@@ -1,0 +1,43 @@
+name: Test CI
+
+on: [push, pull_request]
+
+jobs:
+  test-flake:
+    name: "Test flake options"
+    runs-on: self-hosted
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Check up flake configuration
+        run: nix flake check --all-systems --show-trace
+
+  build-instances:
+    name: "Build Configurations"
+    strategy:
+      fail-fast: false
+      matrix:
+        instance: ["Efael"]
+    runs-on: self-hosted
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Build NixOS configuration
+        run: nix build .#nixosConfigurations.${{ matrix.instance }}.config.system.build.toplevel --show-trace
+
+  update-merge:
+    name: "Merge Update PRs"
+    needs: [test-flake, build-instances]
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.user.login == 'orzklv' && github.event_name == 'pull_request'}}
+
+    steps:
+      - name: Enable auto-merge for Update PRs
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
