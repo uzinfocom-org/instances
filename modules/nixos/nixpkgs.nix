@@ -10,11 +10,9 @@
       # You can add overlays here
       overlays = [
         # Add overlays your own flake exports (from overlays and pkgs dir):
-        outputs.overlays.modifications
-        outputs.overlays.unstable-packages
-
-        # Personal repo of packages
+        inputs.uzinfocom-pkgs.overlays.unstable
         inputs.uzinfocom-pkgs.overlays.additions
+        inputs.uzinfocom-pkgs.overlays.modifications
 
         # Or define it inline, for example:
         # (final: prev: {

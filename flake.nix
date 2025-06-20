@@ -88,9 +88,6 @@
    # Other options beside 'alejandra' include 'nixpkgs-fmt'
    inherit (uzinfocom-pkgs) formatter;
 
-   # Your custom packages and modifications, exported as overlays
-   overlays = import ./overlays {inherit inputs;};
-
    # Reusable nixos modules you might want to export
    # These are usually stuff you would upstream into nixpkgs
    nixosModules = import ./modules/nixos;
