@@ -142,8 +142,7 @@ in {
       allow_public_rooms_over_federation = true;
       allow_public_rooms_without_auth = false;
       auto_join_rooms = [
-        "#community:${domains.main}"
-        "#general:${domains.main}"
+        "#support:${domains.main}"
       ];
       autocreate_auto_join_rooms = true;
       default_room_version = "10";

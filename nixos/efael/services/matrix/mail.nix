@@ -41,7 +41,7 @@ in {
     loginAccounts = {
       "admin@${domain}" = {
         hashedPasswordFile = config.sops.secrets."matrix/mail/admin".path;
-        aliases = ["postmaster@${domain}" "orzklv@${domain}"];
+        aliases = ["postmaster@${domain}"];
       };
       "support@${domain}" = {
         hashedPasswordFile = config.sops.secrets."matrix/mail/support".path;
