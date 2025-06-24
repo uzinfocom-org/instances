@@ -40,7 +40,7 @@ in {
         kind: synapse
         homeserver: ${domains.main}
         secret: "${config.sops.placeholder."matrix/mas/client/secret"}"
-        endpoint: "http://localhost:8008"
+        endpoint: "https://${domains.server}"
       secrets:
         encryption: "7fde896f8e24ad148226289ee98d38654f5ed7a7f90df08073c075765de6cf11"
         keys:
