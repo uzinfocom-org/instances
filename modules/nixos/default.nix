@@ -11,8 +11,7 @@
   boot = import ./boot.nix;
   motd = import ./motd.nix;
   data = import ./data.nix;
-  caddy = import ./caddy.nix;
-  nginx = import ./nginx.nix;
+  web = import ./web.nix;
   secret = import ./secret.nix;
   network = import ./network.nix;
   nixpkgs = import ./nixpkgs.nix;

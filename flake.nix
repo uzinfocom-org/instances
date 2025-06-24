@@ -38,6 +38,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Mail Server
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
+
+    # Main homepage website
+    gate.url = "github:kolyma-labs/gate";
+
     # Orzklv's Nix configuration
     orzklv = {
       url = "github:orzklv/nix/master";
@@ -54,52 +60,53 @@
     };
   };
 
-  outputs = {     self,
-  nixpkgs,
-  home-manager,
-  flake-utils,
-  orzklv,
-  uzinfocom-pkgs,
-  ...
- } @ inputs : let
- # Self instance pointer
- outputs = self;
- in
- # Attributes for each system
- flake-utils.lib.eachDefaultSystem (
-   system: let
-     # Packages for the current <arch>
-     pkgs = nixpkgs.legacyPackages.${system};
-   in
-     # Nixpkgs packages for the current system
-     {
-       # Development shells
-       devShells.default = import ./shell.nix {inherit pkgs;};
-     }
- )
- # and ...
- //
- # Attribute from static evaluation
- {
-   # Nixpkgs and Home-Manager helpful functions
-   lib = nixpkgs.lib // home-manager.lib // uzinfocom-pkgs.lib;
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    flake-utils,
+    orzklv,
+    uzinfocom-pkgs,
+    ...
+  } @ inputs: let
+    # Self instance pointer
+    outputs = self;
+  in
+    # Attributes for each system
+    flake-utils.lib.eachDefaultSystem (
+      system: let
+        # Packages for the current <arch>
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        # Nixpkgs packages for the current system
+        {
+          # Development shells
+          devShells.default = import ./shell.nix {inherit pkgs;};
+        }
+    )
+    # and ...
+    //
+    # Attribute from static evaluation
+    {
+      # Nixpkgs and Home-Manager helpful functions
+      lib = nixpkgs.lib // home-manager.lib // uzinfocom-pkgs.lib;
 
-   # Formatter for your nix files, available through 'nix fmt'
-   # Other options beside 'alejandra' include 'nixpkgs-fmt'
-   inherit (uzinfocom-pkgs) formatter;
+      # Formatter for your nix files, available through 'nix fmt'
+      # Other options beside 'alejandra' include 'nixpkgs-fmt'
+      inherit (uzinfocom-pkgs) formatter;
 
-   # Reusable nixos modules you might want to export
-   # These are usually stuff you would upstream into nixpkgs
-   nixosModules = import ./modules/nixos;
+      # Reusable nixos modules you might want to export
+      # These are usually stuff you would upstream into nixpkgs
+      nixosModules = import ./modules/nixos;
 
-   # NixOS configuration entrypoint
-   # Available through 'nixos-rebuild --flake .#your-hostname'
-   nixosConfigurations = self.lib.config.mapSystem {
-     inherit inputs outputs;
-     opath = ./.;
-     list = [
-       "Efael"
-     ];
-   };
- };
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = self.lib.config.mapSystem {
+        inherit inputs outputs;
+        opath = ./.;
+        list = [
+          "Efael"
+        ];
+      };
+    };
 }

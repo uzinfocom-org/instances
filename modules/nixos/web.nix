@@ -37,7 +37,7 @@
             forceSSL = true;
             enableACME = true;
             serverAliases = rest cfg;
-            root = "${pkgs.personal.gate}/www";
+            root = "${pkgs.uzinfocom.gate}/www";
           };
         }
         else {
@@ -45,7 +45,7 @@
             forceSSL = true;
             enableACME = true;
             serverAliases = fallbacks cfg;
-            root = "${pkgs.personal.gate}/www";
+            root = "${pkgs.uzinfocom.gate}/www";
           };
         };
     };
