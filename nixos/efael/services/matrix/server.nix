@@ -3,6 +3,7 @@
   config,
   domains,
   keys,
+  pkgs,
 }: let
   sopsFile = ../../../../secrets/efael.yaml;
   owner = config.systemd.services.matrix-synapse.serviceConfig.User;
@@ -60,13 +61,13 @@ in {
   services.postgresql = {
     enable = lib.mkDefault true;
 
-    # initialScript = pkgs.writeText "synapse-init.sql" ''
-    #   CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD '${temp}';
-    #   CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
-    #     TEMPLATE template0
-    #     LC_COLLATE = "C"
-    #     LC_CTYPE = "C";
-    # '';
+    initialScript = pkgs.writeText "synapse-init.sql" ''
+      CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'matrix-synapse';
+      CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+        TEMPLATE template0
+        LC_COLLATE = "C"
+        LC_CTYPE = "C";
+    '';
   };
 
   services.matrix-synapse = {
