@@ -6,4 +6,5 @@
   shakhzod = import ./shakhzod.nix;
   domirando = import ./domirando.nix;
   bahrom04 = import ./bahrom04.nix;
+  letrec = import ./letrec.nix;
 }
