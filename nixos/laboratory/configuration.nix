@@ -18,7 +18,7 @@
 
     # User configs
     outputs.nixosModules.users.sakhib
-    outputs.nixosModules.users.shakhzood
+    outputs.nixosModules.users.shakhzod
     outputs.nixosModules.users.domirando
     outputs.nixosModules.users.shakhzod
     outputs.nixosModules.users.bahrom04
