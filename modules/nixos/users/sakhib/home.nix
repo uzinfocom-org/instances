@@ -3,20 +3,15 @@
   username,
   lib,
   ...
-}: let
-  specific-mods = inputs.uzinfocom-pkgs.lib.condition.mkArrIf (username == "sakhib") [
+}: {
+  imports = [
     inputs.orzklv.homeModules.git
+    inputs.orzklv.homeModules.zsh
+    inputs.orzklv.homeModules.helix
+    inputs.orzklv.homeModules.topgrade
+    inputs.orzklv.homeModules.packages
+    inputs.orzklv.homeModules.fastfetch
   ];
-in {
-  imports =
-    [
-      inputs.orzklv.homeModules.zsh
-      inputs.orzklv.homeModules.helix
-      inputs.orzklv.homeModules.topgrade
-      inputs.orzklv.homeModules.packages
-      inputs.orzklv.homeModules.fastfetch
-    ]
-    ++ specific-mods;
 
   # This is required information for home-manager to do its job
   home = {

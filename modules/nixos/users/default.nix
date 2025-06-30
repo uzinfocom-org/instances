@@ -2,8 +2,8 @@
 {
   # List your users here
   kei = import ./kei.nix;
-  sakhib = import ./sakhib.nix;
-  shakhzod = import ./shakhzod.nix;
+  sakhib = import ./sakhib;
+  shakhzod = import ./shakhzod;
   domirando = import ./domirando.nix;
   bahrom04 = import ./bahrom04.nix;
   letrec = import ./letrec.nix;

@@ -4,16 +4,15 @@
   lib,
   ...
 }: let
-  username = "shakhzod";
+  username = "sakhib";
 
   hashedPassword = lib.strings.concatStrings [
-    "$y$j9T$mi9V."
-    "JCa4o3.QO2X2"
-    "8vJo1$KzXKjk"
-    "/5sN4lbsvF8B"
-    "IEIwhKCL34e0"
-    "gJxZEe.MMoT1"
-    "B"
+    "$y$j9T$dsXOFHW"
+    "CyplfRPiwsKu0l"
+    "0$7YXPRLohyW8Q"
+    "XfyITPP6Sag/l7"
+    "XH3i7TO4uGByPK"
+    "Bb2"
   ];
 in {
   config = {
@@ -23,7 +22,7 @@ in {
         isNormalUser = true;
         # isAutist = true;
         # isKonchenniy = "definitely";
-        description = "Shakhzod Kudratov";
+        description = "Sokhibjon Orzikulov";
 
         extraGroups = [
           "networkmanager"
@@ -35,8 +34,8 @@ in {
         openssh.authorizedKeys.keys = lib.strings.splitString "\n" (
           builtins.readFile (
             builtins.fetchurl {
-              url = "https://github.com/shakhzodkudratov.keys";
-              sha256 = "0gnabwywc19947a3m4702m7ibhxmc5s4zqbhsydb2wq92k6qgh6g";
+              url = "https://github.com/orzklv.keys";
+              sha256 = "05rvkkk382jh84prwp4hafnr3bnawxpkb3w6pgqda2igia2a4865";
             }
           )
         );
@@ -52,7 +51,7 @@ in {
 
       users = {
         # Import your home-manager configuration
-        "${username}" = import ../../../home.nix {
+        "${username}" = import ./home.nix {
           inherit inputs outputs username lib;
         };
       };
