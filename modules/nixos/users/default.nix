@@ -5,4 +5,5 @@
   sakhib = import ./sakhib.nix;
   shakhzod = import ./shakhzod.nix;
   domirando = import ./domirando.nix;
+  let-rec = import ./letrec.nix;
 }
