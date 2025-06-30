@@ -106,7 +106,7 @@
         opath = ./.;
         list = [
           "Efael"
-          "Labaratory"
+          "Laboratory"
         ];
       };
     };
