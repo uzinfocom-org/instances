@@ -19,6 +19,7 @@
     # User configs
     outputs.nixosModules.users.sakhib
     outputs.nixosModules.users.shakhzod
+    outputs.nixosModules.users.bahrom04
 
     # Import your deployed service list
     ./services

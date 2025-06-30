@@ -30,7 +30,7 @@ in {
           builtins.readFile (
             builtins.fetchurl {
               url = "https://github.com/bahrom04.keys";
-              sha256 = "0gnabwywc19947a3m4702m7ibhxmc5s4zqbhsydb2wq92k6qgh6g";
+              sha256 = "0yazvxwvngyqapa7fz1qa7916c4w7km72smyl1im14mqbv8733k4";
             }
           )
         );
