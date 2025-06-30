@@ -20,6 +20,9 @@
     outputs.nixosModules.users.sakhib
     outputs.nixosModules.users.shakhzood
     outputs.nixosModules.users.domirando
+    outputs.nixosModules.users.shakhzod
+    outputs.nixosModules.users.bahrom04
+    outputs.nixosModules.users.letrec
 
     # Import your deployed service list
     ./services
