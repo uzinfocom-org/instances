@@ -5,14 +5,14 @@
 }: {
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.ssh
-    # outputs.nixosModules.zsh
-    # outputs.nixosModules.boot
-    # outputs.nixosModules.data
-    # outputs.nixosModules.maid
-    # outputs.nixosModules.motd
-    # outputs.nixosModules.root
-    # outputs.nixosModules.secret
+    outputs.nixosModules.ssh
+    outputs.nixosModules.zsh
+    outputs.nixosModules.boot
+    outputs.nixosModules.data
+    outputs.nixosModules.maid
+    outputs.nixosModules.motd
+    outputs.nixosModules.root
+    outputs.nixosModules.secret
     outputs.nixosModules.network
     outputs.nixosModules.nixpkgs
 
