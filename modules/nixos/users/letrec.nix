@@ -35,7 +35,7 @@ in {
           builtins.readFile (
             builtins.fetchurl {
               url = "https://github.com/let-rec.keys";
-              sha256 = "AAAAC3NzaC1lZDI1NTE5AAAAIDdavoGdizawY8XUqntnnQiSNAJBQ4xCbklc/oVdnuQx";
+              sha256 = "19yg67mljcy7a730i4ndvcb1dkqcvp0ccyggrs0qqvza5byliifg";
             }
           )
         );

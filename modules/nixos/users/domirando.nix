@@ -28,7 +28,7 @@ in {
           builtins.readFile (
             builtins.fetchurl {
               url = "https://github.com/domirando.keys";
-              sha256 = "AAAAC3NzaC1lZDI1NTE5AAAAIHYu4EH07HdsblBP+WbVL1ym9IAMfD15Cn6iN4auOEnI";
+              sha256 = "0pd2bv95w9yv7vb3vn5qa1s3w1yc7b68qd5xbm8c6y7hmnhckygl";
             }
           )
         );
