@@ -30,7 +30,7 @@ in {
           builtins.readFile (
             builtins.fetchurl {
               url = "https://github.com/bemeritus.keys";
-              sha256 = "0gnabwywc19947a3m4702m7ibhxmc5s4zqbhsydb2wq92k6qgh6g";
+              sha256 = "0dr30cmzbiz192xfjfbb26sk9ynpwfla53q09hx6mr404rdszy9a";
             }
           )
         );
