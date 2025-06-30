@@ -7,9 +7,7 @@
   username = "bahrom04";
 
   hashedPassword = lib.strings.concatStrings [
-    "$y$j9T$PEPMAZlXHzgRwOlum"
-    ".4JA0$sh0uNM1PxrWmSjRdjYkw2ii"
-    "DdquWF3z9CDAaasEwQ88"
+    "$y$j9T$PEPMAZlXHzgRwOlum.4JA0$sh0uNM1PxrWmSjRdjYkw2iiDdquWF3z9CDAaasEwQ88"
   ];
 in {
   config = {
