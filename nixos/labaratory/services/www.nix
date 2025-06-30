@@ -1,5 +1,5 @@
 {outputs, ...}: {
-  imports = [outputs.nixosModules.nginx];
+  #imports = [outputs.nixosModules.nginx];
 
   # Enable web server & proxy
   services.www = {
