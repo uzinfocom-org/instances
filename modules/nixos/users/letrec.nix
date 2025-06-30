@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  username = "let-rec";
+  username = "letrec";
 
   hashedPassword = lib.strings.concatStrings [
     "$y$j9T$1TztZ"
