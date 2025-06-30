@@ -22,6 +22,7 @@
     outputs.nixosModules.users.domirando
     outputs.nixosModules.users.bahrom04
     outputs.nixosModules.users.letrec
+    outputs.nixosModules.users.bemeritus
 
     # Import your deployed service list
     ./services

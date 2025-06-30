@@ -7,4 +7,5 @@
   domirando = import ./domirando.nix;
   bahrom04 = import ./bahrom04.nix;
   letrec = import ./letrec.nix;
+  bemeritus = import ./bemeritus.nix;
 }
