@@ -4,7 +4,7 @@
   kei = import ./kei.nix;
   sakhib = import ./sakhib;
   shakhzod = import ./shakhzod;
-  domirando = import ./domirando.nix;
+  domirando = import ./domirando;
   bahrom04 = import ./bahrom04.nix;
   letrec = import ./letrec.nix;
   bemeritus = import ./bemeritus.nix;
