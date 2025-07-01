@@ -51,7 +51,7 @@
     };
 
     bahrom04 = {
-      url = "github:bahrom04/nix-config/main";
+      url = "github:bahrom04/nix-config?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -71,6 +71,7 @@
     home-manager,
     flake-utils,
     orzklv,
+    bahrom04,
     uzinfocom-pkgs,
     ...
   } @ inputs: let

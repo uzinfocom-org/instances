@@ -22,7 +22,7 @@
     # Tell it to map everything in the `config` directory in this
     # repository to the `.config` in my home-manager directory
     file.".local/share/fastfetch" = {
-      source = .../.github/config/fastfetch;
+      source = ../../../../.github/config/fastfetch;
       recursive = true;
     };
 
