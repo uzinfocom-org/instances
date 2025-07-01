@@ -50,6 +50,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bahrom04 = {
+      url = "github:bahrom04/nix-config/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
       url = "github:uzinfocom-org/pkgs";
