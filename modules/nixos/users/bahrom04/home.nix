@@ -8,7 +8,6 @@
   modulesServices = inputs.bahrom04.modulesServices;
 in {
   imports = [
-    inputs
     modulesHome.fastfetch
     modulesHome.fish
     modulesHome.git
