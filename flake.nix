@@ -55,6 +55,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    letrec = {
+      url = "github:let-rec/nix-conf?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
       url = "github:uzinfocom-org/pkgs";
@@ -72,6 +77,7 @@
     flake-utils,
     orzklv,
     bahrom04,
+    letrec,
     uzinfocom-pkgs,
     ...
   } @ inputs: let
