@@ -2,6 +2,8 @@
   inputs,
   outputs,
   lib,
+  config,
+  pkgs,
   ...
 }: let
   username = "bahrom04";
@@ -46,8 +48,8 @@ in {
 
       users = {
         # Import your home-manager configuration
-        "${username}" = import ../../../home.nix {
-          inherit inputs outputs username lib;
+        "${username}" = import ./home.nix {
+          inherit pkgs inputs outputs username lib config;
         };
       };
     };

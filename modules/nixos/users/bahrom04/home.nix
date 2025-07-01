@@ -1,8 +1,7 @@
 {
-  inputs,
-  config,
   pkgs,
   inputs,
+  config,
   ...
 }: let
   modulesHome = inputs.bahrom04.modulesHome;
