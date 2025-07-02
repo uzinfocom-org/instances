@@ -60,6 +60,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bemeritus = {
+      url = "github:bemeritus/dotfiles?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
       url = "github:uzinfocom-org/pkgs";
@@ -78,6 +83,7 @@
     orzklv,
     bahrom04,
     letrec,
+    bemeritus,
     uzinfocom-pkgs,
     ...
   } @ inputs: let
