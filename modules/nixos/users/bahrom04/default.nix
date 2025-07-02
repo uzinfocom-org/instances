@@ -27,13 +27,13 @@
       lib
       config
       pkgs
+      # for mkUser
       username
       hashedPassword
       description
       github_keys_url
       sha256
-      home_nix_path
-      ;
+      home_nix_path;
   };
 in {
   config = mkUser;

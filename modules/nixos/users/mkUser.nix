@@ -10,9 +10,7 @@
   github_keys_url ? "",
   sha256 ? "",
   home_nix_path,
-}: let
-  #
-in {
+}: {
   users.users = {
     "${username}" = {
       inherit hashedPassword;
