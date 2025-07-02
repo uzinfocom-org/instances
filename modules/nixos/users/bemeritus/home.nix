@@ -13,7 +13,6 @@
   home.username = "bemeritus";
   home.homeDirectory = "/home/bemeritus";
 
-
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     neofetch
