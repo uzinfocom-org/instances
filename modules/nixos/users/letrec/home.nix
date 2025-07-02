@@ -6,7 +6,7 @@
 }: {
   imports = [
     #inputs.letrec.homeModules.bash
-    inputs.letrec.homeModules.vscode
+    # inputs.letrec.homeModules.vscode
     #inputs.letrec.homeModules.firefox
     #inputs.letrec.homeModules.direnv
     inputs.letrec.homeModules.zsh
