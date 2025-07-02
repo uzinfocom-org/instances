@@ -5,21 +5,16 @@
   ...
 }: {
   imports = [
-    #inputs.letrec.homeModules.bash
-    # inputs.letrec.homeModules.vscode
-    #inputs.letrec.homeModules.firefox
-    #inputs.letrec.homeModules.direnv
+    inputs.letrec.homeModules.starship
     inputs.letrec.homeModules.zsh
     inputs.letrec.homeModules.git
-    #inputs.letrec.homeModules.ssh
-    #inputs.letrec.homeModules.zed
-    #inputs.letrec.homeModules.nixpkgs
-    #inputs.letrec.homeModules.packages
+    inputs.letrec.homeModules.packages
     inputs.letrec.homeModules.fastfetch
     inputs.letrec.homeModules.nixpkgs
+    #inputs.letrec.homeModules.ssh
   ];
   home = {
-    stateVersion = "24.11";
+    stateVersion = "25.05";
     username = "letrec";
     homeDirectory = "/home/letrec";
     enableNixpkgsReleaseCheck = false;
