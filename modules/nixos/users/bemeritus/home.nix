@@ -1,6 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  
+  imports = [
+    inputs.bemeritus.homeModules.git
+    inputs.bemeritus.homeModules.starship
+  ];
+  
   # TODO please change the username & home directory to your own
   home.username = "bemeritus";
   home.homeDirectory = "/home/bemeritus";
