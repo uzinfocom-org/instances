@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     #inputs.letrec.homeModules.bash
     inputs.letrec.homeModules.vscode
@@ -27,5 +26,4 @@
   };
 
   programs.home-manager.enable = true;
-
 }
