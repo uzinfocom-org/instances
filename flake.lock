@@ -1170,11 +1170,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750769452,
-        "narHash": "sha256-yvkZjKcjZRhQhpHsFVXIT0Bq1xbMIMfr71xhXhxI+yE=",
+        "lastModified": 1751529271,
+        "narHash": "sha256-fsyky0hr/9cKXMLKDDw3iS5ogW034L8vD10ZQdBDUDw=",
         "owner": "uzinfocom-org",
         "repo": "pkgs",
-        "rev": "ca7a8fe2b134afeff483c723cba1397c8a5b7f4d",
+        "rev": "8933cc554df51144dbeb96cd7ae25bc403b20187",
         "type": "github"
       },
       "original": {
