@@ -20,7 +20,7 @@
   githubKeysUrl = "https://github.com/bahrom04.keys";
   sha256 = "0yazvxwvngyqapa7fz1qa7916c4w7km72smyl1im14mqbv8733k4";
   homePath = builtins.toPath ./. + "/home.nix";
-  mkUsers = lib.users.mkUsers {
+  mkUsers = outputs.lib.users.mkUsers {
     inherit
       inputs
       outputs
@@ -33,7 +33,8 @@
       description
       githubKeysUrl
       sha256
-      homePath;
+      homePath
+      ;
   };
 in {
   config = mkUsers;
