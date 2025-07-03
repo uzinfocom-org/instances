@@ -1052,16 +1052,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1751524697,
-        "narHash": "sha256-blgCV7D1qDPBIejKX8tLAm7WfCINgOW0FxKnUEAHdY8=",
+        "lastModified": 1750769452,
+        "narHash": "sha256-yvkZjKcjZRhQhpHsFVXIT0Bq1xbMIMfr71xhXhxI+yE=",
         "owner": "uzinfocom-org",
         "repo": "pkgs",
-        "rev": "01597188a09ad3ee5d1863e78a16f4ceaa210da1",
+        "rev": "ca7a8fe2b134afeff483c723cba1397c8a5b7f4d",
         "type": "github"
       },
       "original": {
         "owner": "uzinfocom-org",
-        "ref": "develop",
         "repo": "pkgs",
         "type": "github"
       }

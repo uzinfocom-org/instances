@@ -67,7 +67,7 @@
 
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
-      url = "github:uzinfocom-org/pkgs?ref=develop";
+      url = "github:uzinfocom-org/pkgs";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-unstable.follows = "nixpkgs-unstable";
