@@ -63,7 +63,7 @@
     domirando = {
       url = "github:domirando/my-sysconfig/master";
       inputs.nixpkgs.follows = "nixpkgs";
-    }
+    };
 
     bemeritus = {
       url = "github:bemeritus/dotfiles?ref=master";
@@ -88,11 +88,8 @@
     orzklv,
     bahrom04,
     letrec,
-<<<<<<< HEAD
     domirando,
-=======
     bemeritus,
->>>>>>> 563fbad850dca4c5e2c76e4150b725dc857660f3
     uzinfocom-pkgs,
     ...
   } @ inputs: let
