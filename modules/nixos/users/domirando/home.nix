@@ -1,13 +1,11 @@
 {
-  outputs,
   config,
   pkgs,
   inputs,
   ...
 }: {
-  imports = [
-    inputs.domirando.homeModules.neofetch   
-  ]
+  imports = [];
+
   home.username = "domirando";
   home.homeDirectory = "/home/domirando";
   xresources.properties = {
@@ -17,31 +15,15 @@
   home.packages = with pkgs; [
     neofetch
     nnn
-    cargo
-    gcc
     #archives
     zip
     nixfmt-rfc-style
     p7zip
     unzip
-    xz
-    alejandra
     #utils
-    ripgrep
-    jq
-    eza
-    fzf
     ghostty
-
     file
     which
-
-    glow
-
-    fractal
-    telegram-desktop
-
-    nodejs_24
     zellij
     neovim
   ];
