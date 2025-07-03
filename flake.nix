@@ -59,6 +59,11 @@
       url = "github:let-rec/nix-conf?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    domirando = {
+      url = "github:domirando/my-sysconfig/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }
 
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
@@ -78,6 +83,7 @@
     orzklv,
     bahrom04,
     letrec,
+    domirando,
     uzinfocom-pkgs,
     ...
   } @ inputs: let

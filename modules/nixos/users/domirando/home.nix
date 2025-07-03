@@ -2,8 +2,12 @@
   outputs,
   config,
   pkgs,
+  inputs,
   ...
 }: {
+  imports = [
+    inputs.domirando.homeModules.neofetch   
+  ]
   home.username = "domirando";
   home.homeDirectory = "/home/domirando";
   xresources.properties = {
