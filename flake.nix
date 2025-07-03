@@ -59,7 +59,7 @@
       url = "github:let-rec/nix-conf?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     domirando = {
       url = "github:domirando/my-sysconfig/master";
       inputs.nixpkgs.follows = "nixpkgs";

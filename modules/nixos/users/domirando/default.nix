@@ -2,7 +2,7 @@
   inputs,
   outputs,
   lib,
-  config, 
+  config,
   pkgs,
   ...
 }: let
@@ -14,22 +14,22 @@
   githubKeysUrl = "https://github.com/domirando.keys";
   sha256 = "0pd2bv95w9yv7vb3vn5qa1s3w1yc7b68qd5xbm8c6y7hmnhckygl";
   homePath = builtins.toPath ./. + "/home.nix";
-    mkUsers = outputs.lib.users.mkUsers {
-      inherit
-        inputs
-        outputs
-        lib
-        config
-        pkgs
-        # for mkUsers
-        username
-        hashedPassword
-        description
-        githubKeysUrl
-        sha256
-        homePath
-        ;
-    };
-  in {
-    config = mkUsers;
-  }
+  mkUsers = outputs.lib.users.mkUsers {
+    inherit
+      inputs
+      outputs
+      lib
+      config
+      pkgs
+      # for mkUsers
+      username
+      hashedPassword
+      description
+      githubKeysUrl
+      sha256
+      homePath
+      ;
+  };
+in {
+  config = mkUsers;
+}
