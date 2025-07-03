@@ -7,13 +7,6 @@
   pkgs,
   ...
 }: let
-  # options = {
-  #   username = lib.mkOption {
-  #     type = lib.types.str;
-  #     default = "";
-  #     description = "Is installed packages are MacOS targetted.";
-  #   };
-  # };
   username = "bahrom04";
   hashedPassword = "$y$j9T$PEPMAZlXHzgRwOlum.4JA0$sh0uNM1PxrWmSjRdjYkw2iiDdquWF3z9CDAaasEwQ88";
   description = "Baxrom Raxmatov";
@@ -27,7 +20,7 @@
       lib
       config
       pkgs
-      # for mkUser
+      # for mkUsers
       username
       hashedPassword
       description
