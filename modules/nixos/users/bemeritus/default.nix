@@ -1,7 +1,7 @@
 {
   inputs,
   outputs,
-  lib, 
+  lib,
   pkgs,
   config,
   ...
@@ -49,7 +49,7 @@ in {
       users = {
         # Import your home-manager configuration
         "${username}" = import ./home.nix {
-          inherit pkgs config;
+          inherit pkgs config inputs;
         };
       };
     };

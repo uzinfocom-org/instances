@@ -57,17 +57,39 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1751371511,
-        "narHash": "sha256-wlu2a4l94kxYmnxAfd4aaJwZpMKl2/EZQ7vxqUkasnU=",
+        "lastModified": 1751458966,
+        "narHash": "sha256-bhF/cfsZDK4z76Ru/l94UPBvZFBMoUZEDDqkhGr5wSc=",
         "owner": "bahrom04",
         "repo": "nix-config",
-        "rev": "69b035fabb794047bde4eb4444690cb02894b2af",
+        "rev": "139ced067567f6016c84b75e0a38af0aca22d5f1",
         "type": "github"
       },
       "original": {
         "owner": "bahrom04",
         "ref": "main",
         "repo": "nix-config",
+        "type": "github"
+      }
+    },
+    "bemeritus": {
+      "inputs": {
+        "home-manager": "home-manager_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751456470,
+        "narHash": "sha256-VQfuDMKKo0TgzJmAbTO+FqauB4P9qXEbxbRXsks42+w=",
+        "owner": "bemeritus",
+        "repo": "dotfiles",
+        "rev": "51a7fe045eba55bbc27bce5de49f89616c2a33b9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bemeritus",
+        "ref": "master",
+        "repo": "dotfiles",
         "type": "github"
       }
     },
@@ -433,6 +455,7 @@
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
+          "bemeritus",
           "nixpkgs"
         ]
       },
@@ -454,16 +477,15 @@
     "home-manager_3": {
       "inputs": {
         "nixpkgs": [
-          "letrec",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1749154018,
-        "narHash": "sha256-gjN3j7joRvT3a8Zgcylnd4NFsnXeDBumqiu4HmY1RIg=",
+        "lastModified": 1751468302,
+        "narHash": "sha256-tWosziZTT039x6PgEZUhzGlV8oLvdDmIgKTE8ESMaEA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7aae0ee71a17b19708b93b3ed448a1a0952bf111",
+        "rev": "501cfec8277f931a9c9af9f23d3105c537faeafe",
         "type": "github"
       },
       "original": {
@@ -476,7 +498,7 @@
     "home-manager_4": {
       "inputs": {
         "nixpkgs": [
-          "orzklv",
+          "letrec",
           "nixpkgs"
         ]
       },
@@ -495,20 +517,42 @@
         "type": "github"
       }
     },
+    "home-manager_5": {
+      "inputs": {
+        "nixpkgs": [
+          "orzklv",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751468302,
+        "narHash": "sha256-tWosziZTT039x6PgEZUhzGlV8oLvdDmIgKTE8ESMaEA=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "501cfec8277f931a9c9af9f23d3105c537faeafe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-25.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "letrec": {
       "inputs": {
         "flake-utils": "flake-utils_5",
-        "home-manager": "home-manager_3",
+        "home-manager": "home-manager_4",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1751376303,
-        "narHash": "sha256-45FWrQrbzQ0q6MO3d5BpX1PnuXWTRGGUUtIKHs4nXxs=",
+        "lastModified": 1751460461,
+        "narHash": "sha256-8B+82HNxzIRUFuF4vbVG1PkUUqaUMVojTqnzHno8H/Q=",
         "owner": "let-rec",
         "repo": "nix-conf",
-        "rev": "35d012de39e6faaf159bcb12eead40ec1d4a255b",
+        "rev": "5497dcddb211c1fd72b7af585defa5c0c51f51fd",
         "type": "github"
       },
       "original": {
@@ -596,11 +640,11 @@
     },
     "nixpkgs-darwin": {
       "locked": {
-        "lastModified": 1751230698,
-        "narHash": "sha256-ANWE9dHPeACz3SIbUhbWZforTgfAvOS5Tg1l4yYa/B0=",
+        "lastModified": 1751373438,
+        "narHash": "sha256-LEkcTkPFfUJCqmXuQ+0oB127/OuN8mbZ0vaVo64NYRk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e410afb41ba16a2ceeaeff85c536d35f10bbbdcf",
+        "rev": "2c9abb11f4780e7954cd76c7d85441003da21fc8",
         "type": "github"
       },
       "original": {
@@ -711,7 +755,7 @@
         "aagl": "aagl",
         "disko": "disko_2",
         "flake-utils": "flake-utils_6",
-        "home-manager": "home-manager_4",
+        "home-manager": "home-manager_5",
         "nix-darwin": "nix-darwin_2",
         "nixpkgs": [
           "nixpkgs"
@@ -722,11 +766,11 @@
         "sops-nix": "sops-nix_2"
       },
       "locked": {
-        "lastModified": 1751338963,
-        "narHash": "sha256-dVpuwwrG3V1OKKEwoA7K6ve6urii3Evn10J1y9qHkm0=",
+        "lastModified": 1751470527,
+        "narHash": "sha256-j9+iJNELPlBsq23xrBvtj3lvxp0XlspIZEhuEjUhJ0E=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "0216205c0847aef2e821a131ec5801e3d49e9251",
+        "rev": "d92e7d4b6341fa1bf20c43f71a6e696cf01c6219",
         "type": "github"
       },
       "original": {
@@ -765,10 +809,11 @@
     "root": {
       "inputs": {
         "bahrom04": "bahrom04",
+        "bemeritus": "bemeritus",
         "disko": "disko",
         "flake-utils": "flake-utils_3",
         "gate": "gate",
-        "home-manager": "home-manager_2",
+        "home-manager": "home-manager_3",
         "letrec": "letrec",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
