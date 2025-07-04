@@ -1,6 +1,5 @@
 {
   inputs,
-  username,
   lib,
   ...
 }: {
@@ -15,9 +14,9 @@
 
   # This is required information for home-manager to do its job
   home = {
-    inherit username;
+    username = "sakhib";
     stateVersion = "25.05";
-    homeDirectory = "/home/${username}";
+    homeDirectory = "/home/sakhib";
 
     # Tell it to map everything in the `config` directory in this
     # repository to the `.config` in my home-manager directory

@@ -17,12 +17,13 @@
     outputs.nixosModules.nixpkgs
 
     # User configs
-    outputs.nixosModules.users.sakhib
-    outputs.nixosModules.users.shakhzod
-    outputs.nixosModules.users.domirando
-    outputs.nixosModules.users.bahrom04
-    outputs.nixosModules.users.letrec
-    outputs.nixosModules.users.bemeritus
+    # outputs.nixosModules.users.sakhib
+    # outputs.nixosModules.users.shakhzod
+    # outputs.nixosModules.users.domirando
+    # outputs.nixosModules.users.bahrom04
+    # outputs.nixosModules.users.letrec
+    # outputs.nixosModules.users.bemeritus
+    outputs.nixosModules.users.mkUser
 
     # Import your deployed service list
     ./services

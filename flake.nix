@@ -129,8 +129,8 @@
         inherit inputs outputs;
         opath = ./.;
         list = [
-          "Efael"
           "Laboratory"
+          "Efael"
         ];
       };
     };
