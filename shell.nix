@@ -1,5 +1,5 @@
 {
-  pkgs ? let
+  pre-commit-check, pkgs ? let
     lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
     nixpkgs = fetchTarball {
       url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
@@ -9,9 +9,11 @@
     import nixpkgs {overlays = [];},
   ...
 }:
-pkgs.stdenv.mkDerivation {
-  name = "instances";
+  pkgs.stdenv.mkDerivation {
+    name = "instances";
 
+  buildInputs = pre-commit-check.enabledPackages;
+  
   nativeBuildInputs = with pkgs; [
     git
     nixd
