@@ -59,9 +59,9 @@
       url = "github:let-rec/nix-conf?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    
     domirando = {
-      url = "github:domirando/my-sysconfig/master";
+      url = "github:domirando/sysconfig";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -78,6 +78,9 @@
         nixpkgs-unstable.follows = "nixpkgs-unstable";
       };
     };
+    
+    # git hooks
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs = {
@@ -101,11 +104,17 @@
       system: let
         # Packages for the current <arch>
         pkgs = nixpkgs.legacyPackages.${system};
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixpkgs-fmt.enable = true;
+          };
+        };
       in
         # Nixpkgs packages for the current system
         {
           # Development shells
-          devShells.default = import ./shell.nix {inherit pkgs;};
+          devShells.default = import ./shell.nix {inherit pre-commit-check pkgs;};
         }
     )
     # and ...
