@@ -59,7 +59,7 @@
       url = "github:let-rec/nix-conf?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     domirando = {
       url = "github:domirando/sysconfig";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,13 +72,13 @@
 
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
-      url = "github:uzinfocom-org/pkgs";
+      url = "github:uzinfocom-org/pkgs?ref=develop";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-unstable.follows = "nixpkgs-unstable";
       };
     };
-    
+
     # git hooks
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
