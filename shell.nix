@@ -1,5 +1,6 @@
 {
-  pre-commit-check,
+  # pre-commit-hooks,
+  # pre-commit-check,
   pkgs ? let
     lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
     nixpkgs = fetchTarball {
@@ -12,8 +13,10 @@
 }:
 pkgs.stdenv.mkDerivation {
   name = "instances";
-
-  buildInputs = pre-commit-check.enabledPackages;
+  # shellHook = ''
+  #   ${pre-commit-check.shellHook}
+  # '';
+  # buildInputs = pre-commit-check.enabledPackages;
 
   nativeBuildInputs = with pkgs; [
     git

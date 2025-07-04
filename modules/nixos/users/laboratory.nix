@@ -6,7 +6,7 @@
   config,
   pkgs,
   ...
-}: let
+} @ upstream: let
   users = [
     {
       username = "sakhib";
@@ -21,7 +21,14 @@
       description = "Sokhibjon Orzikulov";
       githubKeysUrl = "https://github.com/orzklv.keys";
       sha256 = "05rvkkk382jh84prwp4hafnr3bnawxpkb3w6pgqda2igia2a4865";
-      homePath = builtins.toPath ./. + "/sakhib/home.nix";
+      homeModules = with inputs.orzklv.homeModules; [
+        git
+        zsh
+        helix
+        topgrade
+        packages
+        fastfetch
+      ];
     }
     {
       username = "shakhzod";
@@ -37,7 +44,14 @@
       description = "Shakhzod Kudratov";
       githubKeysUrl = "https://github.com/shakhzodkudratov.keys";
       sha256 = "0gnabwywc19947a3m4702m7ibhxmc5s4zqbhsydb2wq92k6qgh6g";
-      homePath = builtins.toPath ./. + "/shakhzod/home.nix";
+      homeModules = with inputs.orzklv.homeModules; [
+        git
+        zsh
+        helix
+        topgrade
+        packages
+        fastfetch
+      ];
     }
     {
       username = "bahrom04";
@@ -45,7 +59,14 @@
       description = "Baxrom Raxmatov";
       githubKeysUrl = "https://github.com/bahrom04.keys";
       sha256 = "0yazvxwvngyqapa7fz1qa7916c4w7km72smyl1im14mqbv8733k4";
-      homePath = builtins.toPath ./. + "/bahrom04/home.nix";
+      homeModules = with inputs.bahrom04.homeModules; [
+        direnv
+        home.fastfetch
+        home.fish
+        home.git
+        home.starship
+        home.zsh
+      ];
     }
     {
       username = "letrec";
@@ -60,7 +81,10 @@
       description = "Hamidulloh Toʻxtayev";
       githubKeysUrl = "https://github.com/let-rec.keys";
       sha256 = "19yg67mljcy7a730i4ndvcb1dkqcvp0ccyggrs0qqvza5byliifg";
-      homePath = builtins.toPath ./. + "/letrec/home.nix";
+      homeModules = with inputs.letrec.homeModules; [
+        git
+        zsh
+      ];
     }
     {
       username = "bemeritus";
@@ -68,7 +92,10 @@
       description = "BeMeritus";
       githubKeysUrl = "https://github.com/bemeritus.keys";
       sha256 = "0dr30cmzbiz192xfjfbb26sk9ynpwfla53q09hx6mr404rdszy9a";
-      homePath = builtins.toPath ./. + "/bemeritus/home.nix";
+      homeModules = with inputs.bemeritus.homeModules; [
+        git
+        starship
+      ];
     }
     {
       username = "domirando";
@@ -78,19 +105,12 @@
       description = "Maftuna Vohidjonovna";
       githubKeysUrl = "https://github.com/domirando.keys";
       sha256 = "0pd2bv95w9yv7vb3vn5qa1s3w1yc7b68qd5xbm8c6y7hmnhckygl";
-      homePath = builtins.toPath ./. + "/domirando/home.nix";
+      homeModules = with inputs.orzklv.homeModules; [
+        git
+        zsh
+      ];
     }
   ];
 in {
-  config = outputs.lib.users.mkUsers {
-    inherit
-      inputs
-      outputs
-      lib
-      config
-      pkgs
-      # home-manager users data
-      users
-      ;
-  };
+  config = outputs.lib.users.mkUsers users upstream;
 }
