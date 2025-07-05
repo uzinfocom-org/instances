@@ -50,6 +50,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bahrom04 = {
+      url = "github:bahrom04/nix-config?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    letrec = {
+      url = "github:let-rec/nix-conf?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    domirando = {
+      url = "github:domirando/sysconfig";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    bemeritus = {
+      url = "github:bemeritus/dotfiles?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
       url = "github:uzinfocom-org/pkgs";
@@ -58,6 +78,9 @@
         nixpkgs-unstable.follows = "nixpkgs-unstable";
       };
     };
+
+    # git hooks
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs = {
@@ -66,22 +89,39 @@
     home-manager,
     flake-utils,
     orzklv,
+    bahrom04,
+    letrec,
+    domirando,
+    bemeritus,
     uzinfocom-pkgs,
+    pre-commit-hooks,
     ...
   } @ inputs: let
     # Self instance pointer
     outputs = self;
   in
     # Attributes for each system
-    flake-utils.lib.eachDefaultSystem (
+    flake-utils.lib.eachDefaultSystem
+    (
       system: let
         # Packages for the current <arch>
         pkgs = nixpkgs.legacyPackages.${system};
+        pre-commit-check = self.checks.${system}.pre-commit-check;
       in
         # Nixpkgs packages for the current system
         {
+          checks = {
+            pre-commit-check = pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                alejandra.enable = true;
+              };
+            };
+          };
           # Development shells
-          devShells.default = import ./shell.nix {inherit pkgs;};
+          devShells = {
+            default = pkgs.callPackage ./shell.nix {inherit pkgs pre-commit-hooks pre-commit-check;};
+          };
         }
     )
     # and ...
@@ -105,6 +145,7 @@
         inherit inputs outputs;
         opath = ./.;
         list = [
+          "Laboratory"
           "Efael"
         ];
       };
