@@ -757,11 +757,11 @@
     },
     "nixpkgs-darwin": {
       "locked": {
-        "lastModified": 1751373438,
-        "narHash": "sha256-LEkcTkPFfUJCqmXuQ+0oB127/OuN8mbZ0vaVo64NYRk=",
+        "lastModified": 1751582995,
+        "narHash": "sha256-u7ubvtxdTnFPpV27AHpgoKn7qHuE7sgWgza/1oj5nzA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2c9abb11f4780e7954cd76c7d85441003da21fc8",
+        "rev": "7a732ed41ca0dd64b4b71b563ab9805a80a7d693",
         "type": "github"
       },
       "original": {
@@ -821,11 +821,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1751479989,
-        "narHash": "sha256-M5KgdpVBVcW4HRVq9/OSRbrxlwsQ1ogEKqnvzsClDqU=",
+        "lastModified": 1751582995,
+        "narHash": "sha256-u7ubvtxdTnFPpV27AHpgoKn7qHuE7sgWgza/1oj5nzA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "34627c90f062da515ea358360f448da57769236e",
+        "rev": "7a732ed41ca0dd64b4b71b563ab9805a80a7d693",
         "type": "github"
       },
       "original": {
@@ -899,11 +899,11 @@
         "sops-nix": "sops-nix_3"
       },
       "locked": {
-        "lastModified": 1751612705,
-        "narHash": "sha256-4moCDROiFBZhcvHqX7MSsUNgD8cZq4BlOSWcsiKlzyM=",
+        "lastModified": 1751664094,
+        "narHash": "sha256-rK1j+rYz8PPL+y9p26L14yNlrMMz3FjHD01keJyzKak=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "73b312d9e71a642a9713cbfc567ef473cfd4b788",
+        "rev": "6d23b37491ea94f6617b458349bd2dacf5e3278d",
         "type": "github"
       },
       "original": {
@@ -1243,16 +1243,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1751527385,
-        "narHash": "sha256-fsyky0hr/9cKXMLKDDw3iS5ogW034L8vD10ZQdBDUDw=",
+        "lastModified": 1751642501,
+        "narHash": "sha256-AHIYgVvLnTp3qcKznrwgEMk3AmI0a7yfHNQvhpLq1AY=",
         "owner": "uzinfocom-org",
         "repo": "pkgs",
-        "rev": "25360a1bcf22f337c55b292c5913c70969dd70b7",
+        "rev": "b81710fface44cc55181c489921e48022b90c88b",
         "type": "github"
       },
       "original": {
         "owner": "uzinfocom-org",
-        "ref": "develop",
         "repo": "pkgs",
         "type": "github"
       }

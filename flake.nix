@@ -72,7 +72,7 @@
 
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
-      url = "github:uzinfocom-org/pkgs?ref=develop";
+      url = "github:uzinfocom-org/pkgs";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-unstable.follows = "nixpkgs-unstable";
@@ -94,27 +94,34 @@
     domirando,
     bemeritus,
     uzinfocom-pkgs,
+    pre-commit-hooks,
     ...
   } @ inputs: let
     # Self instance pointer
     outputs = self;
   in
     # Attributes for each system
-    flake-utils.lib.eachDefaultSystem (
+    flake-utils.lib.eachDefaultSystem
+    (
       system: let
         # Packages for the current <arch>
         pkgs = nixpkgs.legacyPackages.${system};
-        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            nixpkgs-fmt.enable = true;
-          };
-        };
+        pre-commit-check = self.checks.${system}.pre-commit-check;
       in
         # Nixpkgs packages for the current system
         {
+          checks = {
+            pre-commit-check = pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                nixpkgs-fmt.enable = true;
+              };
+            };
+          };
           # Development shells
-          devShells.default = import ./shell.nix {inherit pre-commit-check pkgs;};
+          devShells = {
+            default = pkgs.callPackage ./shell.nix {inherit pkgs pre-commit-hooks pre-commit-check;};
+          };
         }
     )
     # and ...
