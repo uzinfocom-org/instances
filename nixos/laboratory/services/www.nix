@@ -4,7 +4,7 @@
   # Enable web server & proxy
   services.www = {
     enable = false;
-    alias = ["uz1.kolyma.uz"];
+    alias = [];
     no-default = true;
     hosts = {};
   };
