@@ -167,31 +167,30 @@ in {
       enableACME = lib.mkDefault true;
 
       locations =
-        (lib.foldl' lib.recursiveUpdate {} (
-          [
-            {
-              # Forward to the auth service
-              "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
-                priority = 100;
-                proxyPass = "http://127.0.0.1:8080";
-                extraConfig = commonHeaders;
-              };
+        lib.foldl' lib.recursiveUpdate {}
+        [
+          {
+            # Forward to the auth service
+            "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
+              priority = 100;
+              proxyPass = "http://127.0.0.1:8080";
+              extraConfig = commonHeaders;
+            };
 
-              # Forward to Synapse
-              # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
-              "~ ^(/_matrix|/_synapse)" = {
-                priority = 200;
-                proxyPass = "http://127.0.0.1:8008";
+            # Forward to Synapse
+            # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
+            "~ ^(/_matrix|/_synapse)" = {
+              priority = 200;
+              proxyPass = "http://127.0.0.1:8008";
 
-                extraConfig = ''
-                  ${matrixHeaders}
-                  add_header x-backend "synapse" always;
-                '';
-              };
-            }
-          ]
-          # ++ endpoints
-        ))
+              extraConfig = ''
+                ${matrixHeaders}
+                add_header x-backend "synapse" always;
+              '';
+            };
+          }
+        ]
+        # ++ endpoints
         // wellKnownAppleLocations "${domains.main}";
     };
 

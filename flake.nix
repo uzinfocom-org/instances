@@ -88,11 +88,6 @@
     nixpkgs,
     home-manager,
     flake-utils,
-    orzklv,
-    bahrom04,
-    letrec,
-    domirando,
-    bemeritus,
     uzinfocom-pkgs,
     pre-commit-hooks,
     ...
@@ -104,9 +99,9 @@
     flake-utils.lib.eachDefaultSystem
     (
       system: let
+        inherit (self.checks.${system}) pre-commit-check;
         # Packages for the current <arch>
         pkgs = nixpkgs.legacyPackages.${system};
-        pre-commit-check = self.checks.${system}.pre-commit-check;
       in
         # Nixpkgs packages for the current system
         {
@@ -114,6 +109,8 @@
             pre-commit-check = pre-commit-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
+                statix.enable = true;
+                #flake-checker.enable = true;
                 alejandra.enable = true;
               };
             };
