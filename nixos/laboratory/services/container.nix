@@ -1,8 +1,4 @@
-{
-  outputs,
-  pkgs,
-  ...
-}: let
+{outputs, ...}: let
   ports = [
     80
     443
