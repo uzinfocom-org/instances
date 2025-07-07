@@ -105,9 +105,10 @@
       description = "Maftuna Vohidjonovna";
       githubKeysUrl = "https://github.com/domirando.keys";
       sha256 = "0pd2bv95w9yv7vb3vn5qa1s3w1yc7b68qd5xbm8c6y7hmnhckygl";
-      homeModules = with inputs.orzklv.homeModules; [
+      homeModules = with inputs.domirando.homeModules; [
         git
-        zsh
+        bash
+        zellij
       ];
     }
   ];
