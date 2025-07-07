@@ -1,5 +1,5 @@
 {
-  pre-commit-hooks,
+  # pre-commit-hooks,
   pre-commit-check,
   pkgs ? let
     lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
