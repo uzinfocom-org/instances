@@ -1,7 +1,7 @@
 {outputs, ...}: {
   imports = [outputs.nixosModules.web];
 
-  # Enable web server & proxyi
+  # Enable web server & proxy
   services.www = {
     enable = true;
     alias = ["ns1.efael.uz"];
