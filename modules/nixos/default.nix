@@ -15,4 +15,5 @@
   secret = import ./secret.nix;
   network = import ./network.nix;
   nixpkgs = import ./nixpkgs.nix;
+  container = import ./container.nix;
 }

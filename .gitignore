@@ -12,3 +12,7 @@ nohup.out
 
 # direnv
 .direnv
+
+.pre-commit-config.yaml
+
+*.swp

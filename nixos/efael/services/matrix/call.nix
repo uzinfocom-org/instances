@@ -34,10 +34,10 @@ in {
   };
 
   services.lk-jwt-service = {
+    inherit (config.services.livekit) keyFile;
     enable = true;
     port = 8192;
     livekitUrl = "wss://${domains.livekit}";
-    keyFile = config.services.livekit.keyFile;
   };
 
   networking.firewall = {
