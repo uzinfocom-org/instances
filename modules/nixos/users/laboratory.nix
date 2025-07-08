@@ -94,7 +94,10 @@
       sha256 = "0dr30cmzbiz192xfjfbb26sk9ynpwfla53q09hx6mr404rdszy9a";
       homeModules = with inputs.bemeritus.homeModules; [
         git
+        zsh
         starship
+        neovim
+        fastfetch
       ];
     }
     {
