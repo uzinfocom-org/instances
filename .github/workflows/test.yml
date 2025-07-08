@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        instance: ["Efael"]
+        instance: ["Efael", "Laboratory"]
     runs-on: ubuntu-latest
 
     steps:
@@ -43,4 +43,4 @@ jobs:
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.ASSIST_PAT }}
