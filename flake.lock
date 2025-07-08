@@ -665,11 +665,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751889084,
-        "narHash": "sha256-hwaQjGA1taJyfnAe7OFOe5FVFUL4uh29xgncIdJJJeE=",
+        "lastModified": 1751991061,
+        "narHash": "sha256-hicgQKs7W4CsXz/pqRvPcfBvNPCaeI0CtxXfvdCzDyA=",
         "owner": "let-rec",
         "repo": "nix-conf",
-        "rev": "95eaa789251e1e134d934e69e477a71356e6f14a",
+        "rev": "1d48f12e1187593408c4309508255ac8b4bd4e2c",
         "type": "github"
       },
       "original": {
