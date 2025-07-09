@@ -80,7 +80,7 @@
       ];
       description = "Hamidulloh Toʻxtayev";
       githubKeysUrl = "https://github.com/let-rec.keys";
-      sha256 = "19yg67mljcy7a730i4ndvcb1dkqcvp0ccyggrs0qqvza5byliifg";
+      sha256 = "0m1p3n224c6fwkbiw1p2pzw1wfbq7b3a3i60r81rq5d4nmk8k9m3";
       homeModules = with inputs.letrec.homeModules; [
         git
         zsh
