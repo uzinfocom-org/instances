@@ -13,6 +13,7 @@
         inputs.uzinfocom-pkgs.overlays.unstable
         inputs.uzinfocom-pkgs.overlays.additions
         inputs.uzinfocom-pkgs.overlays.modifications
+        inputs.minecraft.overlay
 
         # Or define it inline, for example:
         # (final: prev: {
