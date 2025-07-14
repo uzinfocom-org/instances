@@ -10,5 +10,8 @@
 
     # Docker container hosting
     ./container.nix
+
+    # Minecraft server
+    ./minecraft
   ];
 }
