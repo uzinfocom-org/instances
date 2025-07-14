@@ -133,7 +133,14 @@ in {
 
       locations =
         wellKnownLocations "${domains.main}"
-        // wellKnownAppleLocations "${domains.main}";
+        // wellKnownAppleLocations "${domains.main}"
+        // {
+          "/" = {
+            extraConfig = ''
+              return 301 $scheme://efael.net$request_uri;
+            '';
+          };
+        };
     };
 
     ${domains.client} = {
