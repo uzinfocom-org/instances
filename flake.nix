@@ -42,7 +42,7 @@
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
 
     # Main homepage website
-    gate.url = "github:kolyma-labs/gate";
+    gate.url = "github:uzinfocom-org/gate";
 
     # Orzklv's Nix configuration
     orzklv = {
