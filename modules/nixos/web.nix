@@ -6,16 +6,22 @@
 }: let
   cfg = config.services.www;
 
-  mkDefaultHost = domain: cert: aliases: {
-    ${domain} =
+  mkDefaultHost = {
+    domain ? cfg.default.domain,
+    cert ? cfg.default.cert,
+    alias ? cfg.default.alias,
+    root ? cfg.default.root,
+  }: {
+    ${domain} = lib.mkMerge [
       {
-        serverAliases = aliases;
-        root = "${pkgs.uzinfocom.gate}";
+        inherit root;
+        serverAliases = alias;
       }
-      // (lib.mkIf cert {
+      (lib.mkIf cert {
         forceSSL = true;
         enableACME = true;
-      });
+      })
+    ];
   };
 
   default = {
@@ -29,7 +35,9 @@
       recommendedGzipSettings = true;
 
       # Default virtual host
-      virtualHosts = lib.mkIf cfg.default.enable (mkDefaultHost cfg.default.domain cfg.default.cert cfg.default.alias);
+      virtualHosts = lib.mkIf cfg.default.enable (mkDefaultHost {
+        inherit (cfg.default) domain cert alias;
+      });
     };
 
     # Accepting ACME Terms
@@ -95,6 +103,12 @@ in {
           type = lib.types.listOf lib.types.str;
           default = [];
           description = "List of extra aliases to host.";
+        };
+
+        root = lib.mkOption {
+          type = lib.types.str;
+          default = "${pkgs.uzinfocom.gate}";
+          description = "The default domain of instance.";
         };
       };
 
