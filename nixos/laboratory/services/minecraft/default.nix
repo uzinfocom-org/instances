@@ -20,7 +20,7 @@ in {
         enable = true;
         openFirewall = true;
         package = pkgs.paperServers.${server};
-        jvmOpts = "-Xms24576M -Xmx24576M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
+        jvmOpts = "-Xms8196M -Xmx8196M -XX:+UseG1GC -XX:ParallelGCThreads=2 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
         serverProperties = {
           server-port = 25565;
