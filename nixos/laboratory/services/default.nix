@@ -2,7 +2,7 @@
 {...}: {
   # List all modules here to be included on config
   imports = [
-    # Web server & proxy virtual hosts via caddy
+    # Web server & proxy virtual hosts via nginx
     ./www.nix
 
     # Docker container hosting

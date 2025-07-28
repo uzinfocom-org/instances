@@ -12,10 +12,10 @@
         serverAliases = aliases;
         root = "${pkgs.uzinfocom.gate}";
       }
-      // lib.mkIf cert {
+      // (lib.mkIf cert {
         forceSSL = true;
         enableACME = true;
-      };
+      });
   };
 
   default = {
