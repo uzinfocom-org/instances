@@ -4,8 +4,10 @@
   # Enable web server & proxy
   services.www = {
     enable = true;
-    alias = ["ns1.efael.uz"];
-    no-default = true;
-    hosts = {};
+
+    default = {
+      enable = true;
+      domain = "ns1.efael.uz";
+    };
   };
 }

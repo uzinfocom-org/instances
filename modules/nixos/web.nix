@@ -6,18 +6,17 @@
 }: let
   cfg = config.services.www;
 
-  fallbacks = cfg:
-    [
-      "www.${cfg.domain}"
-    ]
-    ++ cfg.alias;
-
-  rest = cfg:
-    lib.filter (
-      e:
-        (builtins.elemAt cfg.alias 0) != e
-    )
-    cfg.alias;
+  mkDefaultHost = domain: cert: aliases: {
+    ${domain} =
+      {
+        serverAliases = aliases;
+        root = "${pkgs.uzinfocom.gate}";
+      }
+      // lib.mkIf cert {
+        forceSSL = true;
+        enableACME = true;
+      };
+  };
 
   default = {
     # Configure Nginx
@@ -30,24 +29,7 @@
       recommendedGzipSettings = true;
 
       # Default virtual host
-      virtualHosts =
-        if cfg.no-default
-        then {
-          ${builtins.elemAt cfg.alias 0} = {
-            forceSSL = true;
-            enableACME = true;
-            serverAliases = rest cfg;
-            root = "${pkgs.uzinfocom.gate}";
-          };
-        }
-        else {
-          ${cfg.domain} = {
-            forceSSL = true;
-            enableACME = true;
-            serverAliases = fallbacks cfg;
-            root = "${pkgs.uzinfocom.gate}";
-          };
-        };
+      virtualHosts = lib.mkIf cfg.default.enable (mkDefaultHost cfg.default.domain cfg.default.cert cfg.default.alias);
     };
 
     # Accepting ACME Terms
@@ -90,22 +72,30 @@ in {
         description = "Enable the web server/proxy";
       };
 
-      no-default = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Disabling default domains as FQDN.";
-      };
+      default = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Disabling default domains as FQDN.";
+        };
 
-      domain = lib.mkOption {
-        type = lib.types.str;
-        default = "oss.uzinfocom.uz";
-        description = "The default domain of instance.";
-      };
+        cert = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "Automatic SSL certificate provision.";
+        };
 
-      alias = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [];
-        description = "List of extra aliases to host.";
+        domain = lib.mkOption {
+          type = lib.types.str;
+          default = "oss.uzinfocom.uz";
+          description = "The default domain of instance.";
+        };
+
+        alias = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [];
+          description = "List of extra aliases to host.";
+        };
       };
 
       hosts = lib.mkOption {

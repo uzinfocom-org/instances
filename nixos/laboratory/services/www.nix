@@ -1,11 +1,14 @@
-{...}: {
-  # imports = [outputs.nixosModules.nginx];
+{outputs, ...}: {
+  imports = [outputs.nixosModules.web];
 
   # Enable web server & proxy
   services.www = {
     enable = false;
-    alias = [];
-    no-default = true;
-    hosts = {};
+
+    default = {
+      enable = true;
+      cert = false;
+      domain = "laboratory.local";
+    };
   };
 }
