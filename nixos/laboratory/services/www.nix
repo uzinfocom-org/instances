@@ -24,7 +24,7 @@
 
       "dns.local" = {
         locations."/" = {
-          proxyPass = "http://0.0.0.0:3000";
+          proxyPass = "http://127.0.0.1:3000";
           proxyWebsockets = true;
           extraConfig =
             "proxy_ssl_server_name on;"
