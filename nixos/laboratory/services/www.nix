@@ -21,6 +21,16 @@
             + "proxy_pass_header Authorization;";
         };
       };
+
+      "dns.local" = {
+        locations."/" = {
+          proxyPass = "http://0.0.0.0:3000";
+          proxyWebsockets = true;
+          extraConfig =
+            "proxy_ssl_server_name on;"
+            + "proxy_pass_header Authorization;";
+        };
+      };
     };
   };
 }
