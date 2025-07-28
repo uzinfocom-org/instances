@@ -14,7 +14,7 @@ in {
     eula = true;
     dataDir = "/var/lib/minecraft";
     servers = {
-      slave = let
+      oss = let
         server = lib.replaceStrings ["."] ["_"] "paper-${version}";
       in {
         enable = true;
