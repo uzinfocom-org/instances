@@ -47,7 +47,7 @@ in {
           "plugins/BlueMap" = ./plugins/BlueMap;
           "plugins/bluemap-spigot.jar" = fetchurl {
             url = "https://cdn.modrinth.com/data/swbUV1cr/versions/ucikJabQ/bluemap-5.10-spigot.jar";
-            hash = "sha256-mZ00IyPVe4GD1C6+B47MA9X/P+MQZ5dpaOX/hEec0d0=";
+            hash = "sha256-6b0QhRcCI7MmAETHDryebDtUHN74D5ifQ185DVEM+YI=";
           };
           "plugins/Chunky-Bukkit.jar" = fetchurl {
             url = "https://cdn.modrinth.com/data/fALzjamp/versions/P3y2MXnd/Chunky-Bukkit-1.4.40.jar";
