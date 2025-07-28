@@ -43,7 +43,7 @@ in {
   };
 
   services.www.hosts = {
-    "xinux.local" = {
+    "xinux.oss" = {
       root = "/srv/xinux";
       extraConfig = ''
         autoindex on;

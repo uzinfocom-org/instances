@@ -12,7 +12,7 @@
     };
 
     hosts = {
-      "minecraft.local" = {
+      "minecraft.oss" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:8100";
           proxyWebsockets = true;
@@ -22,7 +22,7 @@
         };
       };
 
-      "dns.local" = {
+      "dns.oss" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:3000";
           proxyWebsockets = true;
