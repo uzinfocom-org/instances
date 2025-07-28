@@ -3,7 +3,7 @@
 
   # Enable web server & proxy
   services.www = {
-    enable = false;
+    enable = true;
 
     default = {
       enable = true;
