@@ -35,9 +35,7 @@
       recommendedGzipSettings = true;
 
       # Default virtual host
-      virtualHosts = lib.mkIf cfg.default.enable (mkDefaultHost {
-        inherit (cfg.default) domain cert alias;
-      });
+      virtualHosts = lib.mkIf cfg.default.enable (mkDefaultHost {});
     };
 
     # Accepting ACME Terms
