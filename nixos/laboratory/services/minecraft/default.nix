@@ -45,10 +45,10 @@ in {
 
         symlinks = with pkgs; {
           "plugins/BlueMap" = ./plugins/BlueMap;
-          "plugins/bluemap-spigot.jar" = fetchurl {
-            url = "https://cdn.modrinth.com/data/swbUV1cr/versions/ucikJabQ/bluemap-5.10-spigot.jar";
-            hash = "sha256-6b0QhRcCI7MmAETHDryebDtUHN74D5ifQ185DVEM+YI=";
-          };
+          # "plugins/bluemap-spigot.jar" = fetchurl {
+          #   url = "https://cdn.modrinth.com/data/swbUV1cr/versions/ucikJabQ/bluemap-5.10-spigot.jar";
+          #   hash = "sha256-6b0QhRcCI7MmAETHDryebDtUHN74D5ifQ185DVEM+YI=";
+          # };
           "server-icon.png" = ./server-icon.png;
         };
       };
