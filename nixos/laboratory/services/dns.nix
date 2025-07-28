@@ -1,6 +1,12 @@
 {...}: {
   # imports = [outputs.nixosModules.example];
 
+  # ================================
+  # Shameless advertisemesnt
+  # Proudly generated with yaml to nix
+  # https://xinux.uz/utils/yaml2nix
+  # ================================
+
   # Enable adguard home
   services.adguardhome = {
     enable = true;
