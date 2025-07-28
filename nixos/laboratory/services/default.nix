@@ -13,5 +13,8 @@
 
     # GitHub runners
     ./runner.nix
+
+    # DNS via Adguard
+    ./dns.nix
   ];
 }
