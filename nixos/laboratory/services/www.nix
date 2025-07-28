@@ -8,7 +8,7 @@
     default = {
       enable = true;
       cert = false;
-      domain = "laboratory.local";
+      domain = "_";
     };
 
     hosts = {
