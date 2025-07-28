@@ -10,5 +10,8 @@
 
     # Minecraft server
     ./minecraft
+
+    # GitHub runners
+    ./runner.nix
   ];
 }
