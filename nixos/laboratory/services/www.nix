@@ -14,7 +14,7 @@
     hosts = {
       "minecraft.oss" = {
         locations."/" = {
-          proxyPass = "http://127.0.0.1:8100";
+          proxyPass = "http://0.0.0.0:8100";
           proxyWebsockets = true;
           extraConfig =
             "proxy_ssl_server_name on;"
