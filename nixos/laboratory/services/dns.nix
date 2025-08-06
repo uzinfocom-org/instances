@@ -293,6 +293,10 @@
             domain = "dns.oss";
             answer = "10.10.0.2";
           }
+          {
+            domain = "router.oss";
+            answer = "10.10.0.1";
+          }
         ];
         safe_fs_patterns = [
           "/var/lib/private/AdGuardHome/userfilters/*"
