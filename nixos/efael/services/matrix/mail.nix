@@ -19,6 +19,10 @@ in {
       inherit sopsFile;
       key = "mail/support/hashed";
     };
+    "matrix/mail/mobile" = {
+      inherit sopsFile;
+      key = "mail/mobile/hashed";
+    };
   };
 
   mailserver = {
@@ -39,16 +43,29 @@ in {
     # Generating hashed passwords:
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
+      # Administrators
       "admin@${domain}" = {
         hashedPasswordFile = config.sops.secrets."matrix/mail/admin".path;
         aliases = ["postmaster@${domain}"];
       };
+
+      # Support Team
       "support@${domain}" = {
         hashedPasswordFile = config.sops.secrets."matrix/mail/support".path;
       };
       "noreply@${domain}" = {
         sendOnly = true;
         hashedPasswordFile = config.sops.secrets."matrix/mail/support".path;
+      };
+
+      # Mobile Team
+      "ios@${domain}" = {
+        sendOnly = true;
+        hashedPasswordFile = config.sops.secrets."matrix/mail/mobile".path;
+      };
+      "android@${domain}" = {
+        sendOnly = true;
+        hashedPasswordFile = config.sops.secrets."matrix/mail/mobile".path;
       };
     };
 
