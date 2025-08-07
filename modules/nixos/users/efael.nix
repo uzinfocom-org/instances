@@ -23,6 +23,7 @@
       sha256 = "05rvkkk382jh84prwp4hafnr3bnawxpkb3w6pgqda2igia2a4865";
       homeModules = with inputs.orzklv.homeModules; [
         git
+        ssh
         zsh
         helix
         topgrade
