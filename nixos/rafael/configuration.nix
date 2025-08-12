@@ -8,8 +8,6 @@
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.ssh
     outputs.nixosModules.zsh
-    outputs.nixosModules.boot
-    outputs.nixosModules.data
     outputs.nixosModules.maid
     outputs.nixosModules.motd
     outputs.nixosModules.root
@@ -17,8 +15,8 @@
     outputs.nixosModules.network
     outputs.nixosModules.nixpkgs
 
-    # Users config
-    outputs.nixosModules.users.laboratory
+    # User configs
+    outputs.nixosModules.users.efael
 
     # Things that couldn't make it here
     ./extra.nix
@@ -34,7 +32,7 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Laboratory";
+  networking.hostName = "Rafael";
 
   # Entirely disable hibernation
   systemd.sleep.extraConfig = ''
@@ -54,5 +52,5 @@
   # networking.firewall.enable = false;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

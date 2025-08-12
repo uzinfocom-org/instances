@@ -12,7 +12,6 @@
   boot = import ./boot.nix;
   motd = import ./motd.nix;
   data = import ./data.nix;
-  images = import ./images.nix;
   secret = import ./secret.nix;
   network = import ./network.nix;
   nixpkgs = import ./nixpkgs.nix;
