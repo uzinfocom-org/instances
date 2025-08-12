@@ -20,11 +20,11 @@
     # Users config
     outputs.nixosModules.users.laboratory
 
-    # Things that couldn't make it here
-    ./extra.nix
-
     # Import your deployed service list
     ./services
+
+    # Things that couldn't make it here
+    ./extra-configuration.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
