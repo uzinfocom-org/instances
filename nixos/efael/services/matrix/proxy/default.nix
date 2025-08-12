@@ -201,65 +201,65 @@ in {
         // wellKnownAppleLocations "${domains.main}";
     };
 
-    ${domains.livekit} = {
-      forceSSL = lib.mkDefault true;
-      enableACME = lib.mkDefault true;
+    # ${domains.livekit} = {
+    #   forceSSL = lib.mkDefault true;
+    #   enableACME = lib.mkDefault true;
 
-      locations = {
-        "/" = {
-          proxyWebsockets = true;
-          proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
-          extraConfig = ''
-            proxy_send_timeout 120;
-            proxy_read_timeout 120;
-            proxy_buffering off;
-          '';
-        };
-      };
-    };
+    #   locations = {
+    #     "/" = {
+    #       proxyWebsockets = true;
+    #       proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
+    #       extraConfig = ''
+    #         proxy_send_timeout 120;
+    #         proxy_read_timeout 120;
+    #         proxy_buffering off;
+    #       '';
+    #     };
+    #   };
+    # };
 
-    ${domains.livekit-jwt} = {
-      forceSSL = lib.mkDefault true;
-      enableACME = lib.mkDefault true;
+    # ${domains.livekit-jwt} = {
+    #   forceSSL = lib.mkDefault true;
+    #   enableACME = lib.mkDefault true;
 
-      locations = {
-        "/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
-        };
-      };
-    };
+    #   locations = {
+    #     "/" = {
+    #       proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
+    #     };
+    #   };
+    # };
 
-    ${domains.call} = {
-      forceSSL = lib.mkDefault true;
-      enableACME = lib.mkDefault true;
-      root = pkgs.element-call;
-      extraConfig = commonHeaders;
+    # ${domains.call} = {
+    #   forceSSL = lib.mkDefault true;
+    #   enableACME = lib.mkDefault true;
+    #   root = pkgs.element-call;
+    #   extraConfig = commonHeaders;
 
-      locations = {
-        "/config.json" = let
-          data = {
-            default_server_config = {
-              "m.homeserver" = {
-                "base_url" = "https://${domains.server}";
-                "server_name" = domains.main;
-              };
-            };
-            livekit.livekit_service_url = "https://${domains.livekit-jwt}";
-          };
-        in {
-          extraConfig = ''
-            default_type application/json;
-            return 200 '${builtins.toJSON data}';
-          '';
-        };
+    #   locations = {
+    #     "/config.json" = let
+    #       data = {
+    #         default_server_config = {
+    #           "m.homeserver" = {
+    #             "base_url" = "https://${domains.server}";
+    #             "server_name" = domains.main;
+    #           };
+    #         };
+    #         livekit.livekit_service_url = "https://${domains.livekit-jwt}";
+    #       };
+    #     in {
+    #       extraConfig = ''
+    #         default_type application/json;
+    #         return 200 '${builtins.toJSON data}';
+    #       '';
+    #     };
 
-        "/" = {
-          extraConfig = ''
-            try_files $uri /$uri /index.html;
-          '';
-        };
-      };
-    };
+    #     "/" = {
+    #       extraConfig = ''
+    #         try_files $uri /$uri /index.html;
+    #       '';
+    #     };
+    #   };
+    # };
   };
 
   networking.firewall.allowedTCPPorts = [8448];
