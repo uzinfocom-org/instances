@@ -42,6 +42,7 @@
     security.acme = {
       acceptTerms = true;
       defaults = {
+        dnsResolver = "8.8.8.8:53";
         email = "support@oss.uzinfocom.uz";
       };
     };
