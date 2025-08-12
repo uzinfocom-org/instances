@@ -12,11 +12,15 @@
     outputs.nixosModules.motd
     outputs.nixosModules.root
     outputs.nixosModules.secret
+    outputs.nixosModules.images
     outputs.nixosModules.network
     outputs.nixosModules.nixpkgs
 
     # User configs
     outputs.nixosModules.users.efael
+
+    # Things that couldn't make it here
+    ./extra.nix
 
     # Import your deployed service list
     ./services
@@ -47,24 +51,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # Sometimes, shits need some little direct fixes
-  home-manager.users.sakhib = {
-    home.file.".local/share/fastfetch" = {
-      source = ../../.github/config/fastfetch;
-      recursive = true;
-    };
-
-    programs.topgrade.settings = {
-      # Remove cache cleaninx as it deletes all derivations
-      pre_commands = lib.mkForce {};
-
-      # Target configuration link to another
-      linux = lib.mkForce {
-        nix_arguments = "--flake github:uzinfocom-org/instances --option tarball-ttl 0";
-      };
-    };
-  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "25.05";
