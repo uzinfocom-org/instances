@@ -31,10 +31,10 @@
       ];
     };
 
-    loader.grub = {
+    bios = {
       enable = true;
-      device = "/dev/sda";
-      useOSProber = true;
+      # Use if you're going with msdos table
+      # devices = ["/dev/sda"];
     };
   };
 
