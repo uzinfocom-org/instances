@@ -38,8 +38,25 @@
     };
   };
 
-  # Use DHCP (router will handle static behaviour)
-  networking.useDHCP = lib.mkDefault true;
+  # Follow this scheme
+  networking = {
+    interfaces = {
+      ens160.ipv4.addresses = [
+        {
+          address = "10.103.7.200";
+          prefixLength = 24;
+        }
+      ];
+    };
+    defaultGateway = {
+      address = "10.103.7.1";
+      interface = "ens160";
+    };
+
+    nameservers = [
+      "195.158.01"
+    ];
+  };
 
   # Platform specific configurations
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
