@@ -42,7 +42,8 @@
     security.acme = {
       acceptTerms = true;
       defaults = {
-        dnsResolver = "2001:4860:4860::8888:53";
+        # It won't work due to world blockage
+        # dnsResolver = "8.8.8.8:53";
         email = "support@oss.uzinfocom.uz";
       };
     };
