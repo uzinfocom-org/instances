@@ -21,7 +21,7 @@
     outputs.nixosModules.users.efael
 
     # Import your deployed service list
-    # ./services
+    ./services
 
     # Things that couldn't make it here
     ./extra-configuration.nix
