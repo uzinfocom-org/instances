@@ -151,9 +151,15 @@
         inherit inputs outputs;
         opath = ./.;
         list = [
+          # Internal
+          "Laboratory"
+
+          # Efeal
           "Efael"
           "Rafael"
-          "Laboratory"
+
+          # Lochin
+          "Lochin-RTC"
         ];
       };
     };

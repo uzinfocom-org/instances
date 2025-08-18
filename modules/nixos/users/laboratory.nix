@@ -58,7 +58,7 @@
       hashedPassword = "$y$j9T$PEPMAZlXHzgRwOlum.4JA0$sh0uNM1PxrWmSjRdjYkw2iiDdquWF3z9CDAaasEwQ88";
       description = "Baxrom Raxmatov";
       githubKeysUrl = "https://github.com/bahrom04.keys";
-      sha256 = "0w22zvgzgwxnxbd0kr9p6ws413zxvby0jfdzsz9jb44lc5sxx6hy";
+      sha256 = "1gfjiisk7p5gfh4rpbg9rwcsn5bvg37snxjci65x2v56cvmq4i8r";
       homeModules = with inputs.bahrom04.homeModules; [
         direnv
         home.fastfetch

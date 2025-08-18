@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        instance: ["Efael", "Laboratory"]
+        instance: ["Efael", "Laboratory", "Rafael", "Lochin-RTC"]
     runs-on: ubuntu-latest
 
     steps:
