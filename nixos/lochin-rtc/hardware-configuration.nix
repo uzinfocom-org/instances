@@ -17,7 +17,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
 
     # Including LXC/LXD configurations
-    "${modulesPath}/virtualisation/lxc-container.nix"
+    # "${modulesPath}/virtualisation/lxc-container.nix"
   ];
 
   # Bootloader shits
@@ -37,10 +37,10 @@
       ];
     };
 
-    # loader.grub = {
-    #   enable = true;
-    #   devices = ["nodev"];
-    # };
+    loader.grub = {
+      enable = true;
+      devices = ["nodev"];
+    };
 
     growPartition = lib.mkDefault true;
   };
