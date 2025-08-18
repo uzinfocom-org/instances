@@ -8,7 +8,7 @@
 }: let
   # Matrix related domains
   domains = rec {
-    main = "nyan.uz";
+    main = "sabine.uz";
     client = "chat.${main}";
     call = "call.${main}";
     server = "matrix.${main}";

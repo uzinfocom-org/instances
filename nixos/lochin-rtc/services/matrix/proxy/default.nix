@@ -127,21 +127,21 @@
     ++ (mkEndpoints "federation" ./endpoints/federation.txt);
 in {
   services.www.hosts = {
-    ${domains.main} = {
-      addSSL = true;
-      enableACME = true;
+    # ${domains.main} = {
+    #   addSSL = true;
+    #   enableACME = true;
 
-      locations =
-        wellKnownLocations "${domains.main}"
-        // wellKnownAppleLocations "${domains.main}"
-        // {
-          "/" = {
-            extraConfig = ''
-              return 301 $scheme://efael.net$request_uri;
-            '';
-          };
-        };
-    };
+    #   locations =
+    #     wellKnownLocations "${domains.main}"
+    #     // wellKnownAppleLocations "${domains.main}"
+    #     // {
+    #       "/" = {
+    #         extraConfig = ''
+    #           return 301 $scheme://efael.net$request_uri;
+    #         '';
+    #       };
+    #     };
+    # };
 
     # ${domains.client} = {
     #   forceSSL = true;
