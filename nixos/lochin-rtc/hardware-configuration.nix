@@ -37,10 +37,10 @@
       ];
     };
 
-    loader.grub = {
-      enable = true;
-      devices = ["nodev"];
-    };
+    # loader.grub = {
+    #   enable = true;
+    #   devices = ["nodev"];
+    # };
 
     growPartition = lib.mkDefault true;
   };
