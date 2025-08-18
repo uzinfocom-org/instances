@@ -12,6 +12,12 @@
 
     # Not available hardware modules
     (modulesPath + "/installer/scan/not-detected.nix")
+
+    # QEMU Guest profile
+    (modulesPath + "/profiles/qemu-guest.nix")
+
+    # Including LXC/LXD configurations
+    "${modulesPath}/virtualisation/lxc-container.nix"
   ];
 
   # Bootloader shits
@@ -33,8 +39,10 @@
 
     loader.grub = {
       enable = true;
-      useOSProber = true;
+      devices = ["nodev"];
     };
+
+    growPartition = lib.mkDefault true;
   };
 
   # Nawww, we going static!
