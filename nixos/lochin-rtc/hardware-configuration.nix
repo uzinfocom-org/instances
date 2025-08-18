@@ -15,9 +15,6 @@
 
     # QEMU Guest profile
     (modulesPath + "/profiles/qemu-guest.nix")
-
-    # Including LXC/LXD configurations
-    # "${modulesPath}/virtualisation/lxc-container.nix"
   ];
 
   # Bootloader shits
@@ -29,20 +26,18 @@
       kernelModules = [];
       availableKernelModules = [
         "ata_piix"
-        "mptspi"
         "uhci_hcd"
-        "ehci_pci"
+        "virtio_pci"
+        "virtio_scsi"
         "sd_mod"
         "sr_mod"
       ];
     };
 
-    loader.grub = {
+    bios = {
       enable = true;
-      devices = ["nodev"];
+      uefi = true;
     };
-
-    growPartition = lib.mkDefault true;
   };
 
   # Nawww, we going static!
