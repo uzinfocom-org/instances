@@ -2,7 +2,7 @@
   # Sometimes, shits need some little direct fixes
   home-manager.users.sakhib = {
     home.file.".local/share/fastfetch" = {
-      source = ../../.github/config/fastfetch;
+      source = ../../../.github/config/fastfetch;
       recursive = true;
     };
 
