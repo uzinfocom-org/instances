@@ -147,19 +147,30 @@
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = self.lib.config.mapSystem {
+      nixosConfigurations = self.lib.config.attrSystem {
         inherit inputs outputs;
         opath = ./.;
         list = [
-          # Internal
-          "Laboratory"
-
-          # Efeal
-          "Efael"
-          "Rafael"
-
-          # Lochin
-          "Lochin-RTC"
+          {
+            name = "Laboratory";
+            alias = "internal/laboratory";
+          }
+          {
+            name = "Efael-1";
+            alias = "efael/ns-1";
+          }
+          {
+            name = "Efael-2";
+            alias = "efael/ns-2";
+          }
+          {
+            name = "Berk-State";
+            alias = "berk/server";
+          }
+          {
+            name = "Berk-Live";
+            alias = "berk/live";
+          }
         ];
       };
     };

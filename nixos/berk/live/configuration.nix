@@ -34,7 +34,7 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Lochin-RTC";
+  networking.hostName = "Berklive";
 
   # Entirely disable hibernation
   systemd.sleep.extraConfig = ''
