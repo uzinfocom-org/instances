@@ -5,7 +5,7 @@
 
   secret-management = {
     owner = user;
-    sopsFile = ../../../secrets/secrets.yaml;
+    sopsFile = ../../../../secrets/secrets.yaml;
   };
 in {
   sops.secrets = {

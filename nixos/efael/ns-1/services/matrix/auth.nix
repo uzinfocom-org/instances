@@ -2,7 +2,7 @@
   config,
   domains,
 }: let
-  sopsFile = ../../../../secrets/efael.yaml;
+  sopsFile = ../../../../../secrets/efael.yaml;
   owner = config.systemd.services.matrix-authentication-service.serviceConfig.User;
 in {
   sops.secrets = {

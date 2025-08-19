@@ -5,7 +5,7 @@
   keys,
   pkgs,
 }: let
-  sopsFile = ../../../../secrets/efael.yaml;
+  sopsFile = ../../../../../secrets/efael.yaml;
   owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in {
   sops.secrets = {
