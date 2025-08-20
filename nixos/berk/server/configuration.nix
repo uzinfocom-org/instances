@@ -34,7 +34,7 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Berkstate";
+  networking.hostName = "Berk-State";
 
   # Entirely disable hibernation
   systemd.sleep.extraConfig = ''
