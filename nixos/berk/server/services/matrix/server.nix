@@ -2,10 +2,9 @@
   lib,
   config,
   domains,
-  keys,
   pkgs,
 }: let
-  sopsFile = ../../../../../secrets/efael.yaml;
+  sopsFile = ../../../../../secrets/berk.yaml;
   owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in {
   sops.secrets = {
@@ -34,13 +33,13 @@ in {
         enable_tls: true
         force_tls: false
         require_transport_security: true
-        app_name: "Efael's Network"
+        app_name: "Berk's Network"
         enable_notifs: true
         notif_for_new_users: true
         client_base_url: "https://${domains.server}"
         validation_token_lifetime: "15m"
         invite_client_location: "https://${domains.client}"
-        notif_from: "Efael's Support from <noreply@${domains.main}>"
+        notif_from: "Berk's Support from <noreply@${domains.main}>"
       experimental_features:
         msc3861:
           enabled: true
@@ -92,13 +91,13 @@ in {
       server_name = domains.main;
       public_baseurl = "https://${domains.server}";
 
-      turn_allow_guests = true;
-      turn_uris = [
-        "turn:${domains.realm}:3478?transport=udp"
-        "turn:${domains.realm}:3478?transport=tcp"
-      ];
-      turn_shared_secret = keys.realmkey;
-      turn_user_lifetime = "1h";
+      # turn_allow_guests = true;
+      # turn_uris = [
+      #   "turn:${domains.realm}:3478?transport=udp"
+      #   "turn:${domains.realm}:3478?transport=tcp"
+      # ];
+      # turn_shared_secret = keys.realmkey;
+      # turn_user_lifetime = "1h";
 
       suppress_key_server_warning = true;
       allow_guest_access = true;

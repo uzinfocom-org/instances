@@ -25,6 +25,10 @@ pkgs.stdenv.mkDerivation {
     statix
     deadnix
     alejandra
+
+    # VPN Stuff
+    easyrsa
+    openssl
   ];
 
   NIX_CONFIG = "extra-experimental-features = nix-command flakes";

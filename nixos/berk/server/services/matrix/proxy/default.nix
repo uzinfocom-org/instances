@@ -1,6 +1,5 @@
 {
   lib,
-  config,
   domains,
   pkgs,
 }: let
@@ -127,138 +126,78 @@
     ++ (mkEndpoints "federation" ./endpoints/federation.txt);
 in {
   services.www.hosts = {
-    # ${domains.main} = {
-    #   addSSL = true;
-    #   enableACME = true;
+    ${domains.main} = {
+      addSSL = true;
+      enableACME = true;
 
-    #   locations =
-    #     wellKnownLocations "${domains.main}"
-    #     // wellKnownAppleLocations "${domains.main}"
-    #     // {
-    #       "/" = {
-    #         extraConfig = ''
-    #           return 301 $scheme://efael.net$request_uri;
-    #         '';
-    #       };
-    #     };
-    # };
-
-    # ${domains.client} = {
-    #   forceSSL = true;
-    #   enableACME = true;
-    #   root = pkgs.element-web.override {conf = clientConfig;};
-    #   extraConfig = commonHeaders;
-    # };
-
-    # ${domains.auth} = {
-    #   root = "/dev/null";
-
-    #   forceSSL = lib.mkDefault true;
-    #   enableACME = lib.mkDefault true;
-
-    #   extraConfig = commonHeaders;
-
-    #   locations =
-    #     {
-    #       "/" = {
-    #         proxyPass = "http://127.0.0.1:8080";
-    #       };
-    #     }
-    #     // wellKnownAppleLocations "${domains.main}";
-    # };
-
-    # ${domains.server} = {
-    #   root = "/dev/null";
-
-    #   forceSSL = lib.mkDefault true;
-    #   enableACME = lib.mkDefault true;
-
-    #   locations =
-    #     lib.foldl' lib.recursiveUpdate {}
-    #     [
-    #       {
-    #         # Forward to the auth service
-    #         "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
-    #           priority = 100;
-    #           proxyPass = "http://127.0.0.1:8080";
-    #           extraConfig = commonHeaders;
-    #         };
-
-    #         # Forward to Synapse
-    #         # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
-    #         "~ ^(/_matrix|/_synapse)" = {
-    #           priority = 200;
-    #           proxyPass = "http://127.0.0.1:8008";
-
-    #           extraConfig = ''
-    #             ${matrixHeaders}
-    #             add_header x-backend "synapse" always;
-    #           '';
-    #         };
-    #       }
-    #     ]
-    #     # ++ endpoints
-    #     // wellKnownAppleLocations "${domains.main}";
-    # };
-
-    ${domains.livekit} = {
-      forceSSL = lib.mkDefault true;
-      enableACME = lib.mkDefault true;
-
-      locations = {
-        "/" = {
-          proxyWebsockets = true;
-          proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
-          extraConfig = ''
-            proxy_send_timeout 120;
-            proxy_read_timeout 120;
-            proxy_buffering off;
-          '';
+      locations =
+        wellKnownLocations "${domains.main}"
+        // wellKnownAppleLocations "${domains.main}"
+        // {
+          "/" = {
+            extraConfig = ''
+              return 301 $scheme://efael.net$request_uri;
+            '';
+          };
         };
-      };
     };
 
-    ${domains.livekit-jwt} = {
-      forceSSL = lib.mkDefault true;
-      enableACME = lib.mkDefault true;
-
-      locations = {
-        "/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
-        };
-      };
+    ${domains.client} = {
+      forceSSL = true;
+      enableACME = true;
+      root = pkgs.element-web.override {conf = clientConfig;};
+      extraConfig = commonHeaders;
     };
 
-    ${domains.call} = {
+    ${domains.auth} = {
+      root = "/dev/null";
+
       forceSSL = lib.mkDefault true;
       enableACME = lib.mkDefault true;
-      root = pkgs.element-call;
+
       extraConfig = commonHeaders;
 
-      locations = {
-        "/config.json" = let
-          data = {
-            default_server_config = {
-              "m.homeserver" = {
-                "base_url" = "https://${domains.server}";
-                "server_name" = domains.main;
-              };
-            };
-            livekit.livekit_service_url = "https://${domains.livekit-jwt}";
+      locations =
+        {
+          "/" = {
+            proxyPass = "http://127.0.0.1:8080";
           };
-        in {
-          extraConfig = ''
-            default_type application/json;
-            return 200 '${builtins.toJSON data}';
-          '';
-        };
+        }
+        // wellKnownAppleLocations "${domains.main}";
+    };
 
-        "/" = {
-          extraConfig = ''
-            try_files $uri /$uri /index.html;
-          '';
-        };
-      };
+    ${domains.server} = {
+      root = "/dev/null";
+
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+
+      locations =
+        lib.foldl' lib.recursiveUpdate {}
+        [
+          {
+            # Forward to the auth service
+            "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
+              priority = 100;
+              proxyPass = "http://127.0.0.1:8080";
+              extraConfig = commonHeaders;
+            };
+
+            # Forward to Synapse
+            # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
+            "~ ^(/_matrix|/_synapse)" = {
+              priority = 200;
+              proxyPass = "http://127.0.0.1:8008";
+
+              extraConfig = ''
+                ${matrixHeaders}
+                add_header x-backend "synapse" always;
+              '';
+            };
+          }
+        ]
+        # ++ endpoints
+        // wellKnownAppleLocations "${domains.main}";
     };
   };
 

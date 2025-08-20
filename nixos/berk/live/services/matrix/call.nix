@@ -2,7 +2,7 @@
   config,
   domains,
 }: let
-  sopsFile = ../../../../../secrets/efael.yaml;
+  sopsFile = ../../../../../secrets/berk.yaml;
 in {
   sops.secrets = {
     "matrix/call/key" = {
