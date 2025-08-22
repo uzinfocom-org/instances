@@ -23,7 +23,14 @@ jobs:
       fail-fast: false
       matrix:
         instance:
-          ["Laboratory", "Efael-1", "Efael-2", "Berk-State", "Berk-Live"]
+          [
+            "Laboratory",
+            "Efael-1",
+            "Efael-2",
+            "Berk-State",
+            "Berk-Live",
+            "Berk-Live-Firewall",
+          ]
     runs-on: ubuntu-latest
 
     steps:
