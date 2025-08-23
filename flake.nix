@@ -171,10 +171,6 @@
             name = "Berk-Live";
             alias = "berk/live";
           }
-          {
-            name = "Berk-Live-Firewall";
-            alias = "berk/live-firewall";
-          }
         ];
       };
     };

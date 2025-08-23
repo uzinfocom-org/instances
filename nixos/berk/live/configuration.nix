@@ -34,7 +34,7 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Berk-Live";
+  networking.hostName = "Berk-Live-Firewall";
 
   # Entirely disable hibernation
   systemd.sleep.extraConfig = ''

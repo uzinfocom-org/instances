@@ -7,7 +7,7 @@
 
     default = {
       enable = true;
-      domain = "ns2.uzberk.uz";
+      domain = "ns3.uzberk.uz";
     };
   };
 }
