@@ -39,7 +39,7 @@ in {
         client_base_url: "https://${domains.server}"
         validation_token_lifetime: "15m"
         invite_client_location: "https://${domains.client}"
-        notif_from: "Berk's Support from <noreply@${domains.main}>"
+        notif_from: "Berk's Support from <support@${domains.main}>"
       experimental_features:
         msc3861:
           enabled: true
