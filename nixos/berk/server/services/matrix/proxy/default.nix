@@ -40,10 +40,10 @@
         "type" = "livekit";
         "livekit_service_url" = "https://${domains.livekit-jwt}";
       }
-      {
-        "type" = "livekit";
-        "livekit_service_url" = "https://${domains.livekit-jwt-2}";
-      }
+      # {
+      #   "type" = "livekit";
+      #   "livekit_service_url" = "https://${domains.livekit-jwt-2}";
+      # }
       {
         "type" = "nextgen_new_foci_type";
         "props_for_nextgen_foci" = "val";
