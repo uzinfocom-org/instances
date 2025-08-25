@@ -25,6 +25,6 @@ in {
 
     # Parts of this configuration
     (import ./call.nix {inherit config domains;})
-    (import ./proxy {inherit lib domains pkgs config;})
+    (import ./proxy.nix {inherit lib domains pkgs config;})
   ];
 }
