@@ -1,6 +1,4 @@
 {
-  # pre-commit-hooks,
-  pre-commit-check,
   pkgs ? let
     lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
     nixpkgs = fetchTarball {
@@ -9,15 +7,13 @@
     };
   in
     import nixpkgs {overlays = [];},
+  pre-commit-check,
   ...
 }:
 pkgs.stdenv.mkDerivation {
   name = "instances";
-  shellHook = ''
-    ${pre-commit-check.shellHook}
-  '';
-  buildInputs = pre-commit-check.enabledPackages;
 
+  # Build time dependencies
   nativeBuildInputs = with pkgs; [
     git
     nixd
@@ -31,5 +27,14 @@ pkgs.stdenv.mkDerivation {
     openssl
   ];
 
+  # Runtime dependencies
+  buildInputs = pre-commit-check.enabledPackages;
+
+  # Things to run before entering devShell
+  shellHook = ''
+    ${pre-commit-check.shellHook}
+  '';
+
+  # Environmental variables
   NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 }

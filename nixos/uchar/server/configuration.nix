@@ -33,7 +33,7 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Efael-2";
+  networking.hostName = "Uchar-State";
 
   # Entirely disable hibernation
   systemd.sleep.extraConfig = ''

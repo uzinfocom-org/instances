@@ -47,32 +47,6 @@
     # Mail Server
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
 
-    # Orzklv's Nix configuration
-    orzklv = {
-      url = "github:orzklv/nix/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    bahrom04 = {
-      url = "github:bahrom04/nix-config?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    letrec = {
-      url = "github:let-rec/nix-conf?ref=master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    domirando = {
-      url = "github:domirando/sysconfig";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    bemeritus = {
-      url = "github:bemeritus/dotfiles?ref=master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Uzinfocom's packages repository
     uzinfocom-pkgs = {
       url = "github:uzinfocom-org/pkgs";
@@ -82,7 +56,7 @@
       };
     };
 
-    # git hooks
+    # Git hooks
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,6 +64,28 @@
 
     # Minecraft server
     minecraft.url = "github:Infinidoge/nix-minecraft";
+
+    # User configurations
+    orzklv = {
+      url = "github:orzklv/nix/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    bahrom04 = {
+      url = "github:bahrom04/nix-config?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    letrec = {
+      url = "github:let-rec/nix-conf?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    domirando = {
+      url = "github:domirando/sysconfig";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    bemeritus = {
+      url = "github:bemeritus/dotfiles?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -114,16 +110,20 @@
       in
         # Nixpkgs packages for the current system
         {
+          # Tests and suites for this repo
           checks = {
             pre-commit-check = pre-commit-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
                 statix.enable = true;
-                #flake-checker.enable = true;
                 alejandra.enable = true;
+
+                # When things get nasty
+                #flake-checker.enable = true;
               };
             };
           };
+
           # Development shells
           devShells = {
             default = pkgs.callPackage ./shell.nix {inherit pkgs pre-commit-hooks pre-commit-check;};
@@ -151,27 +151,61 @@
         inherit inputs outputs;
         opath = ./.;
         list = [
+          #     ____      __                        __
+          #    /  _/___  / /____  _________  ____ _/ /
+          #    / // __ \/ __/ _ \/ ___/ __ \/ __ `/ /
+          #  _/ // / / / /_/  __/ /  / / / / /_/ / /
+          # /___/_/ /_/\__/\___/_/  /_/ /_/\__,_/_/
+          # Our internal infrastructure for development
           {
+            # GitHub Runners, Containers,
+            # DNS & Minecraft
             name = "Laboratory";
             alias = "internal/laboratory";
           }
+
+          #     __________           __
+          #    / ____/ __/___ ____  / /
+          #   / __/ / /_/ __ `/ _ \/ /
+          #  / /___/ __/ /_/ /  __/ /
+          # /_____/_/  \__,_/\___/_/
+          # "Efael" Platform Infrastructure
           {
-            name = "Efael-1";
-            alias = "efael/ns-1";
+            # Matrix Synapse & Authentication
+            name = "Efael-State";
+            alias = "efael/server";
           }
+
+          #    __  __     __
+          #   / / / /____/ /_  ____ ______
+          #  / / / / ___/ __ \/ __ `/ ___/
+          # / /_/ / /__/ / / / /_/ / /
+          # \____/\___/_/ /_/\__,_/_/
+          # "Uchar" Platform Infrastructure
           {
-            name = "Efael-2";
-            alias = "efael/ns-2";
+            # Matrix Synapse & Authentication
+            name = "Uchar-State";
+            alias = "uchar/server";
           }
+
+          #     ____            __
+          #    / __ )___  _____/ /__
+          #   / __  / _ \/ ___/ //_/
+          #  / /_/ /  __/ /  / ,<
+          # /_____/\___/_/  /_/|_|
+          # "Berk" Platform Infrastructure
           {
+            # Matrix Synapse & Authentication
             name = "Berk-State";
             alias = "berk/server";
           }
           {
+            # Livekit
             name = "Berk-Live";
             alias = "berk/live";
           }
           {
+            # Livekit behind firewall
             name = "Berk-Live-Firewall";
             alias = "berk/live-firewall";
           }
