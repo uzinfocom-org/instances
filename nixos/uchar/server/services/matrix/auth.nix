@@ -2,7 +2,7 @@
   config,
   domains,
 }: let
-  sopsFile = ../../../../../secrets/efael.yaml;
+  sopsFile = ../../../../../secrets/uchar.yaml;
   owner = config.systemd.services.matrix-authentication-service.serviceConfig.User;
 in {
   sops.secrets = {
@@ -24,7 +24,7 @@ in {
     inherit owner;
     content = ''
       email:
-        from: '"Efael" <noreply@${domains.main}>'
+        from: '"Uchar" <noreply@${domains.main}>'
         reply_to: '"No reply" <noreply@${domains.main}>'
         transport: smtp
         mode: starttls  # plain | tls | starttls

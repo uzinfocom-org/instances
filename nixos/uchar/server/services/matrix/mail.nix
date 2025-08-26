@@ -4,7 +4,7 @@
   domains,
 }: let
   domain = domains.main;
-  sopsFile = ../../../../../secrets/efael.yaml;
+  sopsFile = ../../../../../secrets/uchar.yaml;
 in {
   imports = [
     inputs.simple-nixos-mailserver.nixosModule

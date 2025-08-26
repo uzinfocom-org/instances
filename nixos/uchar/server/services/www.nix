@@ -7,7 +7,7 @@
 
     default = {
       enable = true;
-      domain = "ns2.efael.uz";
+      domain = "ns1.uchar.uz";
     };
   };
 }

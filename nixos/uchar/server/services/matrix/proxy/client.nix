@@ -1,7 +1,7 @@
 {domains}: {
   show_labs_settings = true;
   default_theme = "dark";
-  brand = "Efael's Network";
+  brand = "Uchar's Network";
 
   disable_custom_urls = true;
   disable_guests = true;
@@ -45,8 +45,8 @@
   };
 
   element_call = {
-    url = "https://call.efael.net";
+    url = "https://call.uchar.uz";
     participant_limit = 50;
-    brand = "Efael Call";
+    brand = "Uchar Call";
   };
 }
