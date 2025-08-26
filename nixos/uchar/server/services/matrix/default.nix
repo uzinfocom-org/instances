@@ -9,13 +9,13 @@
   # Matrix related domains
   domains = rec {
     main = "uchar.uz";
+
     client = "chat.${main}";
-    call = "call.${main}";
     server = "matrix.${main}";
     auth = "auth.${main}";
-    realm = "turn.${main}";
     mail = "mail.${main}";
 
+    call = "call.${main}";
     livekit = "livekit.${main}";
     livekit-jwt = "livekit-jwt.${main}";
   };
