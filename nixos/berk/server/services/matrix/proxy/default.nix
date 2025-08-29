@@ -36,14 +36,14 @@
       secure_backup_setup_methods = [];
     };
     "org.matrix.msc4143.rtc_foci" = [
-      {
-        "type" = "livekit";
-        "livekit_service_url" = "https://${domains.livekit-jwt}";
-      }
       # {
       #   "type" = "livekit";
-      #   "livekit_service_url" = "https://${domains.livekit-jwt-2}";
+      #   "livekit_service_url" = "https://${domains.livekit-jwt}";
       # }
+      {
+        "type" = "livekit";
+        "livekit_service_url" = "https://${domains.livekit-jwt-2}";
+      }
       {
         "type" = "nextgen_new_foci_type";
         "props_for_nextgen_foci" = "val";
