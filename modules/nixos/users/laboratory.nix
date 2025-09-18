@@ -58,7 +58,7 @@
       hashedPassword = "$y$j9T$PEPMAZlXHzgRwOlum.4JA0$sh0uNM1PxrWmSjRdjYkw2iiDdquWF3z9CDAaasEwQ88";
       description = "Baxrom Raxmatov";
       githubKeysUrl = "https://github.com/bahrom04.keys";
-      sha256 = "1gfjiisk7p5gfh4rpbg9rwcsn5bvg37snxjci65x2v56cvmq4i8r";
+      sha256 = "063jhl0kj9gdvag9g14al61sc4in4w7m1d6f0cxwkp46cvk7ylz6";
       homeModules = with inputs.bahrom04.homeModules; [
         direnv
         home.fastfetch
@@ -91,7 +91,7 @@
       hashedPassword = "$y$j9T$G5x83.b0sXlsIFrdJvyQ5/$g.Rxw2YsfD4YzEVjNTyfCJWr/qpD.6kWFJECOzyFTg6";
       description = "BeMeritus";
       githubKeysUrl = "https://github.com/bemeritus.keys";
-      sha256 = "0dr30cmzbiz192xfjfbb26sk9ynpwfla53q09hx6mr404rdszy9a";
+      sha256 = "1bv997zs6bw8xpyza7yrpmyacr0kpyalbrw7hwzz20ki75b04hgj";
       homeModules = with inputs.bemeritus.homeModules; [
         git
         starship
