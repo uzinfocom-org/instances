@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   # Name for GitHub runner
   name = "${config.networking.hostName}-default";
   user = "gitlab-runner";
@@ -28,6 +32,7 @@ in {
     "${name}-Xinux" = {
       inherit user;
       enable = true;
+      package = pkgs.unstable.github-runner;
       url = "https://github.com/xinux-org";
       tokenFile = config.sops.secrets."github/runners/xinux".path;
       replace = true;
