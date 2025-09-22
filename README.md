@@ -33,6 +33,9 @@ After you get NixOS running on your machine, the next step is to apply declarati
 
 ```shell
 sudo nixos-rebuild switch --flake github:uzinfocom-org/instances#Instance --upgrade
+
+# Check keys of users before push. Change hostname (Laboratory) accordingly
+nix build .#nixosConfigurations.Laboratory.config.system.build.toplevel --show-trace
 ```
 
 ## Thanks
