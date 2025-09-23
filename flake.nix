@@ -86,6 +86,10 @@
       url = "github:bemeritus/dotfiles?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lambdajon = {
+      url = "github:lambdajon/confs?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
