@@ -297,6 +297,10 @@
             domain = "router.oss";
             answer = "10.10.0.1";
           }
+          {
+            domain = "grafana.oss";
+            answer = "10.10.0.2";
+          }
         ];
         safe_fs_patterns = [
           "/var/lib/private/AdGuardHome/userfilters/*"
