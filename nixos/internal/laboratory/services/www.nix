@@ -31,6 +31,16 @@
             + "proxy_pass_header Authorization;";
         };
       };
+
+      "grafana.oss" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:2342";
+          proxyWebsockets = true;
+          extraConfig =
+            "proxy_ssl_server_name on;"
+            + "proxy_pass_header Authorization;";
+        };
+      };
     };
   };
 }
