@@ -16,5 +16,8 @@
 
     # DNS via Adguard
     ./dns.nix
+
+    # Monitoring
+    ./monitoring.nix
   ];
 }
