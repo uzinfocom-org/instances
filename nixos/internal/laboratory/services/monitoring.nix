@@ -81,7 +81,7 @@
         server = {
           http_listen_port = 28183;
           grpc_listen_port = 0;
-        };
+        }; 
         positions = {
           filename = "/tmp/positions.yaml";
         };
@@ -97,7 +97,7 @@
               max_age = "12h";
               labels = {
                 job = "systemd-journal";
-                host = "chrysalis";
+                host = "Laboratory";
               };
             };
             relabel_configs = [
