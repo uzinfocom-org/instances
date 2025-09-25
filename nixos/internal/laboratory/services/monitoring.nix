@@ -74,10 +74,10 @@
 
     promtail = {
       # description = "Promtail service for Loki";
-      wantedBy = ["multi-user.target"];
+      # wantedBy = ["multi-user.target"];
       
       enable = true;
-      serviceConfig = {
+      configuration = {
         server = {
           http_listen_port = 28183;
           grpc_listen_port = 0;
