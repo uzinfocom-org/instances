@@ -73,7 +73,7 @@
     };
 
     promtail = {
-      description = "Promtail service for Loki";
+      # description = "Promtail service for Loki";
       wantedBy = ["multi-user.target"];
       
       enable = true;
