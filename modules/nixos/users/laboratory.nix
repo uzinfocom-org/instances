@@ -91,7 +91,7 @@
       hashedPassword = "$y$j9T$G5x83.b0sXlsIFrdJvyQ5/$g.Rxw2YsfD4YzEVjNTyfCJWr/qpD.6kWFJECOzyFTg6";
       description = "BeMeritus";
       githubKeysUrl = "https://github.com/bemeritus.keys";
-      sha256 = "1bv997zs6bw8xpyza7yrpmyacr0kpyalbrw7hwzz20ki75b04hgj";
+      sha256 = "0kvf5vywdvr57rx9w2sjc2fksw7f3afkiqr2j8v6rs2x80pkrpz7";
       homeModules = with inputs.bemeritus.homeModules; [
         git
         starship
