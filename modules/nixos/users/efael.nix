@@ -20,7 +20,7 @@
       ];
       description = "Sokhibjon Orzikulov";
       githubKeysUrl = "https://github.com/orzklv.keys";
-      sha256 = "0m71ynvfzdlsira8i63hc5nrd5cyfsy4higlbvijl88akfdiwvhp";
+      sha256 = "0vb4pj27999zwxm3rczjp3jfy9rqadx1bihbr46yii1v5yfib9g9";
       homeModules = with inputs.orzklv.homeModules; [
         git
         ssh

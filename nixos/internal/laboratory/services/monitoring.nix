@@ -75,13 +75,13 @@
     promtail = {
       # description = "Promtail service for Loki";
       # wantedBy = ["multi-user.target"];
-      
+
       enable = true;
       configuration = {
         server = {
           http_listen_port = 28183;
           grpc_listen_port = 0;
-        }; 
+        };
         positions = {
           filename = "/tmp/positions.yaml";
         };
