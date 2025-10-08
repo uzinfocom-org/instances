@@ -17,7 +17,7 @@ in {
     users.users.root.openssh.authorizedKeys.keys = fetcher [
       {
         username = "orzklv";
-        hash = "05rvkkk382jh84prwp4hafnr3bnawxpkb3w6pgqda2igia2a4865";
+        hash = "0vb4pj27999zwxm3rczjp3jfy9rqadx1bihbr46yii1v5yfib9g9";
       }
       {
         username = "shakhzodkudratov";
