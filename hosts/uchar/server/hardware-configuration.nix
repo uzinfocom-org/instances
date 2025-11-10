@@ -30,7 +30,7 @@
     network = {
       interface = "ens160";
       ipv4.address = "10.103.7.200";
-      nameservers = ["195.158.0.1"];
+      nameserver = ["195.158.0.1"];
     };
   };
 

@@ -81,7 +81,7 @@
 
   warnings =
     lib.mkIf
-    (!config.networking.useDHCP && (config.networking.${cfg.interface}.addresses == []))
+    (!cfg.dhcp && cfg.ipv4.address == null)
     (mkWarning "are you SURE that you want to go without any public ip address at ${config.networking.hostName}?");
 
   merge = lib.mkMerge [main ipv4 ipv6 packs warnings];
