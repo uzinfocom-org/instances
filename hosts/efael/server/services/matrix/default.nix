@@ -31,7 +31,7 @@ in {
     # Parts of this configuration
     # (import ./call.nix {inherit config domains;})
     (import ./auth.nix {inherit config domains;})
-    (import ./proxy {inherit lib domains pkgs config;})
+    (import ./proxy {inherit lib domains pkgs;})
     (import ./mail.nix {inherit inputs domains config;})
     (import ./turn.nix {inherit lib config domains keys;})
     (import ./server.nix {inherit lib config domains keys pkgs;})
