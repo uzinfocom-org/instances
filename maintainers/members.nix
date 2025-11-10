@@ -1,7 +1,7 @@
 {...}: {
   aekinskjaldi = {
     username = "aekinskjaldi";
-    description = "aekinskjaldi";
+    description = "Aekinskjaldi";
     password = "$y$j9T$VIu7tUhSD.zJlTG9D49rK/$biwcrfsI/RAZBKxpa4qOTI/777TNv0IwPYWOeJN.J8B";
     keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6spmrUncC7zasDdxXghuviK6LXNZ8hrTztFDA6TnRN"];
   };
@@ -15,14 +15,14 @@
 
   bemeritus = {
     username = "bemeritus";
-    description = "Lambdajon";
+    description = "BeMeritus";
     password = "$6$3JI5jcc8ttUHS3Jg$H/LACxCqw94BvJazHFc/8luEditd10VOe47FUKfj7.GrJq4Q92kLl0sfEjS1CcBSu4gNnvK7V4MnJtrJogcnm.";
     keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzGMrw0jTHL5aoFd0j4Dqgound/cGX/955qPhsDXtKd"];
   };
 
   domirando = {
     username = "domirando";
-    description = "Lambdajon";
+    description = "Maftuna Vohidjonovna";
     password = "$6$3JI5jcc8ttUHS3Jg$H/LACxCqw94BvJazHFc/8luEditd10VOe47FUKfj7.GrJq4Q92kLl0sfEjS1CcBSu4gNnvK7V4MnJtrJogcnm.";
     keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzGMrw0jTHL5aoFd0j4Dqgound/cGX/955qPhsDXtKd"];
   };
@@ -43,7 +43,7 @@
 
   orzklv = {
     username = "sakhib";
-    description = "Sokhibjon Orzikulov";
+    description = "Orzklv";
     password = "$y$j9T$fgJmtVVcWuqEInu0/i49x.$26EaHHIDtPsHi41kDfwpuQAosaze4UkL4sbzgQyKbi8";
     keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDfHY4rNOm6DHH8XcmtU6CegX0/d99agN/x7MuPD5WJR"];
   };
