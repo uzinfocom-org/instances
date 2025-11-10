@@ -25,7 +25,7 @@
       };
     };
 
-  mkCDN = builtins.mapAttrs (name: value: {
+  mkCDN = builtins.mapAttrs (_name: value: {
     addSSL = true;
     enableACME = true;
     root = value.path;

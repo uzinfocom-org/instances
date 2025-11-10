@@ -1,6 +1,5 @@
 {
   lib,
-  config,
   domains,
   pkgs,
 }: let
