@@ -70,7 +70,7 @@
     group = lib.mkForce "turnserver";
   };
 
-  services.www.hosts = {
+  uzinfocom.www.hosts = {
     ${domains.realm} = {
       addSSL = true;
       enableACME = true;

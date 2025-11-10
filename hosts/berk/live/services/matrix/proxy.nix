@@ -10,7 +10,7 @@
     add_header X-XSS-Protection "1; mode=block";
   '';
 in {
-  services.www.hosts = {
+  uzinfocom.www.hosts = {
     ${domains.livekit} = {
       forceSSL = lib.mkDefault true;
       enableACME = lib.mkDefault true;

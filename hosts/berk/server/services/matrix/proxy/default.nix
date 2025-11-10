@@ -129,7 +129,7 @@
     (mkEndpoints "client" ./endpoints/client.txt)
     ++ (mkEndpoints "federation" ./endpoints/federation.txt);
 in {
-  services.www.hosts = {
+  uzinfocom.www.hosts = {
     ${domains.main} = {
       addSSL = true;
       enableACME = true;

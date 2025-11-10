@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  options,
   ...
 }: let
   cfg = config.uzinfocom.www;
@@ -76,11 +77,7 @@ in {
         description = "Add nginx user to anubis group for unix socket access.";
       };
 
-      hosts = lib.mkOption {
-        type = with lib.types; attrsOf (submodule anything);
-        default = {};
-        description = "List of hosted service instances.";
-      };
+      hosts = options.services.nginx.virtualHosts;
 
       cdn = lib.mkOption {
         type = with lib.types; attrsOf (submodule lib.utypes.cdn);

@@ -11,7 +11,7 @@
     outputs.nixosModules.users
 
     # Service oriented configs
-    # ./services
+    ./services
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
