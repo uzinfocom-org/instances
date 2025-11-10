@@ -1,0 +1,68 @@
+{
+  config,
+  options,
+  lib,
+  ...
+}: let
+  cfg = config.uzinfocom.containers;
+in {
+  options = {
+    uzinfocom.containers = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable the containers service. For the love of god, don't do this unless it is THAT necessary.";
+      };
+
+      instances = options.virtualisation.oci-containers.containers;
+
+      ports = lib.mkOption {
+        type = lib.types.listOf lib.types.port;
+        default = [];
+        description = "List of ports to be exposed.";
+      };
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !cfg.enable;
+        message = "docker is prohibited in this network at all";
+      }
+    ];
+
+    warnings = [
+      (lib.strings.concatLines
+        [
+          "Please, think about it one more time, maybe we shouldn't do this at all?!"
+          "This actions has very serious consequences from which you may regret too much."
+        ])
+    ];
+
+    virtualisation = {
+      docker = {
+        enable = true;
+        enableOnBoot = true;
+        autoPrune = {
+          enable = true;
+          dates = "daily";
+        };
+      };
+
+      oci-containers = {
+        backend = "docker";
+        containers = cfg.instances;
+      };
+    };
+
+    networking.firewall.allowedTCPPorts = cfg.ports;
+    networking.firewall.allowedUDPPorts = cfg.ports;
+  };
+
+  meta = {
+    doc = ./readme.md;
+    buildDocsInSandbox = true;
+    maintainers = with lib.maintainers; [orzklv];
+  };
+}

@@ -1,0 +1,36 @@
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.uzinfocom.docs;
+in {
+  options = {
+    uzinfocom.docs = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable uzinfocom's instance docs.";
+      };
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    documentation.nixos = {
+      # Disable HTML documentation for NixOS modules, can cause issues with module overrides
+      enable = false;
+
+      # Fails for not providing custom doc rendering
+      checkRedirects = false;
+
+      # Why not gamble?
+      includeAllModules = true;
+    };
+  };
+
+  meta = {
+    doc = ./readme.md;
+    buildDocsInSandbox = true;
+    maintainers = with lib.maintainers; [orzklv];
+  };
+}

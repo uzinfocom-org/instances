@@ -24,7 +24,6 @@ jobs:
       matrix:
         instance:
           [
-            "Laboratory",
             "Efael-State",
             "Uchar-State",
             "Berk-State",
