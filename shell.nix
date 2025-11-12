@@ -49,6 +49,9 @@ pkgs.stdenv.mkDerivation {
 
     # VPN Management
     wireguard-tools
+
+    # Merging
+    gh
   ];
 
   # Runtime dependencies
