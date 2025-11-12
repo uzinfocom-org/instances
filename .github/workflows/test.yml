@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: Enable auto-merge for Update PRs
-        run: nix-shell --run "gh pr merge --auto --merge \"$PR_URL\""
+        run: nix develop -c "gh pr merge --auto --merge \"$PR_URL\""
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{ secrets.ASSIST_PAT }}
