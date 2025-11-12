@@ -9,13 +9,14 @@
   domains = rec {
     main = "uzberk.uz";
     client = "chat.${main}";
-    call = "call.${main}";
     server = "matrix.${main}";
     auth = "auth.${main}";
     realm = "turn.${main}";
     mail = "mail.${main}";
-    livekit = "livekit.${main}";
-    livekit-jwt = "livekit-jwt.${main}";
+
+    call = "call-2.${main}";
+    livekit = "livekit-2.${main}";
+    livekit-jwt = "livekit-jwt-2.${main}";
   };
 in {
   imports = [

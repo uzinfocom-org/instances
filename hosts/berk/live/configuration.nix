@@ -9,7 +9,7 @@
     outputs.nixosModules.extra
     outputs.nixosModules.users
 
-    # Service oriented configs
+    # Import your deployed service list
     ./services
 
     # Import your generated (nixos-generate-config) hardware configuration

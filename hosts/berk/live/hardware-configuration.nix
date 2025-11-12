@@ -30,9 +30,8 @@
     network = {
       interface = "ens18";
       ipv4 = {
-        address = "45.150.26.120";
-        subnet = 28;
-        gateway = "45.150.26.113";
+        address = "10.0.0.105";
+        gateway = "10.0.0.211";
       };
     };
   };

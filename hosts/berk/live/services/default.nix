@@ -12,6 +12,6 @@
   # Enable web server & proxy
   uzinfocom.www = {
     enable = true;
-    domain = "ns2.uzberk.uz";
+    domain = "ns3.uzberk.uz";
   };
 }

@@ -22,14 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        instance:
-          [
-            "Efael-State",
-            "Uchar-State",
-            "Berk-State",
-            "Berk-Live",
-            "Berk-Live-Firewall",
-          ]
+        instance: ["Efael-State", "Uchar-State", "Berk-State", "Berk-Live"]
     runs-on: self-hosted
 
     steps:
