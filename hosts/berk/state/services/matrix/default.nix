@@ -15,15 +15,9 @@
     realm = "turn.${main}";
     mail = "mail.${main}";
 
-    # Instance I
     call = "call.${main}";
     livekit = "livekit.${main}";
     livekit-jwt = "livekit-jwt.${main}";
-
-    # Instance II
-    call-2 = "call-2.${main}";
-    livekit-2 = "livekit-2.${main}";
-    livekit-jwt-2 = "livekit-jwt-2.${main}";
   };
 in {
   imports = [

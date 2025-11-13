@@ -14,9 +14,9 @@
     realm = "turn.${main}";
     mail = "mail.${main}";
 
-    call = "call-2.${main}";
-    livekit = "livekit-2.${main}";
-    livekit-jwt = "livekit-jwt-2.${main}";
+    call = "call.${main}";
+    livekit = "livekit.${main}";
+    livekit-jwt = "livekit-jwt.${main}";
   };
 in {
   imports = [
