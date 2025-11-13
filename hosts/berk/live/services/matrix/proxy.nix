@@ -8,7 +8,7 @@
     add_header Permissions-Policy interest-cohort=() always;
     add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
     add_header X-XSS-Protection "1; mode=block";
-    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Origin "*, *";
   '';
 in {
   uzinfocom.www.hosts = {
