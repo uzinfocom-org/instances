@@ -35,12 +35,12 @@ jobs:
   update-merge:
     name: "Merge Update PRs"
     needs: [test-flake, build-instances]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.user.login == 'uzhoven' && github.event_name == 'pull_request'}}
 
     steps:
       - name: Enable auto-merge for Update PRs
-        run: nix develop -c "gh pr merge --auto --merge \"$PR_URL\""
+        run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{ secrets.ASSIST_PAT }}
