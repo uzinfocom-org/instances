@@ -12,7 +12,7 @@
     then {
       "default_server" = {
         default = true;
-        root = "${pkgs.uzinfocom.gate}/www";
+        root = pkgs.uzinfocom.gate;
       };
     }
     else {
@@ -21,7 +21,7 @@
         forceSSL = true;
         enableACME = true;
         serverAliases = cfg.alias;
-        root = "${pkgs.uzinfocom.gate}/www";
+        root = pkgs.uzinfocom.gate;
       };
     };
 
