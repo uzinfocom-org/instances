@@ -14,6 +14,7 @@
     auth = "auth.${main}";
     realm = "turn.${main}";
     mail = "mail.${main}";
+    push = "push.${main}";
 
     call = "call.${main}";
     livekit = "livekit.${main}";
@@ -29,5 +30,6 @@ in {
     (import ./auth.nix {inherit config domains;})
     (import ./mail.nix {inherit inputs domains config;})
     (import ./server.nix {inherit lib config domains pkgs;})
+    (import ./push.nix {inherit inputs pkgs;})
   ];
 }

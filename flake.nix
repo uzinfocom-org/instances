@@ -68,6 +68,9 @@
       url = "github:uzinfocom-org/gate";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Matrix sygnal
+    sygnal.url = "github:efael/sygnal";
   };
 
   outputs = {
