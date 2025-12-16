@@ -34,7 +34,7 @@
     "matrix/push" = {
       format = "binary";
       owner = "matrix-sygnal";
-      path = "/var/lib/matrix-sygnal/push.yaml";
+      path = "/var/lib/matrix-sygnal/sygnal.yaml";
       sopsFile = ../../../secrets/uchar/matrix/push.hell;
     };
     "matrix/ident" = {
