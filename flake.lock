@@ -480,11 +480,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1765523602,
-        "narHash": "sha256-sPxLMEsGOjP74a+XR2Fwe2VE0sGi0sdCuH2SECTVSeI=",
+        "lastModified": 1765868810,
+        "narHash": "sha256-QWtf+IJGq2WeClavswPH+tSNcF55p6R/dUEk6OcDQ38=",
         "owner": "efael",
         "repo": "sygnal",
-        "rev": "099cd9b0af2555d1d426e09c794616123db17cf8",
+        "rev": "e3585d531df611c7631a72b174b923c0cdcdf266",
         "type": "github"
       },
       "original": {
