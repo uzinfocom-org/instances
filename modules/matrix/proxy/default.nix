@@ -46,7 +46,7 @@
   wellKnownSupport = {
     contacts = [
       {
-        email_address = "support@floss.uz";
+        email_address = "support@uchar.uz";
         matrix_id = "@orzklv:floss.uz";
         role = "m.role.admin";
       }
@@ -208,20 +208,6 @@ in {
         locations = lib.foldl' lib.recursiveUpdate {} (
           [
             {
-              # For telegram
-              "/c3c3f34b-29fb-5feb-86e5-98c75ec8214b" = {
-                priority = 100;
-                proxyPass = "http://127.0.0.1:8009";
-                extraConfig = commonHeaders;
-              };
-
-              # For IRC appservice media proxy
-              "/media" = {
-                priority = 100;
-                proxyPass = "http://127.0.0.1:${toString config.services.matrix-appservice-irc.settings.ircService.mediaProxy.bindPort}";
-                extraConfig = commonHeaders;
-              };
-
               # Forward to the auth service
               "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
                 priority = 100;

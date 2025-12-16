@@ -45,7 +45,7 @@ in {
         url = "https://uchar.uz/privacy";
       }
     ];
-    # FUTUREWORK: Replace with floss.uz logo
+    # FUTUREWORK: Replace with uchar.uz logo
     auth_header_logo_url = "themes/element/img/logos/element-logo.svg";
   };
   # Enable Element Call Beta
