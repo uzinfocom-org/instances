@@ -10,7 +10,7 @@
     outputs.nixosModules.matrix
 
     # Per app preconfigured abstractions
-    # ...
+    outputs.nixosModules.apps.uchar-website
   ];
 
   sops.secrets = {
@@ -59,6 +59,12 @@
       enable = true;
       domain = "uchar.uz";
       password = config.sops.secrets."mail/hashed".path;
+    };
+
+    # *://*
+    apps = {
+      # https://uchar.uz
+      uchar.website.enable = true;
     };
   };
 }

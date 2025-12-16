@@ -69,6 +69,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Uchar website
+    uchar-website.url = "github:efael/website";
+
     # Matrix sygnal
     sygnal.url = "github:efael/sygnal";
   };
