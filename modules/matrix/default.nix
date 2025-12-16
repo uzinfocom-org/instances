@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   ...
 }: let
   cfg = config.uzinfocom.matrix;
@@ -125,6 +126,9 @@ in {
 
     # Proxy reversing
     ./proxy
+
+    # Push notifications
+    inputs.sygnal.nixosModules.server
   ];
 
   options = {
@@ -167,6 +171,21 @@ in {
           description = "List of extra mas config files";
           type = lib.types.listOf lib.types.str;
           default = [];
+        };
+      };
+
+      push = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          example = true;
+          description = "Enable independent push module for matrix instance";
+        };
+
+        extra-config-files = lib.mkOption {
+          description = "Configuration file to feed push service";
+          type = lib.types.str;
+          default = "/var/lib/matrix-sygnal/push.yaml";
         };
       };
     };
@@ -522,6 +541,11 @@ in {
           };
           passwords.enabled = false;
         };
+      };
+
+      matrix-sygnal = lib.mkIf cfg.push.enable {
+        enable = true;
+        configFile = cfg.push.extra-config-files;
       };
     };
   };
