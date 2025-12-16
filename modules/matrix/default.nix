@@ -498,7 +498,13 @@ in {
 
         # https://element-hq.github.io/matrix-authentication-service/reference/configuration.html
         settings = {
-          account.email_change_allowed = false;
+          account = {
+            email_change_allowed = true;
+            displayname_change_allowed = true;
+            password_registration_enabled = true;
+            password_change_allowed = true;
+            password_recovery_enabled = true;
+          };
           http = {
             public_base = "https://mas.${cfg.domain}";
             issuer = "https://mas.${cfg.domain}";
@@ -539,7 +545,20 @@ in {
               }
             ];
           };
-          passwords.enabled = false;
+          passwords = {
+            enabled = true;
+            minimum_complexity = 3;
+            schemes = [
+              {
+                version = 1;
+                algorithm = "argon2id";
+              }
+              {
+                version = 2;
+                algorithm = "bcrypt";
+              }
+            ];
+          };
         };
       };
 
