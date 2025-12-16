@@ -20,9 +20,6 @@
   };
 in {
   imports = [
-    # Module by @teutat3s
-    outputs.nixosModules.matrix
-
     # Parts of this configuration
     (import ./call.nix {inherit config domains;})
     (import ./proxy.nix {inherit lib domains pkgs config;})

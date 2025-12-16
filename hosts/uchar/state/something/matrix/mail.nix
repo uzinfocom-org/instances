@@ -72,5 +72,7 @@ in {
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
     certificateScheme = "acme-nginx";
+
+    stateVersion = 3;
   };
 }

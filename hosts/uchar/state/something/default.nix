@@ -6,7 +6,7 @@
     outputs.nixosModules.web
 
     # Matrix server hosting
-    ./matrix
+    # ./matrix
   ];
 
   # Enable web server & proxy

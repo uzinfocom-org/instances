@@ -22,14 +22,12 @@
   };
 in {
   imports = [
-    # Module by @teutat3s
-    outputs.nixosModules.matrix
-
     # Parts of this configuration
     (import ./proxy {inherit lib domains pkgs;})
     (import ./auth.nix {inherit config domains;})
     (import ./mail.nix {inherit inputs domains config;})
     (import ./server.nix {inherit lib config domains pkgs;})
     (import ./push.nix {inherit inputs pkgs;})
+    (import ./mas.nix {inherit config lib pkgs;})
   ];
 }

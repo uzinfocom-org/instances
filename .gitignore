@@ -16,3 +16,6 @@ nohup.out
 .pre-commit-config.yaml
 
 *.swp
+
+# Secrets
+*.retard
