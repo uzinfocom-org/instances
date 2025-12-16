@@ -14,22 +14,32 @@
   # Bootloader shits
   boot = {
     initrd = {
+      kernelModules = [
+        "nvme"
+        "kvm-intel"
+      ];
       availableKernelModules = [
-        "ata_piix"
-        "mptspi"
-        "uhci_hcd"
-        "ehci_pci"
-        "sd_mod"
-        "sr_mod"
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
       ];
     };
   };
 
   uzinfocom = {
+    boot = {
+      uefi = true;
+      raided = true;
+      mirrors = [
+        "/dev/nvme0n1"
+        "/dev/nvme1n1"
+      ];
+    };
+
     network = {
-      interface = "ens160";
-      ipv4.address = "10.103.7.200";
-      nameserver = ["195.158.0.1"];
+      ipv4.address = "135.181.165.24";
+      ipv6.address = "2a01:4f9:3a:1ca2::2";
     };
   };
 
