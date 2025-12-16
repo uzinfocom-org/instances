@@ -174,7 +174,7 @@ in {
         };
       };
 
-      push = {
+      matrix-sygnal = {
         enable = lib.mkOption {
           type = lib.types.bool;
           default = false;
@@ -182,7 +182,7 @@ in {
           description = "Enable independent push module for matrix instance";
         };
 
-        extra-config-files = lib.mkOption {
+        config-file = lib.mkOption {
           description = "Configuration file to feed push service";
           type = lib.types.str;
           default = "/var/lib/matrix-sygnal/push.yaml";
@@ -543,9 +543,9 @@ in {
         };
       };
 
-      matrix-sygnal = lib.mkIf cfg.push.enable {
-        enable = true;
-        configFile = cfg.push.extra-config-files;
+      matrix-sygnal = lib.mkIf cfg.matrix-sygnal.enable {
+        inherit (cfg.matrix-sygnal) enable;
+        configFile = cfg.matrix-sygnal.config-file;
       };
     };
   };

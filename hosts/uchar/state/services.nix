@@ -64,6 +64,11 @@
       matrix-authentication-service.extra-config-files = [
         config.sops.secrets."matrix/authentication".path
       ];
+
+      matrix-sygnal = {
+        enable = true;
+        config-file = config.sops.secrets."matrix/push".path;
+      };
     };
 
     # (smtp|imap)://mail.uchar.uz
