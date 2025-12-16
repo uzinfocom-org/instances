@@ -31,6 +31,18 @@
       owner = "matrix-authentication-service";
       sopsFile = ../../../secrets/uchar/matrix/authentication.hell;
     };
+    "matrix/push" = {
+      format = "binary";
+      owner = "matrix-sygnal";
+      path = "/var/lib/matrix-sygnal/push.yaml";
+      sopsFile = ../../../secrets/uchar/matrix/push.hell;
+    };
+    "matrix/ident" = {
+      format = "binary";
+      owner = "matrix-sygnal";
+      path = "/var/lib/matrix-sygnal/service_account.json";
+      sopsFile = ../../../secrets/uchar/matrix/saccount.hell;
+    };
   };
 
   # https://ns1.uchar.uz

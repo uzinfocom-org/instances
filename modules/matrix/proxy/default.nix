@@ -160,6 +160,28 @@ in {
           // wellKnownAppleLocations "${cfg.domain}";
       };
 
+      "push.${cfg.domain}" = {
+        root = "/dev/null";
+
+        forceSSL = lib.mkDefault true;
+        enableACME = lib.mkDefault true;
+
+        extraConfig = ''
+          ${commonHeaders}
+
+          access_log /var/log/nginx/mas.${cfg.domain}-access.log;
+          error_log /var/log/nginx/mas.${cfg.domain}-error.log;
+        '';
+
+        locations =
+          {
+            "/" = {
+              proxyPass = "http://127.0.0.1:43234";
+            };
+          }
+          // wellKnownAppleLocations "${cfg.domain}";
+      };
+
       "matrix.${cfg.domain}" = {
         listen = [
           {

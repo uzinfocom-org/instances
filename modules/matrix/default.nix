@@ -128,7 +128,7 @@ in {
     ./proxy
 
     # Push notifications
-    inputs.sygnal.nixosModules.server
+    ./push.nix
   ];
 
   options = {
