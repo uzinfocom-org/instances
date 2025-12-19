@@ -146,6 +146,13 @@ in {
         description = "Domain to associate matrix network with.";
       };
 
+      cap = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        example = true;
+        description = "Setup matrix instance to use oidc/ldap.";
+      };
+
       synapse = {
         app-service-config-files = lib.mkOption {
           description = "List of app service config files";
@@ -498,13 +505,18 @@ in {
 
         # https://element-hq.github.io/matrix-authentication-service/reference/configuration.html
         settings = {
-          account = {
-            email_change_allowed = true;
-            displayname_change_allowed = true;
-            password_registration_enabled = true;
-            password_change_allowed = true;
-            password_recovery_enabled = true;
-          };
+          account =
+            if cfg.cap
+            then {
+              email_change_allowed = false;
+            }
+            else {
+              email_change_allowed = true;
+              displayname_change_allowed = true;
+              password_registration_enabled = true;
+              password_change_allowed = true;
+              password_recovery_enabled = true;
+            };
           http = {
             public_base = "https://mas.${cfg.domain}";
             issuer = "https://mas.${cfg.domain}";
@@ -545,20 +557,25 @@ in {
               }
             ];
           };
-          passwords = {
-            enabled = true;
-            minimum_complexity = 3;
-            schemes = [
-              {
-                version = 1;
-                algorithm = "argon2id";
-              }
-              {
-                version = 2;
-                algorithm = "bcrypt";
-              }
-            ];
-          };
+          passwords =
+            if cfg.cap
+            then {
+              enabled = false;
+            }
+            else {
+              enabled = true;
+              minimum_complexity = 3;
+              schemes = [
+                {
+                  version = 1;
+                  algorithm = "argon2id";
+                }
+                {
+                  version = 2;
+                  algorithm = "bcrypt";
+                }
+              ];
+            };
         };
       };
 
