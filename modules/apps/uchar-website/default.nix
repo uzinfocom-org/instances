@@ -56,12 +56,6 @@ in {
           return 200 '${securityTXT}';
         '';
       };
-
-      "/satzung" = {
-        extraConfig = ''
-          return 302 https://cloud.${cfg.domain}/s/LqrKjysypda3mR6;
-        '';
-      };
     };
   };
 }
