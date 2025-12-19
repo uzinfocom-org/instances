@@ -29,32 +29,34 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.efael.website = {
-      enable = true;
-      port = 51001;
-
-      proxy = {
+    services = {
+      uchar.website = {
         enable = true;
-        proxy = "nginx";
-        inherit (cfg) domain;
-      };
-    };
+        port = 51001;
 
-    services.nginx.virtualHosts."${cfg.domain}".locations = {
-      # Responsible disclosure information https://securitytxt.org/
-      "/.well-known/security.txt" = let
-        securityTXT = lib.lists.foldr (a: b: a + "\n" + b) "" [
-          "Contact: mailto:admin@floss.uz"
-          "Expires: 2027-01-31T23:00:00.000Z"
-          "Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/00D27BC687070683FBB9137C3C35D3AF0DA1D6A8"
-          "Preferred-Languages: en,uz"
-          "Canonical: https://${cfg.domain}/.well-known/security.txt"
-        ];
-      in {
-        extraConfig = ''
-          add_header Content-Type text/plain;
-          return 200 '${securityTXT}';
-        '';
+        proxy = {
+          enable = true;
+          proxy = "nginx";
+          inherit (cfg) domain;
+        };
+      };
+
+      nginx.virtualHosts."${cfg.domain}".locations = {
+        # Responsible disclosure information https://securitytxt.org/
+        "/.well-known/security.txt" = let
+          securityTXT = lib.lists.foldr (a: b: a + "\n" + b) "" [
+            "Contact: mailto:admin@floss.uz"
+            "Expires: 2027-01-31T23:00:00.000Z"
+            "Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/00D27BC687070683FBB9137C3C35D3AF0DA1D6A8"
+            "Preferred-Languages: en,uz"
+            "Canonical: https://${cfg.domain}/.well-known/security.txt"
+          ];
+        in {
+          extraConfig = ''
+            add_header Content-Type text/plain;
+            return 200 '${securityTXT}';
+          '';
+        };
       };
     };
   };
