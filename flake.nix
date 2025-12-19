@@ -70,10 +70,10 @@
     };
 
     # Uchar website
-    uchar-website.url = "github:efael/website";
+    uchar-website.url = "github:uchar-org/website";
 
     # Matrix sygnal
-    sygnal.url = "github:efael/sygnal";
+    sygnal.url = "github:uchar-org/sygnal";
   };
 
   outputs = {
