@@ -80,7 +80,7 @@
 
     # https://auth.uzberk.uz
     auth = rec {
-      enable = false;
+      enable = true;
       realm = "uzberk.uz";
       password = config.sops.secrets."auth/database".path;
     };
