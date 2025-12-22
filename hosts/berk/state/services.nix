@@ -8,7 +8,7 @@
     outputs.nixosModules.web
     outputs.nixosModules.mail
     outputs.nixosModules.auth
-    # outputs.nixosModules.matrix
+    outputs.nixosModules.matrix
 
     # Per app preconfigured abstractions
     # ...
@@ -27,28 +27,28 @@
     };
 
     # Matrix oriented secrets
-    # "matrix/server" = {
-    #   format = "binary";
-    #   owner = "matrix-synapse";
-    #   sopsFile = ../../../secrets/berk/matrix/server.hell;
-    # };
-    # "matrix/authentication" = {
-    #   format = "binary";
-    #   owner = "matrix-authentication-service";
-    #   sopsFile = ../../../secrets/berk/matrix/authentication.hell;
-    # };
-    # "matrix/push" = {
-    #   format = "binary";
-    #   owner = "matrix-sygnal";
-    #   path = "/var/lib/matrix-sygnal/sygnal.yaml";
-    #   sopsFile = ../../../secrets/berk/matrix/push.hell;
-    # };
-    # "matrix/ident" = {
-    #   format = "binary";
-    #   owner = "matrix-sygnal";
-    #   path = "/var/lib/matrix-sygnal/service_account.json";
-    #   sopsFile = ../../../secrets/berk/matrix/saccount.hell;
-    # };
+    "matrix/server" = {
+      format = "binary";
+      owner = "matrix-synapse";
+      sopsFile = ../../../secrets/berk/matrix/server.hell;
+    };
+    "matrix/authentication" = {
+      format = "binary";
+      owner = "matrix-authentication-service";
+      sopsFile = ../../../secrets/berk/matrix/authentication.hell;
+    };
+    "matrix/push" = {
+      format = "binary";
+      owner = "matrix-sygnal";
+      path = "/var/lib/matrix-sygnal/sygnal.yaml";
+      sopsFile = ../../../secrets/berk/matrix/push.hell;
+    };
+    "matrix/ident" = {
+      format = "binary";
+      owner = "matrix-sygnal";
+      path = "/var/lib/matrix-sygnal/service_account.json";
+      sopsFile = ../../../secrets/berk/matrix/saccount.hell;
+    };
   };
 
   # https://ns1.berk.uz
@@ -59,24 +59,24 @@
     };
 
     # https://(chat|matrix).berk.uz
-    # matrix = {
-    #   enable = true;
-    #   domain = "uzberk.uz";
-    #   cap = true;
+    matrix = {
+      enable = true;
+      domain = "uzberk.uz";
+      cap = true;
 
-    #   synapse.extra-config-files = [
-    #     config.sops.secrets."matrix/server".path
-    #   ];
+      synapse.extra-config-files = [
+        config.sops.secrets."matrix/server".path
+      ];
 
-    #   matrix-authentication-service.extra-config-files = [
-    #     config.sops.secrets."matrix/authentication".path
-    #   ];
+      matrix-authentication-service.extra-config-files = [
+        config.sops.secrets."matrix/authentication".path
+      ];
 
-    #   matrix-sygnal = {
-    #     enable = true;
-    #     config-file = config.sops.secrets."matrix/push".path;
-    #   };
-    # };
+      matrix-sygnal = {
+        enable = true;
+        config-file = config.sops.secrets."matrix/push".path;
+      };
+    };
 
     # https://auth.uzberk.uz
     auth = rec {
