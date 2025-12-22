@@ -11,7 +11,7 @@
     outputs.nixosModules.matrix
 
     # Per app preconfigured abstractions
-    # ...
+    outputs.nixosModules.apps.uchar-website
   ];
 
   sops.secrets = {
@@ -93,9 +93,12 @@
     };
 
     # *://*
-    # apps = {
-    #   # https://berk.uz
-    #   uchar.website.enable = true;
-    # };
+    apps = {
+      # https://berk.uz
+      uchar.website = {
+        enable = true;
+        domain = "uzberk.uz";
+      };
+    };
   };
 }
