@@ -5,7 +5,7 @@ in {
   leads = {
     members = with members; [
       orzklv
-      bahrom04
+      shakhzod
     ];
     scope = "Lead position members of Uzinfocom Open Source.";
   };
@@ -26,10 +26,9 @@ in {
     scope = "Developers and maintainers of Xinux project.";
   };
 
-  efael = {
+  uchar = {
     members = with members; [
       shakhzod # Maintainer
-      domirando
     ];
     scope = "Developers and maintainers of Efael project.";
   };

@@ -1,5 +1,6 @@
 {
   inputs,
+  outputs,
   lib,
   modulesPath,
   ...
@@ -8,8 +9,11 @@
     inputs.disko.nixosModules.disko
     ./disk-configuration.nix
 
+    # Not available hardware modules
     (modulesPath + "/installer/scan/not-detected.nix")
-    (modulesPath + "/profiles/qemu-guest.nix")
+
+    # Virtualization environment
+    outputs.nixosModules.kvm
   ];
 
   boot = {
@@ -27,6 +31,7 @@
 
   uzinfocom = {
     boot.uefi = true;
+    kvm.enable = true;
     network = {
       interface = "ens18";
       ipv4 = {

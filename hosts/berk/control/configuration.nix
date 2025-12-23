@@ -9,15 +9,12 @@
     outputs.nixosModules.extra
     outputs.nixosModules.users
 
-    # Service oriented configs
-    ./services.nix
-
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
 
   # Hostname of the system
-  networking.hostName = "Berk-State";
+  networking.hostName = "Berk-Control";
 
   uzinfocom = {
     # Users of system
