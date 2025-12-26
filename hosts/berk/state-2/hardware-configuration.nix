@@ -37,7 +37,7 @@
     network = {
       interface = "ens18";
       ipv4 = {
-        address = "10.0.0.7";
+        address = "10.0.0.107";
         gateway = "10.0.0.211";
       };
     };
