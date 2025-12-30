@@ -480,11 +480,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1765868810,
-        "narHash": "sha256-QWtf+IJGq2WeClavswPH+tSNcF55p6R/dUEk6OcDQ38=",
+        "lastModified": 1767097606,
+        "narHash": "sha256-Zo1lEU7gmrEr8yrlKsOns5ToNMTMAYGFMgowJ3H6i1Q=",
         "owner": "uchar-org",
         "repo": "sygnal",
-        "rev": "e3585d531df611c7631a72b174b923c0cdcdf266",
+        "rev": "b82eba056eab43e9eab436589e4a11a39caf4040",
         "type": "github"
       },
       "original": {
