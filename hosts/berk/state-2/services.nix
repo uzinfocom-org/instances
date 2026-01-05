@@ -49,5 +49,14 @@
         config.sops.secrets."matrix/authentication".path
       ];
     };
+
+    # *://*
+    apps = {
+      # https://mg.berk.uz
+      uchar.website = {
+        enable = true;
+        domain = "mg.uzberk.uz";
+      };
+    };
   };
 }
