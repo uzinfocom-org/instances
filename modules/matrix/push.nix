@@ -60,7 +60,6 @@ in {
       wantedBy = ["multi-user.target"];
 
       serviceConfig = {
-        Type = "notify";
         User = "matrix-sygnal";
         Group = "matrix-sygnal";
         WorkingDirectory = cfg.dataDir;
