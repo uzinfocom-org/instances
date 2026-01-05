@@ -19,12 +19,12 @@
     "matrix/server" = {
       format = "binary";
       owner = "matrix-synapse";
-      sopsFile = ../../../secrets/berk/matrix/server.hell;
+      sopsFile = ../../../secrets/berk/matrix/server-2.hell;
     };
     "matrix/authentication" = {
       format = "binary";
       owner = "matrix-authentication-service";
-      sopsFile = ../../../secrets/berk/matrix/authentication.hell;
+      sopsFile = ../../../secrets/berk/matrix/authentication-2.hell;
     };
   };
 
