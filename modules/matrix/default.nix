@@ -448,6 +448,10 @@ in {
           ];
           turn_user_lifetime = "1h";
 
+          ip_range_whitelist = [
+            "10.0.0.0/8"
+          ];
+
           url_preview_accept_language = [
             "en-US"
             "en"
