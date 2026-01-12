@@ -6,6 +6,7 @@ in {
     members = with members; [
       orzklv
       shakhzod
+      bahrom04
     ];
     scope = "Lead position members of Uzinfocom Open Source.";
   };

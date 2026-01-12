@@ -20,13 +20,6 @@
     keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzGMrw0jTHL5aoFd0j4Dqgound/cGX/955qPhsDXtKd"];
   };
 
-  domirando = {
-    username = "domirando";
-    description = "Maftuna Vohidjonovna";
-    password = "$6$3JI5jcc8ttUHS3Jg$H/LACxCqw94BvJazHFc/8luEditd10VOe47FUKfj7.GrJq4Q92kLl0sfEjS1CcBSu4gNnvK7V4MnJtrJogcnm.";
-    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzGMrw0jTHL5aoFd0j4Dqgound/cGX/955qPhsDXtKd"];
-  };
-
   lambdajon = {
     username = "lambdajon";
     description = "Lambdajon";
