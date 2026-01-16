@@ -596,11 +596,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1765954081,
-        "narHash": "sha256-MITxi6UFAWod5DLWf2cCT+cdcN0uHfkzOsn5vXloJvg=",
+        "lastModified": 1768566001,
+        "narHash": "sha256-QuLg1S/d7LH08FRzTwdS+w02MR74eoZ0lQ6le4s64UE=",
         "owner": "uchar-org",
         "repo": "website",
-        "rev": "fd7888c0f61b8faa74fc9c5278ea1ea9e1b8aff6",
+        "rev": "3ec9f0f0b427094ba0f18a10944b2ab013cf2656",
         "type": "github"
       },
       "original": {
