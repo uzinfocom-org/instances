@@ -2,6 +2,7 @@
   inputs,
   outputs,
   lib,
+  config,
   modulesPath,
   ...
 }: {
@@ -23,12 +24,12 @@
       kernelModules = [
         "nvme"
         "kvm-intel"
+        "smartpqi"
       ];
       availableKernelModules = [
         "uhci_hcd"
         "ehci_pci"
         "xhci_pci"
-        "smartpqi"
         "ata_piix"
         "hpilo"
         "usbhid"
@@ -39,7 +40,13 @@
     };
   };
 
-  hardware.raid.HPSmartArray.enable = true;
+  hardware = {
+    # Additional configs for Smart Array
+    raid.HPSmartArray.enable = true;
+
+    # Microcode
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
 
   uzinfocom = {
     boot.uefi = true;
