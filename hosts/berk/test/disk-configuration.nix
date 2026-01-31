@@ -24,7 +24,7 @@
             };
 
             SWAP = {
-              size = "26G";
+              size = "64G";
               content = {
                 type = "swap";
               };
