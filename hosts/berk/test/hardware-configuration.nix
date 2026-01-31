@@ -20,20 +20,21 @@
   # Bootloader shits
   boot = {
     initrd = {
+      kernelModules = [
+        "nvme"
+        "kvm-intel"
+      ];
       availableKernelModules = [
-        "ata_piix"
-        "uhci_hcd"
-        "virtio_pci"
-        "virtio_scsi"
-        "sd_mod"
-        "sr_mod"
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
       ];
     };
   };
 
   uzinfocom = {
     boot.uefi = true;
-    kvm.enable = true;
     network = {
       interface = "eno1";
       ipv4 = {
