@@ -27,8 +27,11 @@
       availableKernelModules = [
         "uhci_hcd"
         "ehci_pci"
+        "xhci_pci"
+        "smartpqi"
         "ata_piix"
         "hpilo"
+        "usbhid"
         "usb_storage"
         "sd_mod"
         "sr_mod"
