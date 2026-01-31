@@ -14,7 +14,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
 
     # Virtualization environment
-    outputs.nixosModules.kvm
+    # outputs.nixosModules.kvm
   ];
 
   # Bootloader shits
