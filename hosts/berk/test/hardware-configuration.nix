@@ -28,7 +28,6 @@
         "uhci_hcd"
         "ehci_pci"
         "ata_piix"
-        "hpsa"
         "hpilo"
         "usb_storage"
         "sd_mod"
@@ -36,6 +35,8 @@
       ];
     };
   };
+
+  hardware.raid.HPSmartArray.enable = true;
 
   uzinfocom = {
     boot.uefi = true;
