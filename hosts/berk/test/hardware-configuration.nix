@@ -25,10 +25,14 @@
         "kvm-intel"
       ];
       availableKernelModules = [
-        "xhci_pci"
-        "ahci"
-        "nvme"
-        "usbhid"
+        "uhci_hcd"
+        "ehci_pci"
+        "ata_piix"
+        "hpsa"
+        "hpilo"
+        "usb_storage"
+        "sd_mod"
+        "sr_mod"
       ];
     };
   };
