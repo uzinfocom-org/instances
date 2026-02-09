@@ -55,4 +55,10 @@
     keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIObsRsvvIZp3fIxmVTV9Xj4DmtyRIi+yJohKGUNBNwUu mukhammad.kammoliddin@gmail.com"];
   };
 
+  akmal = {
+    username = "akmal";
+    description = "akmal";
+    password = "$6$ziggerlicious$0ywwiMg715l0pMqIeSSOEqxBzwVxZo/1qa60c/AzbYtBVNbnIdBnppN0ISA4LDFFXUGSQmDLIvC9pS0k6FU4u.";
+    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhQlu6jHF2BLrNvfKy+XXjneqnE3Rz9B2ls6fvw+pWw"];
+  };
 }
