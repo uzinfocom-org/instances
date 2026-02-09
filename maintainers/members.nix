@@ -51,7 +51,7 @@
   rafanochi = {
     username = "rafanochi";
     description = "Rafa";
-    password = "$6$password$ASJnHpgSbBYcLPuntDFhNnZCeDCyhfWtGuxoadoR82mdpIyBS5D23NkAiplpOIS0DKTGGbgd0do1aSE8WTgjx0";
-    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHoC10VZyB7O9mhh2/pwDkXtUSnrgt92/wAtRem4q/po"];
+    password = "$6$password$h3qTLKJxan.7eUgGKy3qxtPaJK49rscfM2B/HwQLDb4BYkYsLcv6jfi1Iw5baWDGXXdsR3RzBwFbef7ruSAWM.";
+    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHoC10VZyB7O9mhh2/pwDkXtUSnrgt92/wAtRem4q/po zawkindev@gmail.com"];
   };
 }
