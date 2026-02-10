@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.matrix;
 
   publicDomain = "matrix.${cfg.domain}";
@@ -11,34 +12,34 @@
 
   listenerWithMetrics =
     lib.findFirst (listener: listener.type == "metrics")
-    (throw "Found no matrix-synapse.settings.listeners.*.type containing string metrics")
-    config.services.matrix-synapse.settings.listeners;
+      (throw "Found no matrix-synapse.settings.listeners.*.type containing string metrics")
+      config.services.matrix-synapse.settings.listeners;
   synapseMetricsPort = listenerWithMetrics.port;
 
   workerDefs = [
     {
       name = "client-1";
-      resources = ["client"];
+      resources = [ "client" ];
     }
     {
       name = "federation-sender-1";
-      resources = [];
+      resources = [ ];
     }
     {
       name = "federation-receiver-1";
-      resources = ["federation"];
+      resources = [ "federation" ];
     }
     {
       name = "federation-receiver-2";
-      resources = ["federation"];
+      resources = [ "federation" ];
     }
     {
       name = "federation-receiver-3";
-      resources = ["federation"];
+      resources = [ "federation" ];
     }
     {
       name = "federation-receiver-4";
-      resources = ["federation"];
+      resources = [ "federation" ];
     }
   ];
 
@@ -47,79 +48,75 @@
   worker_ip_start = 11;
   metrics_port_start = 9101;
 
-  workers =
-    lib.imap0 (
-      i: def: let
-        ip = "${subnet}.${toString (worker_ip_start + i)}";
-        metrics_port = metrics_port_start + i;
-      in {
-        inherit (def) name;
-        value = {
-          worker_app = "synapse.app.generic_worker";
-          worker_listeners = [
-            {
-              type = "http";
-              port = 8008;
-              bind_addresses = [ip];
-              tls = false;
-              x_forwarded = true;
-              resources = [{names = def.resources ++ ["health"];}];
-            }
-            # add a metrics listener to all workers
-            # ports will be exposed only with wireguard via firewall rule
-            {
-              type = "metrics";
-              port = metrics_port;
-              bind_addresses = ["0.0.0.0"];
-              tls = false;
-              resources = [{names = ["metrics"];}];
-            }
-          ];
-        };
-      }
-    )
-    workerDefs;
+  workers = lib.imap0 (
+    i: def:
+    let
+      ip = "${subnet}.${toString (worker_ip_start + i)}";
+      metrics_port = metrics_port_start + i;
+    in
+    {
+      inherit (def) name;
+      value = {
+        worker_app = "synapse.app.generic_worker";
+        worker_listeners = [
+          {
+            type = "http";
+            port = 8008;
+            bind_addresses = [ ip ];
+            tls = false;
+            x_forwarded = true;
+            resources = [ { names = def.resources ++ [ "health" ]; } ];
+          }
+          # add a metrics listener to all workers
+          # ports will be exposed only with wireguard via firewall rule
+          {
+            type = "metrics";
+            port = metrics_port;
+            bind_addresses = [ "0.0.0.0" ];
+            tls = false;
+            resources = [ { names = [ "metrics" ]; } ];
+          }
+        ];
+      };
+    }
+  ) workerDefs;
 
-  getWorkerHostsForResource = resource:
+  getWorkerHostsForResource =
+    resource:
     lib.flatten (
       builtins.map (
-        worker: let
-          listener =
-            lib.findFirst (
-              listener: lib.any (res: lib.any (name: name == resource) res.names) (listener.resources or [])
-            )
-            null
-            worker.value.worker_listeners;
+        worker:
+        let
+          listener = lib.findFirst (
+            listener: lib.any (res: lib.any (name: name == resource) res.names) (listener.resources or [ ])
+          ) null worker.value.worker_listeners;
         in
-          if listener != null
-          then ["${builtins.head listener.bind_addresses}:${toString listener.port}"]
-          else []
-      )
-      workers
+        if listener != null then
+          [ "${builtins.head listener.bind_addresses}:${toString listener.port}" ]
+        else
+          [ ]
+      ) workers
     );
 
-  getWorkerPortForResource = resource:
+  getWorkerPortForResource =
+    resource:
     lib.flatten (
       builtins.map (
-        worker: let
-          listener =
-            lib.findFirst (
-              listener: lib.any (res: lib.any (name: name == resource) res.names) (listener.resources or [])
-            )
-            null
-            worker.value.worker_listeners;
+        worker:
+        let
+          listener = lib.findFirst (
+            listener: lib.any (res: lib.any (name: name == resource) res.names) (listener.resources or [ ])
+          ) null worker.value.worker_listeners;
         in
-          if listener != null
-          then [listener.port]
-          else []
-      )
-      workers
+        if listener != null then [ listener.port ] else [ ]
+      ) workers
     );
 
   federationReceivers = getWorkerHostsForResource "federation";
   clientReceivers = getWorkerHostsForResource "client";
   metricsPorts = getWorkerPortForResource "metrics";
-in {
+in
+{
   imports = [
     # Matrix Authentication Service
     ./authentication.nix
@@ -157,13 +154,13 @@ in {
         app-service-config-files = lib.mkOption {
           description = "List of app service config files";
           type = lib.types.listOf lib.types.str;
-          default = [];
+          default = [ ];
         };
 
         extra-config-files = lib.mkOption {
           description = "List of extra synapse config files";
           type = lib.types.listOf lib.types.str;
-          default = [];
+          default = [ ];
         };
 
         signing_key_path = lib.mkOption {
@@ -177,7 +174,7 @@ in {
         extra-config-files = lib.mkOption {
           description = "List of extra mas config files";
           type = lib.types.listOf lib.types.str;
-          default = [];
+          default = [ ];
         };
       };
 
@@ -200,16 +197,16 @@ in {
 
   config = lib.mkIf cfg.enable {
     # Only expose matrix-synapse metrics ports via wireguard interface
-    networking.firewall.interfaces.wg-ssh.allowedTCPPorts = [synapseMetricsPort] ++ metricsPorts;
+    networking.firewall.interfaces.wg-ssh.allowedTCPPorts = [ synapseMetricsPort ] ++ metricsPorts;
 
     # generate nginx upstreams for configured workers
     services = {
       nginx.upstreams = {
         "matrix-synapse".servers = {
-          "${synapse_ip}:8008" = {};
+          "${synapse_ip}:8008" = { };
         };
-        "matrix-federation-receiver".servers = lib.genAttrs federationReceivers (host: {});
-        "matrix-client-receiver".servers = lib.genAttrs clientReceivers (host: {});
+        "matrix-federation-receiver".servers = lib.genAttrs federationReceivers (host: { });
+        "matrix-client-receiver".servers = lib.genAttrs clientReceivers (host: { });
       };
 
       matrix-synapse = {
@@ -234,7 +231,7 @@ in {
 
           listeners = [
             {
-              bind_addresses = ["${synapse_ip}"];
+              bind_addresses = [ "${synapse_ip}" ];
               port = 8008;
               tls = false;
               type = "http";
@@ -249,20 +246,20 @@ in {
               ];
             }
             {
-              bind_addresses = ["0.0.0.0"];
+              bind_addresses = [ "0.0.0.0" ];
               port = 9000;
               tls = false;
               type = "metrics";
-              resources = [{names = ["metrics"];}];
+              resources = [ { names = [ "metrics" ]; } ];
             }
             {
               path = "/run/matrix-synapse/main_replication.sock";
               mode = "660";
               type = "http";
-              resources = [{names = ["replication"];}];
+              resources = [ { names = [ "replication" ]; } ];
             }
           ];
-          federation_sender_instances = ["federation-sender-1"];
+          federation_sender_instances = [ "federation-sender-1" ];
           instance_map = {
             main = {
               path = "/run/matrix-synapse/main_replication.sock";
@@ -344,7 +341,7 @@ in {
 
           max_spider_size = "10M";
           max_upload_size = "1024M";
-          media_storage_providers = [];
+          media_storage_providers = [ ];
 
           password_config = {
             enabled = false;
@@ -423,7 +420,7 @@ in {
           redaction_retention_period = "7d";
           forgotten_room_retention_period = "7d";
           registration_requires_token = false;
-          registrations_require_3pid = ["email"];
+          registrations_require_3pid = [ "email" ];
           report_stats = false;
           require_auth_for_profile_requests = false;
           room_list_publication_rules = [
@@ -437,8 +434,8 @@ in {
 
           signing_key_path = config.uzinfocom.matrix.synapse.signing_key_path;
 
-          stream_writers = {};
-          trusted_key_servers = [{server_name = "matrix.org";}];
+          stream_writers = { };
+          trusted_key_servers = [ { server_name = "matrix.org"; } ];
           suppress_key_server_warning = true;
 
           turn_allow_guests = false;
@@ -510,17 +507,18 @@ in {
         # https://element-hq.github.io/matrix-authentication-service/reference/configuration.html
         settings = {
           account =
-            if cfg.cap
-            then {
-              email_change_allowed = false;
-            }
-            else {
-              email_change_allowed = true;
-              displayname_change_allowed = true;
-              password_registration_enabled = true;
-              password_change_allowed = true;
-              password_recovery_enabled = true;
-            };
+            if cfg.cap then
+              {
+                email_change_allowed = false;
+              }
+            else
+              {
+                email_change_allowed = true;
+                displayname_change_allowed = true;
+                password_registration_enabled = true;
+                password_change_allowed = true;
+                password_recovery_enabled = true;
+              };
           http = {
             public_base = "https://mas.${cfg.domain}";
             issuer = "https://mas.${cfg.domain}";
@@ -528,11 +526,11 @@ in {
               {
                 name = "web";
                 resources = [
-                  {name = "discovery";}
-                  {name = "human";}
-                  {name = "oauth";}
-                  {name = "compat";}
-                  {name = "graphql";}
+                  { name = "discovery"; }
+                  { name = "human"; }
+                  { name = "oauth"; }
+                  { name = "compat"; }
+                  { name = "graphql"; }
                   {
                     name = "assets";
                     path = "${config.services.matrix-authentication-service.package}/share/matrix-authentication-service/assets";
@@ -549,7 +547,7 @@ in {
               {
                 name = "internal";
                 resources = [
-                  {name = "health";}
+                  { name = "health"; }
                 ];
                 binds = [
                   {
@@ -562,24 +560,25 @@ in {
             ];
           };
           passwords =
-            if cfg.cap
-            then {
-              enabled = false;
-            }
-            else {
-              enabled = true;
-              minimum_complexity = 3;
-              schemes = [
-                {
-                  version = 1;
-                  algorithm = "argon2id";
-                }
-                {
-                  version = 2;
-                  algorithm = "bcrypt";
-                }
-              ];
-            };
+            if cfg.cap then
+              {
+                enabled = false;
+              }
+            else
+              {
+                enabled = true;
+                minimum_complexity = 3;
+                schemes = [
+                  {
+                    version = 1;
+                    algorithm = "argon2id";
+                  }
+                  {
+                    version = 2;
+                    algorithm = "bcrypt";
+                  }
+                ];
+              };
         };
       };
 
@@ -593,6 +592,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

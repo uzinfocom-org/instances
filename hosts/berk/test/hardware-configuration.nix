@@ -5,7 +5,8 @@
   config,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     # Disko partitioning
     inputs.disko.nixosModules.disko

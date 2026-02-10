@@ -1,10 +1,11 @@
 # This file defines overlays
-{inputs, ...}: {
+{ inputs, ... }:
+{
   # Make input added packages accesible via pkgs
   additional-packages = final: _prev: rec {
     # By flake
     uzinfocom = {
-      gate = inputs.gate.packages."${final.system}".default;
+      gate = inputs.gate.packages."${final.stdenv.hostPlatform.system}".default;
     };
   };
 
@@ -27,7 +28,7 @@
   # be accessible through 'pkgs.unstable'
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      inherit (final) system;
+      inherit (final.stdenv.hostPlatform) system;
       config.allowUnfree = true;
     };
   };

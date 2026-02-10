@@ -1,5 +1,9 @@
-{lib}: let
-  autoModules = {path ? ../modules}:
+{ lib }:
+let
+  autoModules =
+    {
+      path ? ../modules,
+    }:
     builtins.readDir path
     |> builtins.attrNames
     |> map (x: {
@@ -8,12 +12,14 @@
     })
     |> builtins.listToAttrs;
 
-  loadModules = path:
+  loadModules =
+    path:
     builtins.readDir path
     |> builtins.attrNames
     |> builtins.filter (m: m != "default.nix")
     |> builtins.filter (m: m != "readme.md")
     |> builtins.map (m: path + "/${m}");
-in {
+in
+{
   inherit autoModules loadModules;
 }

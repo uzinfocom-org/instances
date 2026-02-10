@@ -1,6 +1,7 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   # Nix to Toml formatter
-  formatter = pkgs.formats.toml {};
+  formatter = pkgs.formats.toml { };
 
   # Actual configuration
   # https://docs.helix-editor.com/configuration.html
@@ -28,9 +29,14 @@
       };
 
       statusline = {
-        left = ["mode" "spinner" "read-only-indicator" "file-modification-indicator"];
+        left = [
+          "mode"
+          "spinner"
+          "read-only-indicator"
+          "file-modification-indicator"
+        ];
 
-        center = ["file-name"];
+        center = [ "file-name" ];
 
         right = [
           "diagnostics"
@@ -62,4 +68,4 @@
     };
   };
 in
-  formatter.generate "editor.toml" settings
+formatter.generate "editor.toml" settings

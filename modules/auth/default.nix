@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.auth;
-in {
+in
+{
   options = {
     uzinfocom.auth = {
       enable = lib.mkOption {
@@ -51,11 +53,7 @@ in {
 
         "/" = {
           extraConfig = ''
-            proxy_pass http://${
-              config.services.keycloak.settings.http-host
-            }:${
-              toString config.services.keycloak.settings.http-port
-            };
+            proxy_pass http://${config.services.keycloak.settings.http-host}:${toString config.services.keycloak.settings.http-port};
             proxy_buffer_size 8k;
           '';
         };

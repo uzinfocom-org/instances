@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.power;
-in {
+in
+{
   options = {
     uzinfocom.power = {
       enable = lib.mkOption {
@@ -39,6 +41,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

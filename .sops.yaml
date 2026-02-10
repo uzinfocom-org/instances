@@ -1,6 +1,5 @@
 keys:
   - &orzklv age17khgylv28qg5we66jxsju2ctqylzvuvvsvxxtgn4afdjz8lzy42slzeq08
-  - &shakhzod age1v033llteyfmjwpwv4mf8n9npfpfc9xmttl2g7vcr2wy7qcsaee4qxn3qf9
   - &bahrom04 age1rsk3d76ch8965hfffesqe9uln9w50sja3y2c8my8s36p2z6qxyuq7tuc6l
 
 creation_rules:
@@ -8,5 +7,4 @@ creation_rules:
     key_groups:
       - age:
           - *orzklv
-          - *shakhzod
           - *bahrom04

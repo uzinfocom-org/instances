@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.boot;
 
   raid = lib.mkIf cfg.raided {
@@ -21,7 +22,7 @@
     };
   };
 
-  mirrors = lib.mkIf (cfg.mirrors != []) {
+  mirrors = lib.mkIf (cfg.mirrors != [ ]) {
     boot.loader.grub.mirroredBoots = [
       {
         devices = cfg.mirrors;
@@ -30,7 +31,7 @@
     ];
   };
 
-  devices = lib.mkIf (cfg.devices != []) {
+  devices = lib.mkIf (cfg.devices != [ ]) {
     boot.loader.grub.devices = cfg.devices;
   };
 
@@ -38,8 +39,15 @@
     boot.loader.grub.enable = true;
   };
 
-  merge = lib.mkMerge [raid mirrors devices uefi enable];
-in {
+  merge = lib.mkMerge [
+    raid
+    mirrors
+    devices
+    uefi
+    enable
+  ];
+in
+{
   options = {
     uzinfocom.boot = {
       enable = lib.mkOption {
@@ -58,14 +66,17 @@ in {
 
       mirrors = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [];
-        example = ["/dev/sda" "/dev/sdb"];
+        default = [ ];
+        example = [
+          "/dev/sda"
+          "/dev/sdb"
+        ];
         description = "List of devices to mirror the boot partition to.";
       };
 
       devices = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [];
+        default = [ ];
         description = "List of devices to install GRUB.";
       };
 
@@ -82,6 +93,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

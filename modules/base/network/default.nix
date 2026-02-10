@@ -3,13 +3,16 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.network;
 
-  gateway4 = ip: let
-    parts = lib.splitString "." ip;
-  in
-    lib.concatStringsSep "." (lib.take 3 parts ++ ["1"]);
+  gateway4 =
+    ip:
+    let
+      parts = lib.splitString "." ip;
+    in
+    lib.concatStringsSep "." (lib.take 3 parts ++ [ "1" ]);
 
   ipv4 = lib.mkIf (cfg.ipv4.address != null) {
     networking = {
@@ -76,16 +79,22 @@
   };
 
   mkWarning = msg: {
-    warnings = [msg];
+    warnings = [ msg ];
   };
 
-  warnings =
-    lib.mkIf
-    (!cfg.dhcp && cfg.ipv4.address == null)
-    (mkWarning "are you SURE that you want to go without any public ip address at ${config.networking.hostName}?");
+  warnings = lib.mkIf (!cfg.dhcp && cfg.ipv4.address == null) (
+    mkWarning "are you SURE that you want to go without any public ip address at ${config.networking.hostName}?"
+  );
 
-  merge = lib.mkMerge [main ipv4 ipv6 packs warnings];
-in {
+  merge = lib.mkMerge [
+    main
+    ipv4
+    ipv6
+    packs
+    warnings
+  ];
+in
+{
   options = {
     uzinfocom.network = {
       enable = lib.mkOption {
@@ -155,6 +164,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

@@ -1,56 +1,49 @@
 {
-  config,
+  lib,
+  pkgs,
   domains,
-}: let
-  sopsFile = ../../../../../secrets/berk.yaml;
-in {
-  sops.secrets = {
-    "matrix/call/key" = {
-      inherit sopsFile;
-      key = "matrix/call";
-    };
-  };
+  ...
+}:
+let
+  keyFile = "/run/livekit.key";
 
-  sops.templates."element-call.key" = {
-    content = ''
-      lk-jwt-service: ${config.sops.placeholder."matrix/call/key"}
-    '';
-  };
-
+  homeservers =
+    servers:
+    if ((builtins.length servers) == 0) then "*" else (lib.strings.concatStringsSep "," servers);
+in
+{
   services.livekit = {
+    inherit keyFile;
     enable = true;
-    keyFile = config.sops.templates."element-call.key".path;
-
-    settings = {
-      port = 7880;
-
-      rtc = {
-        tcp_port = 7881;
-        port_range_start = 50000;
-        port_range_end = 60000;
-        use_external_ip = true;
-      };
-    };
+    openFirewall = true;
+    settings.room.auto_create = false;
   };
 
   services.lk-jwt-service = {
-    inherit (config.services.livekit) keyFile;
+    inherit keyFile;
     enable = true;
-    port = 8192;
     livekitUrl = "wss://${domains.livekit}";
   };
 
-  networking.firewall = let
-    range = with config.services.livekit.settings.rtc; [
-      {
-        from = port_range_start;
-        to = port_range_end;
-      }
+  # Comma seperated access restriction to livekit room creation by homeservers
+  systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = homeservers [ ];
+
+  systemd.services.livekit-key = {
+    before = [
+      "lk-jwt-service.service"
+      "livekit.service"
     ];
-  in {
-    allowedUDPPortRanges = range;
-    allowedUDPPorts = [7881];
-    allowedTCPPortRanges = range;
-    allowedTCPPorts = [7881];
+    wantedBy = [ "multi-user.target" ];
+    path = with pkgs; [
+      livekit
+      coreutils
+      gawk
+    ];
+    script = ''
+      echo "Key missing, generating key"
+      echo "lk-jwt-service: $(livekit-server generate-keys | tail -1 | awk '{print $3}')" > "${keyFile}"
+    '';
+    serviceConfig.Type = "oneshot";
+    unitConfig.ConditionPathExists = "!${keyFile}";
   };
 }

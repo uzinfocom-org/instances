@@ -5,9 +5,11 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.services.matrix-sygnal;
-in {
+in
+{
   options = {
     services.matrix-sygnal = {
       enable = mkEnableOption "matrix.org sygnal, the reference push notifier";
@@ -46,7 +48,7 @@ in {
       isSystemUser = true;
     };
 
-    users.groups.matrix-sygnal = {};
+    users.groups.matrix-sygnal = { };
 
     systemd.services.matrix-sygnal = {
       description = "Matrix Sygnal for push notifications";
@@ -55,9 +57,9 @@ in {
         "https://github.com/element-hq/sygnal"
       ];
 
-      after = ["network-online.target"];
-      wants = ["network-online.target"];
-      wantedBy = ["multi-user.target"];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
         User = "matrix-sygnal";
@@ -75,7 +77,7 @@ in {
 
         # Security Hardening
         # Refer to systemd.exec(5) for option descriptions.
-        CapabilityBoundingSet = [""];
+        CapabilityBoundingSet = [ "" ];
         LockPersonality = true;
         NoNewPrivileges = true;
         PrivateDevices = true;
@@ -91,7 +93,7 @@ in {
         ProtectKernelTunables = true;
         ProtectProc = "invisible";
         ProtectSystem = "strict";
-        ReadWritePaths = [cfg.dataDir];
+        ReadWritePaths = [ cfg.dataDir ];
         RemoveIPC = true;
         RestrictAddressFamilies = [
           "AF_INET"
@@ -114,6 +116,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = false;
-    maintainers = with maintainers; [orzklv];
+    maintainers = with maintainers; [ orzklv ];
   };
 }

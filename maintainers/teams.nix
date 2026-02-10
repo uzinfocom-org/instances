@@ -1,11 +1,11 @@
-{lib}: let
-  members =
-    lib.umembers or import ./members.nix {inherit lib;};
-in {
+{ lib }:
+let
+  members = lib.umembers or import ./members.nix { inherit lib; };
+in
+{
   leads = {
     members = with members; [
       orzklv
-      shakhzod
       bahrom04
     ];
     scope = "Lead position members of Uzinfocom Open Source.";
@@ -29,7 +29,7 @@ in {
 
   uchar = {
     members = with members; [
-      shakhzod # Maintainer
+      sud0pacman # Maintainer
     ];
     scope = "Developers and maintainers of Efael project.";
   };
