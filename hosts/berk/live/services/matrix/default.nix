@@ -11,8 +11,7 @@ let
     main = "uzberk.uz";
     client = "chat.${main}";
     server = "matrix.${main}";
-    auth = "auth.${main}";
-    realm = "turn.${main}";
+    auth = "mas.${main}";
     mail = "mail.${main}";
 
     call = "call.${main}";
@@ -23,7 +22,7 @@ in
 {
   imports = [
     # Parts of this configuration
-    (import ./call.nix { inherit config domains; })
+    (import ./call.nix { inherit config domains pkgs; })
     (import ./proxy.nix {
       inherit
         lib

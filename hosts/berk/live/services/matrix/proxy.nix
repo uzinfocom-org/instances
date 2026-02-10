@@ -20,11 +20,16 @@ in
       locations = {
         "/" = {
           proxyWebsockets = true;
-          proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
+          proxyPass = "http://[::1]:${toString config.services.livekit.settings.port}";
+          priority = 400;
           extraConfig = ''
             proxy_send_timeout 120;
             proxy_read_timeout 120;
             proxy_buffering off;
+
+            proxy_set_header Accept-Encoding gzip;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
           '';
         };
       };
@@ -36,7 +41,8 @@ in
 
       locations = {
         "/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
+          priority = 400;
+          proxyPass = "http://[::1]:${toString config.services.lk-jwt-service.port}";
         };
       };
     };
