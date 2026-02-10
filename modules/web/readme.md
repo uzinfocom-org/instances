@@ -2,7 +2,7 @@
 
 _Wiki:_ [nixos.wiki](https://nixos.wiki/wiki/Nginx)
 _Manual:_ [manual](https://nixos.org/manual/nixos/stable/#module-services-strfry-reverse-proxy)
-_Options:_ [search.nixos.org](https://search.nixos.org/options?channel=25.05&query=services.nginx.)
+_Options:_ [search.nixos.org](https://search.nixos.org/options?channel=25.11&query=services.nginx.)
 
 ## About {#uzinfocom-www-about}
 

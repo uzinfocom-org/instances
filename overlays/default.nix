@@ -4,7 +4,7 @@
   additional-packages = final: _prev: rec {
     # By flake
     uzinfocom = {
-      gate = inputs.gate.packages."${final.system}".default;
+      gate = inputs.gate.packages."${final.stdenv.hostPlatform.system}".default;
     };
   };
 

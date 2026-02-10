@@ -93,7 +93,7 @@ in {
       # down nginx and opens port 80.
       certificateScheme = "acme-nginx";
 
-      # stateVersion = 3;
+      stateVersion = 3;
     };
   };
 }

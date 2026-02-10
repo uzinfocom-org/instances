@@ -23,7 +23,7 @@
   # for your flake, etc.
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
@@ -56,18 +56,12 @@
 
     # Mail Server
     simple-nixos-mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
-      inputs = {
-        nixpkgs-25_05.follows = "nixpkgs";
-        nixpkgs.follows = "nixpkgs-unstable";
-      };
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Main homepage website
-    gate = {
-      url = "github:uzinfocom-org/gate";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    gate.url = "github:uzinfocom-org/gate";
 
     # Uchar website
     uchar-website.url = "github:uchar-org/website";
