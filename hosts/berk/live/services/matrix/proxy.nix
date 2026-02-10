@@ -3,6 +3,7 @@
   config,
   domains,
   pkgs,
+  ...
 }:
 let
   commonHeaders = ''
@@ -81,6 +82,4 @@ in
       };
     };
   };
-
-  networking.firewall.allowedTCPPorts = [ 8448 ];
 }

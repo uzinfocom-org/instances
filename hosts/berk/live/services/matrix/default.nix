@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  outputs,
   ...
 }:
 let
@@ -22,7 +21,14 @@ in
 {
   imports = [
     # Parts of this configuration
-    (import ./call.nix { inherit config domains pkgs; })
+    (import ./call.nix {
+      inherit
+        lib
+        domains
+        pkgs
+        config
+        ;
+    })
     (import ./proxy.nix {
       inherit
         lib

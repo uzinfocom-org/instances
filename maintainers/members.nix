@@ -42,19 +42,28 @@
     keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDfHY4rNOm6DHH8XcmtU6CegX0/d99agN/x7MuPD5WJR" ];
   };
 
-  shakhzod = {
-    username = "shakhzod";
-    description = "Shakhzod Kudratov";
-    password = "$y$j9T$mi9V.JCa4o3.QO2X28vJo1$KzXKjk/5sN4lbsvF8BIEIwhKCL34e0gJxZEe.MMoT1B";
-    keys = [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDGU7pRKuTWfzRy8+Hb6vKz4+FNKfDzKA0HCLw+cxDCVXqsCBJPZXTfUZV1fxfBhfgn2IBOw99DbnmRaYeSm48ZB7V0xwqgM8Ucy2m4MJytvPbyjoEcfV434J3Xm+1R5P4tn5BvFPPseBBFrahsKXvakT07hiEJe6S28KuC3zvMN/cORfGuViGuZRslRuT3ozd8pJtDcWSod5f3ek59qwYrC8KS8ljR7kBJWgdJvAOyifuDd9POh4TcbXOykcDqYKlZlWLnFoZcCE3QUcOAELyBffEtMFRd/4N+Mgwdf6Y4YjspHNDfnSKRgNQVH/zYBnIV9jt/umdAyN9Kby0v/EGv9HI0Kb5t2/eCLPCDSyb4AQChb25xMTkGXcXcqIrLCWl6oR1/QfqUfuC8KJRp5Nj9saoi9pxtzAqU4/EXXL1EwYHaICK4LOYW+2la05Pv8wzX4ne9Xpoo0jJNCHioYacvJC1noWrDSmRU6oEhQqHKGBQU0drC/pYLmZhjAhi0JQE="
-    ];
-  };
-
   akmal = {
     username = "akmal";
     description = "akmal";
     password = "$6$ziggerlicious$0ywwiMg715l0pMqIeSSOEqxBzwVxZo/1qa60c/AzbYtBVNbnIdBnppN0ISA4LDFFXUGSQmDLIvC9pS0k6FU4u.";
     keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhQlu6jHF2BLrNvfKy+XXjneqnE3Rz9B2ls6fvw+pWw" ];
+  };
+
+  sud0pacman = {
+    username = "sud0pacman";
+    description = "Muhammad Ganiyev";
+    password = "$6$password$hzeoZtLSZiDD70sHayspuRmk1FRoLSOaBDi5TGwKHeb1EW1wvIIQliOv1SY4KmKwfr37dmYKC3q8I5L0jcfZG1";
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIObsRsvvIZp3fIxmVTV9Xj4DmtyRIi+yJohKGUNBNwUu mukhammad.kammoliddin@gmail.com"
+    ];
+  };
+
+  rafanochi = {
+    username = "rafanochi";
+    description = "Rafa";
+    password = "$6$password$h3qTLKJxan.7eUgGKy3qxtPaJK49rscfM2B/HwQLDb4BYkYsLcv6jfi1Iw5baWDGXXdsR3RzBwFbef7ruSAWM.";
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHoC10VZyB7O9mhh2/pwDkXtUSnrgt92/wAtRem4q/po zawkindev@gmail.com"
+    ];
   };
 }

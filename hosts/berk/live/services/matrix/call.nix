@@ -2,6 +2,7 @@
   lib,
   pkgs,
   domains,
+  ...
 }:
 let
   keyFile = "/run/livekit.key";
