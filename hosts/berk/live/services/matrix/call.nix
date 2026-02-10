@@ -1,10 +1,14 @@
 {
+  lib,
   pkgs,
-  config,
   domains,
 }:
 let
   keyFile = "/run/livekit.key";
+
+  homeservers =
+    servers:
+    if ((builtins.length servers) == 0) then "*" else (lib.strings.concatStringsSep "," servers);
 in
 {
   services.livekit = {
@@ -21,7 +25,7 @@ in
   };
 
   # Comma seperated access restriction to livekit room creation by homeservers
-  # systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "*";
+  systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = homeservers [ ];
 
   systemd.services.livekit-key = {
     before = [
