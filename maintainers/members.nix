@@ -46,7 +46,9 @@
     username = "sud0pacman";
     description = "Muhammad Ganiyev";
     password = "$6$password$hzeoZtLSZiDD70sHayspuRmk1FRoLSOaBDi5TGwKHeb1EW1wvIIQliOv1SY4KmKwfr37dmYKC3q8I5L0jcfZG1";
-    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIObsRsvvIZp3fIxmVTV9Xj4DmtyRIi+yJohKGUNBNwUu mukhammad.kammoliddin@gmail.com"];
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIObsRsvvIZp3fIxmVTV9Xj4DmtyRIi+yJohKGUNBNwUu mukhammad.kammoliddin@gmail.com"
+    ];
   };
 
   akmal = {
@@ -54,15 +56,6 @@
     description = "akmal";
     password = "$6$ziggerlicious$0ywwiMg715l0pMqIeSSOEqxBzwVxZo/1qa60c/AzbYtBVNbnIdBnppN0ISA4LDFFXUGSQmDLIvC9pS0k6FU4u.";
     keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhQlu6jHF2BLrNvfKy+XXjneqnE3Rz9B2ls6fvw+pWw" ];
-  };
-
-  sud0pacman = {
-    username = "sud0pacman";
-    description = "Muhammad Ganiyev";
-    password = "$6$password$hzeoZtLSZiDD70sHayspuRmk1FRoLSOaBDi5TGwKHeb1EW1wvIIQliOv1SY4KmKwfr37dmYKC3q8I5L0jcfZG1";
-    keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIObsRsvvIZp3fIxmVTV9Xj4DmtyRIi+yJohKGUNBNwUu mukhammad.kammoliddin@gmail.com"
-    ];
   };
 
   rafanochi = {
