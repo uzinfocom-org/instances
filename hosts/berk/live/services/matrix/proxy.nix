@@ -3,13 +3,15 @@
   config,
   domains,
   pkgs,
-}: let
+}:
+let
   commonHeaders = ''
     add_header Permissions-Policy interest-cohort=() always;
     add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
     add_header X-XSS-Protection "1; mode=block";
   '';
-in {
+in
+{
   uzinfocom.www.hosts = {
     ${domains.livekit} = {
       forceSSL = lib.mkDefault true;
@@ -46,22 +48,24 @@ in {
       extraConfig = commonHeaders;
 
       locations = {
-        "/config.json" = let
-          data = {
-            default_server_config = {
-              "m.homeserver" = {
-                "base_url" = "https://${domains.server}";
-                "server_name" = domains.main;
+        "/config.json" =
+          let
+            data = {
+              default_server_config = {
+                "m.homeserver" = {
+                  "base_url" = "https://${domains.server}";
+                  "server_name" = domains.main;
+                };
               };
+              livekit.livekit_service_url = "https://${domains.livekit-jwt}";
             };
-            livekit.livekit_service_url = "https://${domains.livekit-jwt}";
+          in
+          {
+            extraConfig = ''
+              default_type application/json;
+              return 200 '${builtins.toJSON data}';
+            '';
           };
-        in {
-          extraConfig = ''
-            default_type application/json;
-            return 200 '${builtins.toJSON data}';
-          '';
-        };
 
         "/" = {
           extraConfig = ''
@@ -72,5 +76,5 @@ in {
     };
   };
 
-  networking.firewall.allowedTCPPorts = [8448];
+  networking.firewall.allowedTCPPorts = [ 8448 ];
 }

@@ -1,7 +1,8 @@
-{lib}: let
-  members =
-    lib.umembers or import ./members.nix {inherit lib;};
-in {
+{ lib }:
+let
+  members = lib.umembers or import ./members.nix { inherit lib; };
+in
+{
   leads = {
     members = with members; [
       orzklv

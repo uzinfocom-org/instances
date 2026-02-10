@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.extra;
-in {
+in
+{
   imports = lib.modifier.loadModules ./.;
 
   options = {
@@ -34,6 +36,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

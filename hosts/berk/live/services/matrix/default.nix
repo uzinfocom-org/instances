@@ -4,7 +4,8 @@
   config,
   outputs,
   ...
-}: let
+}:
+let
   # Matrix related domains
   domains = rec {
     main = "uzberk.uz";
@@ -18,10 +19,18 @@
     livekit = "livekit.${main}";
     livekit-jwt = "livekit-jwt.${main}";
   };
-in {
+in
+{
   imports = [
     # Parts of this configuration
-    (import ./call.nix {inherit config domains;})
-    (import ./proxy.nix {inherit lib domains pkgs config;})
+    (import ./call.nix { inherit config domains; })
+    (import ./proxy.nix {
+      inherit
+        lib
+        domains
+        pkgs
+        config
+        ;
+    })
   ];
 }

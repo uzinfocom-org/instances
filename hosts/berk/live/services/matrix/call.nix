@@ -1,9 +1,11 @@
 {
   config,
   domains,
-}: let
+}:
+let
   sopsFile = ../../../../../secrets/berk.yaml;
-in {
+in
+{
   sops.secrets = {
     "matrix/call/key" = {
       inherit sopsFile;
@@ -40,17 +42,19 @@ in {
     livekitUrl = "wss://${domains.livekit}";
   };
 
-  networking.firewall = let
-    range = with config.services.livekit.settings.rtc; [
-      {
-        from = port_range_start;
-        to = port_range_end;
-      }
-    ];
-  in {
-    allowedUDPPortRanges = range;
-    allowedUDPPorts = [7881];
-    allowedTCPPortRanges = range;
-    allowedTCPPorts = [7881];
-  };
+  networking.firewall =
+    let
+      range = with config.services.livekit.settings.rtc; [
+        {
+          from = port_range_start;
+          to = port_range_end;
+        }
+      ];
+    in
+    {
+      allowedUDPPortRanges = range;
+      allowedUDPPorts = [ 7881 ];
+      allowedTCPPortRanges = range;
+      allowedTCPPorts = [ 7881 ];
+    };
 }

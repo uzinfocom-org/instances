@@ -4,9 +4,11 @@
   config,
   modulesPath,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.kvm;
-in {
+in
+{
   imports = [
     # QEMU Guest profile
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -40,7 +42,7 @@ in {
       };
 
       # https://systemd.io/NETWORK_ONLINE/
-      wantedBy = ["network-pre.target"];
+      wantedBy = [ "network-pre.target" ];
     };
   };
 }

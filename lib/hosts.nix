@@ -1,12 +1,14 @@
-{lib}: let
+{ lib }:
+let
   # Appereantly, nix doesn't apply inside functions
-  ustrings = import ./strings.nix {inherit lib;};
+  ustrings = import ./strings.nix { inherit lib; };
 
-  makeSystem = {
-    path,
-    inputs,
-    outputs,
-  }:
+  makeSystem =
+    {
+      path,
+      inputs,
+      outputs,
+    }:
     lib.nixosSystem {
       specialArgs = {
         inherit (outputs) lib;
@@ -18,56 +20,59 @@
       ];
     };
 
-  attrSystem = {
-    list,
-    inputs,
-    outputs,
-    path ? ../hosts,
-  }: let
-    # Generate absolute path to the configuration
-    opath = alias: path + "/${alias}/configuration.nix";
+  attrSystem =
+    {
+      list,
+      inputs,
+      outputs,
+      path ? ../hosts,
+    }:
+    let
+      # Generate absolute path to the configuration
+      opath = alias: path + "/${alias}/configuration.nix";
 
-    #   Name  =               Value
-    # "Lorem" = self.lib.config.makeSystem "station";
-    system = attr: {
-      inherit (attr) name;
-      value = makeSystem {
-        inherit inputs outputs;
-        path = opath attr.alias;
+      #   Name  =               Value
+      # "Lorem" = self.lib.config.makeSystem "station";
+      system = attr: {
+        inherit (attr) name;
+        value = makeSystem {
+          inherit inputs outputs;
+          path = opath attr.alias;
+        };
       };
-    };
-    # [
-    #   { name = "Lorem", value = config }
-    #   { name = "Ipsum", value = config }
-    # ]
-    map = lib.map system list;
-  in
+      # [
+      #   { name = "Lorem", value = config }
+      #   { name = "Ipsum", value = config }
+      # ]
+      map = lib.map system list;
+    in
     lib.listToAttrs map;
 
-  parseInstances = bpath: category:
+  parseInstances =
+    bpath: category:
     builtins.readDir (bpath + "/${category}")
     |> builtins.attrNames
-    |> map (instance:
-      with ustrings; {
+    |> map (
+      instance: with ustrings; {
         alias = "${category}/${instance}";
         name = capitalizeSplit "-" "${category}-${instance}";
-      });
+      }
+    );
 
-  parseCategory = path:
-    builtins.readDir path
-    |> builtins.attrNames
-    |> map (c: parseInstances path c)
-    |> lib.flatten;
+  parseCategory =
+    path: builtins.readDir path |> builtins.attrNames |> map (c: parseInstances path c) |> lib.flatten;
 
-  autoConf = {
-    inputs,
-    outputs,
-    path ? ../hosts,
-  }:
+  autoConf =
+    {
+      inputs,
+      outputs,
+      path ? ../hosts,
+    }:
     attrSystem {
       inherit inputs outputs;
       list = parseCategory path;
     };
-in {
+in
+{
   inherit makeSystem attrSystem autoConf;
 }

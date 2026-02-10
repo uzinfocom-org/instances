@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.shell;
 
   # Manually types some extra spicy zsh config
@@ -13,8 +14,9 @@
   exec = pkg: lib.getExe pkg;
 
   #
-  editor-config = import ./editor.nix {inherit pkgs;};
-in {
+  editor-config = import ./editor.nix { inherit pkgs; };
+in
+{
   options = {
     uzinfocom.shell = {
       enable = lib.mkOption {
@@ -106,14 +108,14 @@ in {
 
     # System configurations
     environment = {
-      shells = with pkgs; [zsh];
-      pathsToLink = ["/share/zsh"];
+      shells = with pkgs; [ zsh ];
+      pathsToLink = [ "/share/zsh" ];
     };
   };
 
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

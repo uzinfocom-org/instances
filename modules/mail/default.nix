@@ -3,10 +3,11 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.uzinfocom.mail;
 
-  all-domain = [cfg.domain] ++ cfg.alias;
+  all-domain = [ cfg.domain ] ++ cfg.alias;
 
   forEachDomain = domain: {
     "admin@${domain}" = {
@@ -23,7 +24,10 @@
     "support@${domain}" = {
       quota = "2G";
       hashedPasswordFile = cfg.password;
-      aliases = ["developers@${domain}" "maintainers@${domain}"];
+      aliases = [
+        "developers@${domain}"
+        "maintainers@${domain}"
+      ];
     };
 
     "noreply@${domain}" = {
@@ -32,7 +36,8 @@
       hashedPasswordFile = cfg.password;
     };
   };
-in {
+in
+{
   imports = [
     inputs.simple-nixos-mailserver.nixosModule
   ];
@@ -53,8 +58,8 @@ in {
 
       alias = lib.mkOption {
         type = with lib.types; listOf str;
-        default = [];
-        example = ["example.com"];
+        default = [ ];
+        example = [ "example.com" ];
         description = "";
       };
 
@@ -84,10 +89,7 @@ in {
 
       # Generating hashed passwords:
       # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
-      loginAccounts =
-        all-domain
-        |> map forEachDomain
-        |> lib.mkMerge;
+      loginAccounts = all-domain |> map forEachDomain |> lib.mkMerge;
 
       # Use Let's Encrypt certificates. Note that this needs to set up a stripped
       # down nginx and opens port 80.
