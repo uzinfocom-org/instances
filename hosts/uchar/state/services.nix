@@ -78,7 +78,6 @@
     matrix-live = {
       enable = true;
       homeserver = "uchar.uz";
-      homeserver-instances = [ "uchar.uz" ];
     };
 
     # (smtp|imap)://mail.uchar.uz
