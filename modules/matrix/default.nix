@@ -150,6 +150,16 @@ in
         description = "Setup matrix instance to use oidc/ldap.";
       };
 
+      call = lib.mkOption {
+        type = lib.types.enum [
+          "matrix"
+          "self-hosted"
+        ];
+        default = "matrix";
+        example = "uchar";
+        description = "Livekit server to redirect clients to use Call features.";
+      };
+
       synapse = {
         app-service-config-files = lib.mkOption {
           description = "List of app service config files";

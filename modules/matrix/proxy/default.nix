@@ -39,7 +39,11 @@ let
     "org.matrix.msc4143.rtc_foci" = [
       {
         "type" = "livekit";
-        "livekit_service_url" = "https://livekit-jwt.call.matrix.org";
+        "livekit_service_url" =
+          if cfg.call == "self-hosted" then
+            "https://livekit-jwt.${cfg.domain}"
+          else
+            "https://livekit-jwt.call.matrix.org";
       }
     ];
   };

@@ -9,6 +9,7 @@
     outputs.nixosModules.web
     outputs.nixosModules.mail
     outputs.nixosModules.matrix
+    outputs.nixosModules.matrix-live
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.uchar-website
@@ -57,6 +58,7 @@
     matrix = {
       enable = true;
       domain = "uchar.uz";
+      call = "self-hosted";
 
       synapse.extra-config-files = [
         config.sops.secrets."matrix/server".path
@@ -70,6 +72,13 @@
         enable = true;
         config-file = config.sops.secrets."matrix/push".path;
       };
+    };
+
+    # https://(livekit(-jwt)|call).uchar.uz
+    matrix-live = {
+      enable = true;
+      homeserver = "uchar.uz";
+      homeserver-instances = [ "uchar.uz" ];
     };
 
     # (smtp|imap)://mail.uchar.uz
