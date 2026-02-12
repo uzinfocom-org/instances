@@ -47,7 +47,6 @@ in
       forceSSL = lib.mkDefault true;
       enableACME = lib.mkDefault true;
       root = pkgs.element-call;
-      extraConfig = commonHeaders;
 
       locations = {
         "/config.json" =
