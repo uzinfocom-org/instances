@@ -19,19 +19,19 @@
     # Mail oriented services
     "mail/hashed" = {
       key = "mail/hashed";
-      sopsFile = ../../../secrets/uchar/mail.yaml;
+      sopsFile = ../../../secrets/trashiston/mail.yaml;
     };
 
     # Matrix oriented secrets
     "matrix/server" = {
       format = "binary";
       owner = "matrix-synapse";
-      sopsFile = ../../../secrets/uchar/matrix/server.hell;
+      sopsFile = ../../../secrets/trashiston/matrix/server.hell;
     };
     "matrix/authentication" = {
       format = "binary";
       owner = "matrix-authentication-service";
-      sopsFile = ../../../secrets/uchar/matrix/authentication.hell;
+      sopsFile = ../../../secrets/trashiston/matrix/authentication.hell;
     };
   };
 
