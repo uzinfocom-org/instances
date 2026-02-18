@@ -33,6 +33,7 @@
         "usb_storage"
         "sd_mod"
         "sr_mod"
+        "megaraid_sas"
       ];
     };
   };
