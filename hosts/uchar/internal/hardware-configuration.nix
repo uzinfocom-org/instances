@@ -48,7 +48,7 @@
   uzinfocom = {
     boot.uefi = true;
     network = {
-      interface = "eno1";
+      interface = "ens14f0";
       ipv4 = {
         subnet = 26;
         address = "91.212.89.25";
