@@ -15,14 +15,18 @@ in
     members = with members; [
       aekinskjaldi
     ];
-    scope = "Datacenter administrators from dc.uz.";
+    scope = "Datacenter administrators from our team + dc.uz.";
   };
 
   xinux = {
     members = with members; [
       bahrom04 # Maintainer
       bemeritus
-      letrec
+      rafanochi
+      akmal
+
+      letrec # Maintainer
+      lambdajon
     ];
     scope = "Developers and maintainers of Xinux project.";
   };

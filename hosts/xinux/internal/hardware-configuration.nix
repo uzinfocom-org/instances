@@ -2,6 +2,7 @@
   inputs,
   outputs,
   lib,
+  config,
   modulesPath,
   ...
 }:
@@ -12,9 +13,6 @@
 
     # Not available hardware modules
     (modulesPath + "/installer/scan/not-detected.nix")
-
-    # Virtualization environment
-    outputs.nixosModules.kvm
   ];
 
   # Bootloader shits
@@ -23,30 +21,42 @@
       kernelModules = [
         "nvme"
         "kvm-intel"
+        "smartpqi"
       ];
       availableKernelModules = [
+        "uhci_hcd"
+        "ehci_pci"
         "xhci_pci"
-        "ahci"
-        "nvme"
+        "ata_piix"
+        "hpilo"
         "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "sr_mod"
+        "megaraid_sas"
       ];
     };
   };
 
+  hardware = {
+    # Additional configs for Smart Array
+    raid.HPSmartArray.enable = true;
+
+    # Microcode
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
+
   uzinfocom = {
-    boot = {
-      uefi = true;
-      raided = true;
-      mirrors = [
-        "/dev/nvme0n1"
-        "/dev/nvme1n1"
-      ];
-    };
-    kvm.enable = true;
+    boot.uefi = true;
     network = {
-      ipv4.address = "135.181.165.24";
-      ipv6.address = "2a01:4f9:3a:1ca2::2";
+      interface = "ens14f0";
+      ipv4 = {
+        subnet = 26;
+        address = "91.212.89.28";
+        gateway = "91.212.89.1";
+      };
     };
+
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
