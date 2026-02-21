@@ -19,3 +19,6 @@ nohup.out
 
 # Secrets
 *.retard
+
+# Testing
+test/

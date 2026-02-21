@@ -66,4 +66,14 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHoC10VZyB7O9mhh2/pwDkXtUSnrgt92/wAtRem4q/po zawkindev@gmail.com"
     ];
   };
+
+  # TODO: remove after uchar review check
+  unknown = {
+    username = "unknown";
+    description = "Unknown Checker Guy";
+    password = "$2b$05$wavgs9pZIUQS50C3qYL0tu3XNEbpoRfmpRViuGrcC7uR6.MHxDxp2";
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO5fiZ96FarkIkttlK1cScfL7ASazHWhxpXMfq5zkYv0 you're not here forever"
+    ];
+  };
 }

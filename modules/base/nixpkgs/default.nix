@@ -14,6 +14,13 @@ in
     uzinfocom.nixpkgs = {
       enable = lib.mkEnableOption "uzinfocom nixpkgs configurations";
 
+      master = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        example = true;
+        description = "Is this the server that hosts cache?";
+      };
+
       inherit (options.nixpkgs) overlays;
     };
   };
@@ -52,24 +59,26 @@ in
       # Making legacy nix commands consistent as well, awesome!
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
-      settings = {
-        # Enable flakes and new 'nix' command
-        experimental-features = "nix-command flakes pipe-operators";
-        # Deduplicate and optimize nix store
-        auto-optimise-store = true;
-        # Trusted users for secret-key
-        trusted-users = builtins.map (o: o.username) lib.uteams.leads.members;
-        # Additional servers to fetch binary from
-        substituters = [
-          "https://cache.xinux.uz/"
-        ];
-        # Keys that packages to be signed with
-        trusted-public-keys = [
-          "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
-        ];
-        # Enable IDF for the love of god
-        allow-import-from-derivation = true;
-      };
+      settings = lib.mkMerge [
+        (lib.mkIf (!cfg.master) {
+          # Public cache server
+          substituters = [ "https://cache.xinux.uz/" ];
+          # Public keys for the cache server
+          trusted-public-keys = [
+            "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
+          ];
+        })
+        {
+          # Enable flakes and new 'nix' command
+          experimental-features = "nix-command flakes pipe-operators";
+          # Deduplicate and optimize nix store
+          auto-optimise-store = true;
+          # Trusted users for secret-key
+          trusted-users = map (o: o.username) lib.uteams.leads.members;
+          # Enable IDF for the love of god
+          allow-import-from-derivation = true;
+        }
+      ];
     };
   };
 
