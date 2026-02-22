@@ -8,7 +8,7 @@
     # Top level abstractions
     outputs.nixosModules.web
     outputs.nixosModules.mail
-    outputs.nixosModules.matrix
+    outputs.nixosModules.matrix-py
     outputs.nixosModules.matrix-live
 
     # Per app preconfigured abstractions
@@ -19,19 +19,19 @@
     # Mail oriented services
     "mail/hashed" = {
       key = "mail/hashed";
-      sopsFile = ../../../secrets/trashiston/mail.yaml;
+      sopsFile = ../../../secrets/sabine/mail.yaml;
     };
 
     # Matrix oriented secrets
     "matrix/server" = {
       format = "binary";
       owner = "matrix-synapse";
-      sopsFile = ../../../secrets/trashiston/matrix/server.hell;
+      sopsFile = ../../../secrets/sabine/matrix/server.hell;
     };
     "matrix/authentication" = {
       format = "binary";
       owner = "matrix-authentication-service";
-      sopsFile = ../../../secrets/trashiston/matrix/authentication.hell;
+      sopsFile = ../../../secrets/sabine/matrix/authentication.hell;
     };
   };
 
@@ -42,10 +42,10 @@
       domain = "ns1.uchar.uz";
     };
 
-    # https://(chat|matrix).trashiston.uz
+    # https://(chat|matrix).sabine.uz
     matrix = {
       enable = true;
-      domain = "trashiston.uz";
+      domain = "sabine.uz";
       call = "self-hosted";
 
       synapse.extra-config-files = [
@@ -57,16 +57,16 @@
       ];
     };
 
-    # https://(livekit(-jwt)|call).trashiston.uz
+    # https://(livekit(-jwt)|call).sabine.uz
     matrix-live = {
       enable = true;
-      homeserver = "trashiston.uz";
+      homeserver = "sabine.uz";
     };
 
-    # (smtp|imap)://mail.uchar.uz
+    # (smtp|imap)://mail.sabine.uz
     mail = {
       enable = true;
-      domain = "trashiston.uz";
+      domain = "sabine.uz";
       password = config.sops.secrets."mail/hashed".path;
     };
 
@@ -75,7 +75,7 @@
       # https://uchar.uz
       uchar.website = {
         enable = true;
-        domain = "trashiston.uz";
+        domain = "sabine.uz";
       };
     };
   };

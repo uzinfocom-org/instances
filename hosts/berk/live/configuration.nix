@@ -11,7 +11,7 @@
     outputs.nixosModules.users
 
     # Import your deployed service list
-    ./services
+    ./services.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix

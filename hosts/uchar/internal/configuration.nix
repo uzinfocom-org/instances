@@ -22,11 +22,16 @@
 
   uzinfocom = {
     # Users of system
-    accounts.teams = with lib.uteams; [
-      leads
-      admins
-      uchar
-    ];
+    accounts = {
+      teams = with lib.uteams; [
+        leads
+        admins
+        uchar
+      ];
+      users = with lib.umembers; [
+        unknown
+      ];
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

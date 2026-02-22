@@ -9,7 +9,7 @@
     outputs.nixosModules.web
     outputs.nixosModules.mail
     outputs.nixosModules.auth
-    outputs.nixosModules.matrix
+    outputs.nixosModules.matrix-py
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.uchar-website
