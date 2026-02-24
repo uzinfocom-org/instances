@@ -167,6 +167,8 @@ in
         description = "Where Livekit is located.";
       };
 
+      client = lib.mkEnableOption "matrix web client";
+
       synapse = {
         app-service-config-files = lib.mkOption {
           description = "List of app service config files";

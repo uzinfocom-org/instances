@@ -41,6 +41,9 @@
       enable = true;
       domain = "mg.uzberk.uz";
       cap = true;
+      call = "self-hosted";
+      client = true;
+      call-domain = "uzberk.uz";
 
       synapse.extra-config-files = [
         config.sops.secrets."matrix/server".path

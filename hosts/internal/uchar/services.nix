@@ -67,6 +67,7 @@
       enable = true;
       domain = "uchar.uz";
       call = "self-hosted";
+      client = true;
 
       synapse.extra-config-files = [
         config.sops.secrets."matrix/server".path
