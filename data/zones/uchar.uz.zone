@@ -1,0 +1,59 @@
+$TTL 86400
+@      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
+             2026022401 ; Serial YYYYMMDDNN (NN is the revision number)
+             3600       ; Refresh
+             1800       ; Retry
+             604800     ; Expire
+             86400 )    ; Minimum TTL
+
+; ==> Nameservers (Uzinfocom Internal)
+@      IN    NS    ns1.oss.uzinfocom.uz.
+@      IN    NS    ns2.oss.uzinfocom.uz.
+
+; ==> Nameservers (Kolyma Provided)
+@      IN    NS    ns1.kolyma.uz.
+@      IN    NS    ns2.kolyma.uz.
+@      IN    NS    ns3.kolyma.uz.
+@      IN    NS    ns4.kolyma.uz.
+
+; ==> Server Points
+; Internal Endpoint
+ns1    IN    A     91.212.89.25
+; External Endpoint
+ns2    IN    A     135.181.165.24
+ns2    IN    AAAA  2a01:4f9:3a:1ca2::2
+
+; ==> Entry points
+@      IN    A     91.212.89.25
+www    IN    CNAME uchar.uz.
+
+; ==> Central Endpoints
+; Web Client
+chat          IN    CNAME ns1.uchar.uz.
+; Push notifications
+push          IN    CNAME ns1.uchar.uz.
+
+; ==> Main Endpoints
+matrix        IN    CNAME ns1.uchar.uz.
+mas           IN    CNAME ns1.uchar.uz.
+
+; ==> Latet Endpoints
+matrix.next   IN    CNAME ns2.uchar.uz.
+mas.next      IN    CNAME ns2.uchar.uz.
+
+; ==> Livemedia Endpoints
+call          IN    CNAME ns1.uchar.uz.
+livekit       IN    CNAME ns1.uchar.uz.
+livekit-jwt   IN    CNAME ns1.uchar.uz.
+
+; ==> Mail configurations
+mail              IN  CNAME ns1.uchar.uz.
+@                 IN  MX    10 mail.uchar.uz.
+@                 IN  TXT   "v=spf1 a:mail.uchar.uz -all"
+_submission._tcp  IN  SRV   5 0 587 mail.uchar.uz.
+_submissions._tcp IN  SRV   5 0 465 mail.uchar.uz.
+_imap._tcp        IN  SRV   5 0 143 mail.uchar.uz.
+_imaps._tcp       IN  SRV   5 0 993 mail.uchar.uz.
+_dmarc            IN  TXT   "v=DMARC1; p=none"
+mail._domainkey IN TXT ( "v=DKIM1; k=rsa;"
+	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC0q2epvpXhiAz7/JoDejqRvx5/1Z+ek6Ojw8KtoawTdhs+FpKWC1z21EMzmjuG0+wVFoCCqG7xJQVKVk2zoFaOw6DeAftTwro4C1m0dB4Wrks6XcY/bPBjQJfjFoNm2m77pBPKNNjUaQIUrTnHDQrr21qZ97hZr+ZG1rBKkAItmQIDAQAB" )

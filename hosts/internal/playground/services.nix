@@ -16,49 +16,33 @@
   ];
 
   sops.secrets = {
-    # Mail oriented services
-    "mail/hashed" = {
-      key = "mail/hashed";
-      sopsFile = ../../../secrets/uchar/mail.yaml;
-    };
-
     # Matrix oriented secrets
     "matrix/server" = {
       format = "binary";
       owner = "matrix-synapse";
-      sopsFile = ../../../secrets/uchar/matrix/server.hell;
+      sopsFile = ../../../secrets/uchar-next/matrix/server.hell;
     };
     "matrix/authentication" = {
       format = "binary";
       owner = "matrix-authentication-service";
-      sopsFile = ../../../secrets/uchar/matrix/authentication.hell;
-    };
-    "matrix/push" = {
-      format = "binary";
-      owner = "matrix-sygnal";
-      path = "/var/lib/matrix-sygnal/sygnal.yaml";
-      sopsFile = ../../../secrets/uchar/matrix/push.hell;
-    };
-    "matrix/ident" = {
-      format = "binary";
-      owner = "matrix-sygnal";
-      path = "/var/lib/matrix-sygnal/service_account.json";
-      sopsFile = ../../../secrets/uchar/matrix/saccount.hell;
+      sopsFile = ../../../secrets/uchar-next/matrix/authentication.hell;
     };
   };
 
-  # https://ns2.uchar.uz
+  # Uzinfocom Services
   uzinfocom = {
+    # https://ns3.oss.uzinfocom.uz
     www = {
       enable = true;
-      domain = "ns2.uchar.uz";
+      domain = "ns3.oss.uzinfocom.uz";
     };
 
-    # https://(chat|matrix).uchar.uz
+    # https://(chat|matrix).next.uchar.uz
     matrix = {
       enable = true;
-      domain = "uchar.uz";
+      domain = "next.uchar.uz";
       call = "self-hosted";
+      call-domain = "uchar.uz";
 
       synapse.extra-config-files = [
         config.sops.secrets."matrix/server".path
@@ -67,30 +51,15 @@
       matrix-authentication-service.extra-config-files = [
         config.sops.secrets."matrix/authentication".path
       ];
-
-      matrix-sygnal = {
-        enable = true;
-        config-file = config.sops.secrets."matrix/push".path;
-      };
-    };
-
-    # https://(livekit(-jwt)|call).uchar.uz
-    matrix-live = {
-      enable = true;
-      homeserver = "uchar.uz";
-    };
-
-    # (smtp|imap)://mail.uchar.uz
-    mail = {
-      enable = true;
-      domain = "uchar.uz";
-      password = config.sops.secrets."mail/hashed".path;
     };
 
     # *://*
     apps = {
-      # https://uchar.uz
-      uchar.website.enable = true;
+      # https://next.uchar.uz
+      uchar.website = {
+        enable = true;
+        domain = "next.uchar.uz";
+      };
     };
   };
 }

@@ -7,19 +7,26 @@
   imports = [
     # Top level abstractions
     outputs.nixosModules.web
-    outputs.nixosModules.hydra
+    outputs.nixosModules.bind
+    # outputs.nixosModules.hydra
   ];
 
   # Uzinfocom Services
   uzinfocom = {
-    # https://ns1.xinux.uz
+    # https://ns2.oss.uzinfocom.uz
     www = {
       enable = true;
-      domain = "ns1.xinux.uz";
+      domain = "ns2.oss.uzinfocom.uz";
+    };
+
+    # bind://ns2.oss.uzinfocom.uz
+    nameserver = {
+      enable = true;
+      type = "slave";
     };
 
     # https://(hydra|cache).xinux.uz
-    hydra.enable = true;
-    nixpkgs.master = true;
+    # hydra.enable = true;
+    # nixpkgs.master = true;
   };
 }

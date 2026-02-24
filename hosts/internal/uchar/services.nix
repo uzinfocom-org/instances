@@ -7,6 +7,7 @@
   imports = [
     # Top level abstractions
     outputs.nixosModules.web
+    outputs.nixosModules.bind
     outputs.nixosModules.mail
     outputs.nixosModules.matrix-py
     outputs.nixosModules.matrix-live
@@ -19,33 +20,52 @@
     # Mail oriented services
     "mail/hashed" = {
       key = "mail/hashed";
-      sopsFile = ../../../secrets/sabine/mail.yaml;
+      sopsFile = ../../../secrets/uchar/mail.yaml;
     };
 
     # Matrix oriented secrets
     "matrix/server" = {
       format = "binary";
       owner = "matrix-synapse";
-      sopsFile = ../../../secrets/sabine/matrix/server.hell;
+      sopsFile = ../../../secrets/uchar/matrix/server.hell;
     };
     "matrix/authentication" = {
       format = "binary";
       owner = "matrix-authentication-service";
-      sopsFile = ../../../secrets/sabine/matrix/authentication.hell;
+      sopsFile = ../../../secrets/uchar/matrix/authentication.hell;
+    };
+    "matrix/push" = {
+      format = "binary";
+      owner = "matrix-sygnal";
+      path = "/var/lib/matrix-sygnal/sygnal.yaml";
+      sopsFile = ../../../secrets/uchar/matrix/push.hell;
+    };
+    "matrix/ident" = {
+      format = "binary";
+      owner = "matrix-sygnal";
+      path = "/var/lib/matrix-sygnal/service_account.json";
+      sopsFile = ../../../secrets/uchar/matrix/saccount.hell;
     };
   };
 
-  # https://ns2.uchar.uz
+  # Uzinfocom Services
   uzinfocom = {
+    # https://ns1.oss.uzinfocom.uz
     www = {
       enable = true;
-      domain = "ns1.uchar.uz";
+      domain = "ns1.oss.uzinfocom.uz";
     };
 
-    # https://(chat|matrix).sabine.uz
+    # bind://ns1.oss.uzinfocom.uz
+    nameserver = {
+      enable = true;
+      type = "master";
+    };
+
+    # https://(chat|matrix).uchar.uz
     matrix = {
       enable = true;
-      domain = "sabine.uz";
+      domain = "uchar.uz";
       call = "self-hosted";
 
       synapse.extra-config-files = [
@@ -55,28 +75,30 @@
       matrix-authentication-service.extra-config-files = [
         config.sops.secrets."matrix/authentication".path
       ];
+
+      matrix-sygnal = {
+        enable = true;
+        config-file = config.sops.secrets."matrix/push".path;
+      };
     };
 
-    # https://(livekit(-jwt)|call).sabine.uz
+    # https://(livekit(-jwt)|call).uchar.uz
     matrix-live = {
       enable = true;
-      homeserver = "sabine.uz";
+      homeserver = "uchar.uz";
     };
 
-    # (smtp|imap)://mail.sabine.uz
+    # (smtp|imap)://mail.uchar.uz
     mail = {
       enable = true;
-      domain = "sabine.uz";
+      domain = "uchar.uz";
       password = config.sops.secrets."mail/hashed".path;
     };
 
     # *://*
     apps = {
       # https://uchar.uz
-      uchar.website = {
-        enable = true;
-        domain = "sabine.uz";
-      };
+      uchar.website.enable = true;
     };
   };
 }

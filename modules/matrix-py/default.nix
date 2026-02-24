@@ -139,7 +139,7 @@ in
 
       domain = lib.mkOption {
         type = lib.types.str;
-        example = "uzinfocom.uz";
+        example = "uchar.uz";
         description = "Domain to associate matrix network with.";
       };
 
@@ -158,6 +158,13 @@ in
         default = "matrix";
         example = "uchar";
         description = "Livekit server to redirect clients to use Call features.";
+      };
+
+      call-domain = lib.mkOption {
+        type = lib.types.str;
+        default = cfg.domain;
+        example = "uchar.uz";
+        description = "Where Livekit is located.";
       };
 
       synapse = {
