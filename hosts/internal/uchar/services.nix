@@ -88,10 +88,11 @@
       homeserver = "uchar.uz";
     };
 
-    # (smtp|imap)://mail.uchar.uz
+    # (smtp|imap)://mail.oss.uzinfocom.uz
     mail = {
       enable = true;
-      domain = "uchar.uz";
+      domain = "oss.uzinfocom.uz";
+      alias = [ "uchar.uz" ];
       password = config.sops.secrets."mail/hashed".path;
     };
 
