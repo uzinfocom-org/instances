@@ -20,7 +20,7 @@
     # Mail oriented services
     "mail/hashed" = {
       key = "mail/hashed";
-      sopsFile = ../../../secrets/uchar/mail.yaml;
+      sopsFile = ../../../secrets/mail.yaml;
     };
 
     # Matrix oriented secrets
