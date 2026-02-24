@@ -7,9 +7,7 @@
   imports = [
     # Top level abstractions
     outputs.nixosModules.web
-    outputs.nixosModules.mail
     outputs.nixosModules.matrix-py
-    outputs.nixosModules.matrix-live
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.uchar-website
