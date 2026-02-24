@@ -9,6 +9,7 @@
     outputs.nixosModules.web
     outputs.nixosModules.bind
     outputs.nixosModules.mail
+    outputs.nixosModules.auth
     outputs.nixosModules.matrix-py
     outputs.nixosModules.matrix-live
 
@@ -21,6 +22,11 @@
     "mail/hashed" = {
       key = "mail/hashed";
       sopsFile = ../../../secrets/mail.yaml;
+    };
+
+    # Keycloak database password
+    "auth/database" = {
+      sopsFile = ../../../secrets/secrets.yaml;
     };
 
     # Matrix oriented secrets
@@ -60,6 +66,12 @@
     nameserver = {
       enable = true;
       type = "master";
+    };
+
+    # https://auth.oss.uzinfocom.uz
+    auth = {
+      enable = true;
+      password = config.sops.secrets."auth/database".path;
     };
 
     # https://(chat|matrix).uchar.uz
