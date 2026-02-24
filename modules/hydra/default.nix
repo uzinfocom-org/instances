@@ -96,8 +96,8 @@ in
         logo = ./logo.png;
         listenHost = "localhost";
         hydraURL = "https://hydra.xinux.uz";
-        smtpHost = "mail.kolyma.uz";
-        notificationSender = "support@floss.uz";
+        smtpHost = "mail.oss.uzinfocom.uz";
+        notificationSender = "support@oss.uzinfocom.uz";
 
         useSubstitutes = true;
         # Use host machine as build farm

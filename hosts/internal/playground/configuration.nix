@@ -18,17 +18,17 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Xinux-Internal";
+  networking.hostName = "Internal-Playground";
 
   uzinfocom = {
     # Users of system
     accounts.teams = with lib.uteams; [
       leads
       admins
-      xinux
+      uchar
     ];
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "25.11";
+  system.stateVersion = "25.05";
 }

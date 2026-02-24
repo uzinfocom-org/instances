@@ -138,10 +138,10 @@ in
           mailer = {
             ENABLED = true;
             PROTOCOL = "smtps";
-            SMTP_ADDR = "mail.uzinfocom.uz";
+            SMTP_ADDR = "Uzinfocom Open Source Git";
             SMTP_PORT = 465;
-            FROM = ''"${cfg.domain} git server" <admin@${cfg.domain}>'';
-            USER = "admin@${cfg.domain}";
+            FROM = ''"Uzinfocom Open Source Git" <admin@oss.uzinfocom.uz>'';
+            USER = "admin@oss.uzinfocom.uz";
           };
 
           "repository.signing" = {

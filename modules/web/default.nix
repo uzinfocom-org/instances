@@ -100,8 +100,6 @@ in
       }
     ];
 
-    users.users.nginx.extraGroups = lib.optionals cfg.anubis [ config.users.groups.anubis.name ];
-
     # Configure Nginx
     services.nginx = {
       # Enable the Nginx web server

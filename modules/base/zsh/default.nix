@@ -13,7 +13,7 @@ let
   # Find and set path to executables
   exec = pkg: lib.getExe pkg;
 
-  #
+  # Helix configuration
   editor-config = import ./editor.nix { inherit pkgs; };
 in
 {

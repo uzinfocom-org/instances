@@ -3,7 +3,7 @@
 { lib }:
 let
   mkUser = i: {
-    name = i.username or (builtins.throw "oh-ow, somebody didn't define their username");
+    name = i.username or (throw "oh-ow, somebody didn't define their username");
 
     value = {
       isNormalUser = true;
@@ -12,7 +12,6 @@ let
       extraGroups = [
         "wheel"
         "admins"
-        "docker"
       ];
 
       hashedPassword = i.password or "";
@@ -35,7 +34,7 @@ let
   };
   mkUsers = users: {
     # mapped users
-    users.users = builtins.map mkUser users |> builtins.listToAttrs;
+    users.users = map mkUser users |> builtins.listToAttrs;
   };
 in
 {

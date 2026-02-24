@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Check up flake configuration
         run: nix flake check --show-trace
@@ -22,12 +22,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        instance: ["Uchar-Internal", "Uchar-Playground", "Xinux-Internal", "Berk-State", "Berk-Live"]
+        instance:
+          [
+            "Berk-Live",
+            "Berk-State",
+            "Berk-State-2",
+            "Berk-Test",
+            "Internal-Playground",
+            "Internal-Uchar",
+            "Internal-Xinux",
+          ]
     runs-on: self-hosted
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Build NixOS configuration
         run: nix build .#nixosConfigurations.${{ matrix.instance }}.config.system.build.toplevel --show-trace

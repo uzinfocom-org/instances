@@ -18,7 +18,7 @@ in
       realm = lib.mkOption {
         description = "Name of the realm, typically it's base domain";
         type = lib.types.str;
-        default = "uchar.uz";
+        default = "oss.uzinfocom.uz";
       };
 
       domain = lib.mkOption {

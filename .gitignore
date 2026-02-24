@@ -21,4 +21,4 @@ nohup.out
 *.retard
 
 # Testing
-test/
+/test

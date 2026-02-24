@@ -83,10 +83,7 @@
     }@inputs:
     let
       # Self instance pointer
-      outputs = self;
-
-      # Library from self
-      inherit (self) lib;
+      inherit (self) lib outputs;
 
       # Supported systems for your flake packages, shell, etc.
       systems = [
@@ -131,7 +128,6 @@
                 });
               };
             nixfmt.enable = true;
-            flake-checker.enable = true;
           };
         };
       });

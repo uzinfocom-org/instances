@@ -20,6 +20,8 @@ let
       ];
     };
 
+  # WARNING!
+  # Becomes impure when opath provided
   attrSystem =
     {
       list,

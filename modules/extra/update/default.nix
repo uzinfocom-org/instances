@@ -43,7 +43,6 @@ in
             randomizedDelaySec = "30min";
           }
         ]
-
         [
           { mode = "reboot"; }
           {
