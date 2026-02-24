@@ -38,6 +38,7 @@ matrix        IN    CNAME ns1.uchar.uz.
 mas           IN    CNAME ns1.uchar.uz.
 
 ; ==> Latet Endpoints
+next          IN    CNAME ns2.uchar.uz.
 matrix.next   IN    CNAME ns2.uchar.uz.
 mas.next      IN    CNAME ns2.uchar.uz.
 
