@@ -295,10 +295,10 @@ in
           allow_guest_access = false;
           allow_public_rooms_over_federation = true;
           allow_public_rooms_without_auth = false;
-          auto_join_rooms = [
-            "#community:${serverDomain}"
-            "#general:${serverDomain}"
-          ];
+          # auto_join_rooms = [
+          #   "#community:${serverDomain}"
+          #   "#general:${serverDomain}"
+          # ];
 
           autocreate_auto_join_rooms = true;
 
