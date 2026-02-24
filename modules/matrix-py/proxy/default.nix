@@ -264,7 +264,7 @@ in
             );
           };
         }
-        // (lib.mkIf cfg.matrix-sygnal.enable {
+        // (lib.optionalAttrs cfg.matrix-sygnal.enable {
           "push.${cfg.domain}" = {
             root = "/dev/null";
 
@@ -286,7 +286,7 @@ in
             // wellKnownAppleLocations "${cfg.domain}";
           };
         })
-        // (lib.mkIf cfg.client {
+        // (lib.optionalAttrs cfg.client {
           "chat.${cfg.domain}" = {
             forceSSL = true;
             enableACME = true;
