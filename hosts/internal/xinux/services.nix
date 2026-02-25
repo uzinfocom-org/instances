@@ -9,7 +9,7 @@
     outputs.nixosModules.web
     outputs.nixosModules.git
     outputs.nixosModules.bind
-    # outputs.nixosModules.hydra
+    outputs.nixosModules.hydra
   ];
 
   sops.secrets = {
@@ -56,6 +56,6 @@
 
     # https://(hydra|cache).xinux.uz
     # hydra.enable = true;
-    # nixpkgs.master = true;
+    nixpkgs.master = true;
   };
 }
