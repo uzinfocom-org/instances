@@ -70,7 +70,7 @@ in
       settings = {
         hostname = config.uzinfocom.auth.domain;
         http-host = "127.0.0.1";
-        http-port = 8080;
+        http-port = 8087;
         proxy-headers = "xforwarded";
         http-enabled = true;
       };
