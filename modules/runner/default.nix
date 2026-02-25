@@ -75,7 +75,7 @@ in
       };
 
       instances = lib.mkOption {
-        type = with lib.types; listOf (submodule lib.kotypes.runner);
+        type = with lib.types; listOf (submodule lib.utypes.runner);
         description = "List of runner instances to be hosted.";
         default = [ ];
       };
