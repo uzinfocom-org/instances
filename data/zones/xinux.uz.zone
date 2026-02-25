@@ -15,13 +15,13 @@ hydra       IN    CNAME ns2.oss.uzinfocom.uz.
 cache       IN    CNAME ns2.oss.uzinfocom.uz.
 
 ; ==> Telegram Bots
-bot         IN    CNAME ns2.kolyma.uz.
+bot         IN    CNAME ns2.oss.uzinfocom.uz.
 
 ; ==> GitHub Deployments
 graph       IN    CNAME xinux-org.github.io.
 
 ; ==> CDN after runners server
-cdn         IN    CNAME ns3.kolyma.uz.
+cdn         IN    CNAME ns2.oss.uzinfocom.uz.
 
 ; ==> GitHub Verifications
 _github-challenge-xinux-org-org      IN      TXT      1a06c6d74b

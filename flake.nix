@@ -67,11 +67,21 @@
     # Main homepage website
     gate.url = "github:uzinfocom-org/gate";
 
+    # Social website of uzinfocom
+    uzinfocom-website.url = "github:uzinfocom-org/website";
+
+    # Social website of uzinfocom
+    uzinfocom-taggis.url = "github:uzinfocom-org/taggis";
+
     # Uchar website
     uchar-website.url = "github:uchar-org/website";
 
     # Matrix sygnal
     sygnal.url = "github:uchar-org/sygnal";
+
+    # Xinux Bot from Xinux Community
+    xinuxmgr-bot.url = "github:xinux-org/telegram";
+
   };
 
   outputs =

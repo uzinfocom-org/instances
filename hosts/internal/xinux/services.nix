@@ -34,6 +34,16 @@
     www = {
       enable = true;
       domain = "ns2.oss.uzinfocom.uz";
+      cdn = {
+        "cdn.xinux.uz" = {
+          path = "/srv/xinux";
+          mode = "browse";
+          extra = ''
+            autoindex_format json;
+            add_header Access-Control-Allow-Origin *;
+          '';
+        };
+      };
     };
 
     # bind://ns2.oss.uzinfocom.uz
@@ -41,6 +51,10 @@
       enable = true;
       type = "slave";
     };
+
+    # https://(hydra|cache).xinux.uz
+    hydra.enable = true;
+    nixpkgs.master = true;
 
     # https://git.oss.uzinfocom.uz
     git = {
@@ -53,9 +67,5 @@
         public = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEouecGbpK0oYlJyQbxBMDlMVComaCi7fQtCM4jtTgm7 admin@oss.uzinfocom.uz";
       };
     };
-
-    # https://(hydra|cache).xinux.uz
-    # hydra.enable = true;
-    nixpkgs.master = true;
   };
 }

@@ -15,6 +15,8 @@
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.uchar-website
+    outputs.nixosModules.apps.xinuxmgr-bot
+    outputs.nixosModules.apps.uzinfocom-website
   ];
 
   sops.secrets = {
@@ -113,6 +115,19 @@
     apps = {
       # https://uchar.uz
       uchar.website.enable = true;
+
+      # https://*.uzinfocom.uz
+      uzinfocom = {
+        # https://*.uzinfocom.uz
+        enable = true;
+        # https://link.uzinfocom.uz
+        # social.enable = true;
+        # https://oss.uzinfocom.uz
+        # website.enable = true;
+      };
+
+      # https://t.me/xinuxmgrbot
+      xinux.bot.enable = true;
     };
   };
 }
