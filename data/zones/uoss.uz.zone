@@ -11,14 +11,5 @@ $TTL 86400
 @      IN    NS    ns2.oss.uzinfocom.uz.
 
 ; ==> Entry points
-@      IN    A     185.199.108.153
-@      IN    A     185.199.109.153
-@      IN    A     185.199.110.153
-@      IN    A     185.199.111.153
-www    IN    CNAME nix-darwin.uz.
-
-; ==> Options website
-options IN   CNAME xinux-org.github.io.
-
-; ==> GitHub Verifications
-_gh-xinux-org-o     IN      TXT      dd68727d92
+@      IN    A     91.212.89.25
+www    IN    CNAME uchar.uz.
