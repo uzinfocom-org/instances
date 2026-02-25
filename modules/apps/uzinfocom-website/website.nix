@@ -32,7 +32,6 @@ in
           inherit domain;
           enable = false;
           proxy = "nginx";
-          aliases = [ "uoss.uz" ];
         };
       };
 
@@ -40,6 +39,7 @@ in
         ${domain} = {
           forceSSL = true;
           enableACME = true;
+          serverAliases = [ "uoss.uz" ];
           locations = {
             "/".proxyPass =
               "http://${config.services.uzinfocom.website.host}:${toString config.services.uzinfocom.website.port}";
