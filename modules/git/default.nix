@@ -63,6 +63,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets.forgejo-admin-password = {
+      format = "binary";
+      sopsFile = ../../secrets/git/admin.hell;
+      owner = "gitea";
+    };
+
     environment.etc."forgejo/ssh/id_forgejo.pub" = {
       inherit (cfg) user;
       mode = "600";
@@ -140,8 +146,8 @@ in
             PROTOCOL = "smtps";
             SMTP_ADDR = "Uzinfocom Open Source Git";
             SMTP_PORT = 465;
-            FROM = ''"Uzinfocom Open Source Git" <admin@oss.uzinfocom.uz>'';
-            USER = "admin@oss.uzinfocom.uz";
+            FROM = ''"Uzinfocom Open Source Git" <noreply@oss.uzinfocom.uz>'';
+            USER = "noreply@oss.uzinfocom.uz";
           };
 
           "repository.signing" = {
@@ -208,6 +214,18 @@ in
       useDefaultShell = true;
       isSystemUser = true;
     };
+
+    systemd.services.forgejo.preStart =
+      let
+        adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
+        pwd = config.sops.secrets.forgejo-admin-password;
+        user = "forgejo";
+      in
+      ''
+        ${adminCmd} create --admin --email "admin@oss.uzinfocom.uz" --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
+        ## uncomment this line to change an admin user which was already created
+        # ${adminCmd} change-password --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
+      '';
 
     users.groups.${cfg.group} = { };
 
