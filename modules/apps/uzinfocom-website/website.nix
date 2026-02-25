@@ -32,6 +32,7 @@ in
           inherit domain;
           enable = false;
           proxy = "nginx";
+          aliases = [ "uoss.uz" ];
         };
       };
 
