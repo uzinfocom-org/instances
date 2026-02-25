@@ -18,12 +18,12 @@
     "matrix/server" = {
       format = "binary";
       owner = "matrix-synapse";
-      sopsFile = ../../../secrets/uchar-next/matrix/server.hell;
+      sopsFile = ../../../secrets/uchar/matrix-next/server.hell;
     };
     "matrix/authentication" = {
       format = "binary";
       owner = "matrix-authentication-service";
-      sopsFile = ../../../secrets/uchar-next/matrix/authentication.hell;
+      sopsFile = ../../../secrets/uchar/matrix-next/authentication.hell;
     };
   };
 

@@ -7,9 +7,26 @@
   imports = [
     # Top level abstractions
     outputs.nixosModules.web
+    outputs.nixosModules.git
     outputs.nixosModules.bind
     # outputs.nixosModules.hydra
   ];
+
+  sops.secrets = {
+    "git/database" = {
+      sopsFile = ../../../secrets/git/secrets.yaml;
+      key = "database";
+    };
+    "git/mail" = {
+      sopsFile = ../../../secrets/mail.yaml;
+      key = "mail/raw";
+    };
+    "git/key" = {
+      format = "binary";
+      sopsFile = ../../../secrets/git/key.hell;
+      path = "/etc/forgejo/ssh/id_forgejo";
+    };
+  };
 
   # Uzinfocom Services
   uzinfocom = {
@@ -23,6 +40,18 @@
     nameserver = {
       enable = true;
       type = "slave";
+    };
+
+    # https://git.oss.uzinfocom.uz
+    git = {
+      enable = true;
+      domain = "git.oss.uzinfocom.uz";
+      mail = config.sops.secrets."git/mail".path;
+      database = config.sops.secrets."git/database".path;
+      keys = {
+        private = config.sops.secrets."git/key".path;
+        public = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEouecGbpK0oYlJyQbxBMDlMVComaCi7fQtCM4jtTgm7 admin@oss.uzinfocom.uz";
+      };
     };
 
     # https://(hydra|cache).xinux.uz
