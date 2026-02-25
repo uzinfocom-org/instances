@@ -81,6 +81,9 @@ in
       }
     ];
 
+    systemd.services.hydra-queue-runner.path = [ pkgs.ssmtp ];
+    systemd.services.hydra-server.path = [ pkgs.ssmtp ];
+
     systemd.services = {
       hydra-notify = {
         serviceConfig.EnvironmentFile = config.sops.secrets."hydra/env".path;
