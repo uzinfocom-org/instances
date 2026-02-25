@@ -39,13 +39,9 @@ in
       # Runners
       "forgejo/oss" = runner-sm;
       "github/uzinfocom" = runner-sm;
-      "github/floss" = runner-sm;
-      "github/floss-community" = runner-sm;
       "github/xinux" = runner-sm;
-      "github/rust-lang" = runner-sm;
       "github/uchar" = runner-sm;
       "github/bleur" = runner-sm;
-      "github/uzbek" = runner-sm;
     };
 
     templates = {
