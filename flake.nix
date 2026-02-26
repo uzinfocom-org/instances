@@ -27,11 +27,11 @@
   # for your flake, etc.
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:xinux-org/nixpkgs/nixos-25.11";
 
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:xinux-org/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/home.nix'.
 
     # Disko
@@ -65,23 +65,40 @@
     };
 
     # Main homepage website
-    gate.url = "github:uzinfocom-org/gate";
+    gate = {
+      url = "github:uzinfocom-org/gate";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Social website of uzinfocom
-    uzinfocom-website.url = "github:uzinfocom-org/website";
+    uzinfocom-website = {
+      url = "github:uzinfocom-org/website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Social website of uzinfocom
-    uzinfocom-taggis.url = "github:uzinfocom-org/taggis";
+    uzinfocom-taggis = {
+      url = "github:uzinfocom-org/taggis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Uchar website
-    uchar-website.url = "github:uchar-org/website";
+    uchar-website = {
+      url = "github:uchar-org/website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Matrix sygnal
-    sygnal.url = "github:uchar-org/sygnal";
+    sygnal = {
+      url = "github:uchar-org/sygnal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Xinux Bot from Xinux Community
-    xinuxmgr-bot.url = "github:xinux-org/telegram";
-
+    xinuxmgr-bot = {
+      url = "github:xinux-org/telegram";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
