@@ -757,11 +757,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1768566001,
-        "narHash": "sha256-QuLg1S/d7LH08FRzTwdS+w02MR74eoZ0lQ6le4s64UE=",
+        "lastModified": 1772075850,
+        "narHash": "sha256-HwoAxPXW3enIUVpLmJsGjgNNJ1cTU2k76EifuVHp6Oc=",
         "owner": "uchar-org",
         "repo": "website",
-        "rev": "3ec9f0f0b427094ba0f18a10944b2ab013cf2656",
+        "rev": "d245fb766ffe019627ddcbedf233ea22097345ba",
         "type": "github"
       },
       "original": {
