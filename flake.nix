@@ -89,10 +89,7 @@
     };
 
     # Matrix sygnal
-    sygnal = {
-      url = "github:uchar-org/sygnal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    sygnal.url = "github:uchar-org/sygnal";
 
     # Xinux Bot from Xinux Community
     xinuxmgr-bot = {
