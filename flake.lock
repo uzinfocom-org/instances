@@ -681,11 +681,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772078873,
-        "narHash": "sha256-FNEQJB0GyuSTJP++Hq0EWUBOJ9OnX9xtcjrjw31l46k=",
+        "lastModified": 1772174348,
+        "narHash": "sha256-YvlEqbbh7hWUohZa+rH4MPf4hJon8zhQXjZ3aebSflA=",
         "owner": "uchar-org",
         "repo": "website",
-        "rev": "a77bae786d7e4f958c6f1f3fe5baf621ddbbc17a",
+        "rev": "0c2a39eca548a594dac9630c7b7a080d0cc9edfe",
         "type": "github"
       },
       "original": {
