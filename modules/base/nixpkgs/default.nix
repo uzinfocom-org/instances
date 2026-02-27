@@ -67,10 +67,10 @@ in
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
       # Enable remote building
-      distributedBuilds = true;
+      distributedBuilds = if cfg.master then true else false;
 
       # Remote builders
-      buildMachines = [
+      buildMachines = lib.optional cfg.master [
         {
           hostName = "kolyma-builder";
           systems = [ "x86_64-linux" ];
