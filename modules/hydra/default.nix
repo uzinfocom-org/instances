@@ -66,21 +66,42 @@ in
       ];
     };
 
-    nix.buildMachines = [
-      {
-        hostName = "localhost";
-        protocol = null;
-        system = "x86_64-linux";
-        speedFactor = 10;
-        supportedFeatures = [
-          "kvm"
-          "nixos-test"
-          "big-parallel"
-          "benchmark"
-        ];
-        maxJobs = 8;
-      }
-    ];
+    nix = {
+      # Enable remote building
+      distributedBuilds = true;
+
+      # Remote machines
+      buildMachines = [
+        {
+          hostName = "localhost";
+          protocol = null;
+          system = "x86_64-linux";
+          speedFactor = 10;
+          supportedFeatures = [
+            "kvm"
+            "nixos-test"
+            "big-parallel"
+            "benchmark"
+          ];
+          maxJobs = 8;
+        }
+        {
+          hostName = "ns3.kolyma.uz";
+          sshUser = "builder";
+          systems = [ "x86_64-linux" ];
+          protocol = "ssh";
+          speedFactor = 5;
+          sshKey = config.sops.secrets."xinux/builder".path;
+          supportedFeatures = [
+            "nixos-test"
+            "benchmark"
+            "big-parallel"
+            "kvm"
+          ];
+          maxJobs = 8;
+        }
+      ];
+    };
 
     systemd.services = {
       hydra-notify = {

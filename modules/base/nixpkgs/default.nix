@@ -66,25 +66,6 @@ in
       # Making legacy nix commands consistent as well, awesome!
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
-      # Enable remote building
-      distributedBuilds = if cfg.master then true else false;
-
-      # Remote builders
-      buildMachines = lib.optional cfg.master [
-        {
-          hostName = "kolyma-builder";
-          systems = [ "x86_64-linux" ];
-          maxJobs = 8;
-          speedFactor = 5;
-          supportedFeatures = [
-            "nixos-test"
-            "benchmark"
-            "big-parallel"
-            "kvm"
-          ];
-        }
-      ];
-
       settings = lib.mkMerge [
         (lib.mkIf (!cfg.master) {
           # Public cache server
@@ -106,17 +87,6 @@ in
         }
       ];
     };
-
-    # For remote building
-    programs.ssh.extraConfig = lib.optionalString cfg.master ''
-      Host kolyma-builder
-        HostName ns3.kolyma.uz
-        Port 22
-        User builder
-        IdentitiesOnly yes
-        IdentityFile ${config.sops.secrets."xinux/builder".path}
-    '';
-
   };
 
   meta = {
