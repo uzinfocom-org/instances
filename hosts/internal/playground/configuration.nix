@@ -30,6 +30,7 @@
       ];
       users = with lib.umembers; [
         unknown
+        builder
       ];
     };
   };
