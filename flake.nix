@@ -88,6 +88,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Xinux Bot from Xinux Community
+    uchar-app = {
+      url = "github:uchar-org/application/uchar/app/latest";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Matrix sygnal
     sygnal.url = "github:uchar-org/sygnal";
 

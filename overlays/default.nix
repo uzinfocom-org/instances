@@ -6,6 +6,7 @@
     # By flake
     uzinfocom = {
       gate = inputs.gate.packages."${final.stdenv.hostPlatform.system}".default;
+      uchar-web = inputs.uchar-app.packages."${final.stdenv.hostPlatform.system}".web;
     };
   };
 

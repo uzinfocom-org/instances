@@ -290,7 +290,7 @@ in
           "chat.${cfg.domain}" = {
             forceSSL = true;
             enableACME = true;
-            root = pkgs.element-web.override { conf = clientConfig; };
+            root = pkgs.uzinfocom.uchar-web;
             extraConfig = ''
               ${commonHeaders}
 
