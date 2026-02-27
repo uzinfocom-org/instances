@@ -10,11 +10,13 @@ nohup.out
 .vscode
 .idea
 
-# direnv
+# Direnv
 .direnv
 
+# Git hooks
 .pre-commit-config.yaml
 
+# Swap
 *.swp
 
 # Secrets

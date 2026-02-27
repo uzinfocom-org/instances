@@ -26,6 +26,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets = {
+      "xinux/builder" = {
+        format = "binary";
+        sopsFile = ../../../secrets/xinux/builder.hell;
+      };
+    };
+
     nixpkgs = {
       # You can add overlays here
       overlays = [
@@ -59,6 +66,25 @@ in
       # Making legacy nix commands consistent as well, awesome!
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
+      # Enable remote building
+      distributedBuilds = true;
+
+      # Remote builders
+      buildMachines = [
+        {
+          hostName = "kolyma-builder";
+          systems = [ "x86_64-linux" ];
+          maxJobs = 8;
+          speedFactor = 2;
+          supportedFeatures = [
+            "nixos-test"
+            "benchmark"
+            "big-parallel"
+            "kvm"
+          ];
+        }
+      ];
+
       settings = lib.mkMerge [
         (lib.mkIf (!cfg.master) {
           # Public cache server
@@ -80,6 +106,17 @@ in
         }
       ];
     };
+
+    # For remote building
+    programs.ssh.extraConfig = lib.optionalString cfg.master ''
+      Host kolyma-builder
+        HostName ns3.kolyma.uz
+        Port 22
+        User builder
+        IdentitiesOnly yes
+        IdentityFile ${config.sops.secrets."xinux/builder".path}
+    '';
+
   };
 
   meta = {
