@@ -76,21 +76,21 @@ in
           hostName = "localhost";
           protocol = null;
           system = "x86_64-linux";
-          speedFactor = 10;
+          speedFactor = 1;
           supportedFeatures = [
             "kvm"
             "nixos-test"
             "big-parallel"
             "benchmark"
           ];
-          maxJobs = 8;
+          maxJobs = 64;
         }
         {
           hostName = "ns3.kolyma.uz";
           sshUser = "builder";
           systems = [ "x86_64-linux" ];
           protocol = "ssh-ng";
-          speedFactor = 5;
+          speedFactor = 1;
           sshKey = config.sops.secrets."xinux/builder".path;
           supportedFeatures = [
             "kvm"
@@ -98,14 +98,14 @@ in
             "big-parallel"
             "benchmark"
           ];
-          maxJobs = 8;
+          maxJobs = 16;
         }
         {
           hostName = "ns3.oss.uzinfocom.uz";
           sshUser = "builder";
           systems = [ "x86_64-linux" ];
           protocol = "ssh-ng";
-          speedFactor = 8;
+          speedFactor = 1;
           sshKey = config.sops.secrets."xinux/builder".path;
           supportedFeatures = [
             "kvm"
@@ -113,7 +113,7 @@ in
             "big-parallel"
             "benchmark"
           ];
-          maxJobs = 8;
+          maxJobs = 24;
         }
       ];
     };
