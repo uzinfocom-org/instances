@@ -81,7 +81,7 @@ in
           # Deduplicate and optimize nix store
           auto-optimise-store = true;
           # Trusted users for secret-key
-          trusted-users = map (o: o.username) lib.uteams.leads.members;
+          trusted-users = (map (o: o.username) lib.uteams.leads.members) ++ [ "builder" ];
           # Enable IDF for the love of god
           allow-import-from-derivation = true;
         }
