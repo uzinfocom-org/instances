@@ -89,14 +89,14 @@ in
           hostName = "ns3.kolyma.uz";
           sshUser = "builder";
           systems = [ "x86_64-linux" ];
-          protocol = "ssh";
+          protocol = "ssh-ng";
           speedFactor = 5;
           sshKey = config.sops.secrets."xinux/builder".path;
           supportedFeatures = [
-            "nixos-test"
-            "benchmark"
-            "big-parallel"
             "kvm"
+            "nixos-test"
+            "big-parallel"
+            "benchmark"
           ];
           maxJobs = 8;
         }
