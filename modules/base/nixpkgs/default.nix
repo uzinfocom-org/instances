@@ -75,7 +75,7 @@ in
           hostName = "kolyma-builder";
           systems = [ "x86_64-linux" ];
           maxJobs = 8;
-          speedFactor = 2;
+          speedFactor = 5;
           supportedFeatures = [
             "nixos-test"
             "benchmark"

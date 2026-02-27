@@ -71,6 +71,7 @@ in
         hostName = "localhost";
         protocol = null;
         system = "x86_64-linux";
+        speedFactor = 10;
         supportedFeatures = [
           "kvm"
           "nixos-test"
