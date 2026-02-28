@@ -12,6 +12,7 @@
     outputs.nixosModules.auth
     outputs.nixosModules.matrix-py
     outputs.nixosModules.matrix-live
+    outputs.nixosModules.matrix-telegram
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.uchar-website

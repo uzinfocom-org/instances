@@ -54,6 +54,11 @@ in
       config = {
         # Disable if you don't want unfree packages
         allowUnfree = true;
+        # Matrix community loves going back to their ex
+        # to the point that they can't let go deprecated olm since 2024...
+        permittedInsecurePackages = [
+          "olm-3.2.16"
+        ];
       };
     };
 
