@@ -14,7 +14,7 @@ let
       config.services.matrix-synapse.settings.listeners;
   synapseIp = builtins.elemAt listenerWithClient.bind_addresses 0;
   synapseClientPort = "${toString listenerWithClient.port}";
-  domain = "uchar.uz";
+  domain = config.uzinfocom.matrix.domain;
 in
 {
   sops.secrets."uchar/telegram" = {
