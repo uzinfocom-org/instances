@@ -22,6 +22,7 @@ let
           nodejs_24
         ];
         serviceOverrides = {
+          Restart = "always";
           ProtectSystem = "full";
           StateDirectory = [
             "github-runner/Uzinfocom-${param.name}"
