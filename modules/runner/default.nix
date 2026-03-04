@@ -22,7 +22,7 @@ let
           nodejs_24
         ];
         serviceOverrides = {
-          Restart = "always";
+          Restart = lib.mkForce "always";
           ProtectSystem = "full";
           StateDirectory = [
             "github-runner/Uzinfocom-${param.name}"
