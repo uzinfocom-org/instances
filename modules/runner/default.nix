@@ -23,6 +23,10 @@ let
         ];
         serviceOverrides = {
           ProtectSystem = "full";
+          StateDirectory = [
+            "github-runner/Uzinfocom-${param.name}"
+            "/srv/runner/github/${lib.toLower param.name}"
+          ];
           ReadWritePaths = "${config.uzinfocom.data.path or "/srv"}";
           PrivateMounts = false;
           UMask = 22;
