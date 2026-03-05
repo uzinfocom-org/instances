@@ -1,7 +1,7 @@
 {
   disko.devices = {
     disk = {
-      sdb = {
+      sda = {
         type = "disk";
         device = "/dev/sda";
         content = {
@@ -22,7 +22,6 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
-
             SWAP = {
               size = "130G";
               content = {
@@ -32,11 +31,38 @@
             ROOT = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
+                type = "zfs";
+                pool = "zroot";
               };
             };
+          };
+        };
+      };
+    };
+    zpool = {
+      zroot = {
+        type = "zpool";
+
+        # Workaround: cannot import 'zroot': I/O error in disko tests
+        options.cachefile = "none";
+
+        rootFsOptions = {
+          compression = "zstd";
+          atime = "off";
+          xattr = "sa";
+          acltype = "posixacl";
+          "com.sun:auto-snapshot" = "false";
+        };
+
+        # dont touch, it's hot
+        mountpoint = "/";
+        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot@blank$' || zfs snapshot zroot@blank";
+
+        datasets = {
+          nix = {
+            type = "zfs_fs";
+            mountpoint = "/nix";
+            options."com.sun:auto-snapshot" = "false";
           };
         };
       };

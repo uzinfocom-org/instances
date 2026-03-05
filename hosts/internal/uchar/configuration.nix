@@ -18,7 +18,10 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Internal-Uchar";
+  networking = {
+    hostId = "7c58ddd0";
+    hostName = "Internal-Uchar";
+  };
 
   uzinfocom = {
     # Users of system

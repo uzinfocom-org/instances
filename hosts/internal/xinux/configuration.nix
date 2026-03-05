@@ -18,7 +18,10 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Internal-Xinux";
+  networking = {
+    hostId = "b9ebe929";
+    hostName = "Internal-Xinux";
+  };
 
   uzinfocom = {
     # Users of system
