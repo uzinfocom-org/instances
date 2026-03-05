@@ -93,12 +93,12 @@ in
             '';
           };
 
-          "/user/login" = {
-            priority = 100;
-            extraConfig = ''
-              return 302 /user/oauth2/keycloak;
-            '';
-          };
+          # "/user/login" = {
+          #   priority = 100;
+          #   extraConfig = ''
+          #     return 302 /user/oauth2/keycloak;
+          #   '';
+          # };
 
           "/" = {
             priority = 200;
