@@ -31,6 +31,7 @@ jobs:
             "Internal-Playground",
             "Internal-Uchar",
             "Internal-Xinux",
+            "Uportal-State",
           ]
     runs-on: self-hosted
 
