@@ -18,7 +18,10 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Uportal-State";
+  networking = {
+    hostId = "f8fefb23";
+    hostName = "Uportal-State";
+  };
 
   uzinfocom = {
     # Users of system
