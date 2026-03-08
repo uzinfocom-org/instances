@@ -7,11 +7,14 @@
 let
   cfg = config.uzinfocom.matrix;
 
+  # Basic hardening
   commonHeaders = ''
     add_header Permissions-Policy interest-cohort=() always;
     add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
     add_header X-XSS-Protection "1; mode=block";
   '';
+
+  # Synapse headers with packet gap
   matrixHeaders = ''
     ${commonHeaders}
 
@@ -22,7 +25,8 @@ let
     client_body_buffer_size 1024M;
     proxy_max_temp_file_size 0;
   '';
-  clientConfig = import ./element-client-config.nix { inherit config lib pkgs; };
+
+  # Generate json for /.well-known/matrix/client
   wellKnownClient = domain: {
     "m.homeserver".base_url = "https://matrix.${domain}";
     "m.identity_server".base_url = "https://matrix.${domain}";
@@ -47,27 +51,39 @@ let
       }
     ];
   };
-  wellKnownServer = domain: { "m.server" = "matrix.${domain}:8448"; };
+
+  # Generate json for /.well-known/matrix/server
+  wellKnownServer = domain: {
+    "m.server" = "matrix.${domain}:8448";
+  };
+
+  # Generate json for /.well-known/matrix/support
   wellKnownSupport = {
     contacts = [
       {
         email_address = "support@uchar.uz";
-        matrix_id = "@orzklv:floss.uz";
+        matrix_id = "@orzklv:uchar.uz";
         role = "m.role.admin";
       }
     ];
     support_page = "https://${cfg.domain}/about";
   };
+
+  # Convert nix value to servable json response
   mkWellKnown = data: ''
     add_header Content-Type application/json;
     add_header Access-Control-Allow-Origin *;
     return 200 '${builtins.toJSON data}';
   '';
+
+  # Per-location nginx for .well-known
   wellKnownLocations = domain: {
     "= /.well-known/matrix/server".extraConfig = mkWellKnown (wellKnownServer domain);
     "= /.well-known/matrix/client".extraConfig = mkWellKnown (wellKnownClient domain);
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
   };
+
+  # Matrix synapse worker listener
   mkLocation = type: endpoint: {
     "~* ${endpoint}" = {
       extraConfig = ''
@@ -97,14 +113,12 @@ let
         data = {
           applinks = {
             apps = [
-              "86VMSY4FK5.uz.uzinfocom.efael.app"
               "7J4U792NQT.io.element.elementx"
             ];
             details = [ ];
           };
           webcredentials = {
             apps = [
-              "86VMSY4FK5.uz.uzinfocom.efael.app"
               "7J4U792NQT.io.element.elementx"
             ];
           };
@@ -131,31 +145,6 @@ in
     lib.mkIf (config.uzinfocom.matrix.enable && config.services.nginx.enable)
       (
         {
-          "${cfg.domain}" = {
-            locations = wellKnownLocations "${cfg.domain}" // wellKnownAppleLocations "${cfg.domain}";
-          };
-
-          "mas.${cfg.domain}" = {
-            root = "/dev/null";
-
-            forceSSL = lib.mkDefault true;
-            enableACME = lib.mkDefault true;
-
-            extraConfig = ''
-              ${commonHeaders}
-
-              access_log /var/log/nginx/mas.${cfg.domain}-access.log;
-              error_log /var/log/nginx/mas.${cfg.domain}-error.log;
-            '';
-
-            locations = {
-              "/" = {
-                proxyPass = "http://127.0.0.1:8090";
-              };
-            }
-            // wellKnownAppleLocations "${cfg.domain}";
-          };
-
           "matrix.${cfg.domain}" = {
             listen = [
               {
@@ -271,6 +260,33 @@ in
             );
           };
         }
+        // (lib.optionalAttrs cfg.delegate {
+          "${cfg.domain}" = {
+            locations = wellKnownLocations "${cfg.domain}" // wellKnownAppleLocations "${cfg.domain}";
+          };
+        })
+        // (lib.optionalAttrs (cfg.auth != "ldap") {
+          "mas.${cfg.domain}" = {
+            root = "/dev/null";
+
+            forceSSL = lib.mkDefault true;
+            enableACME = lib.mkDefault true;
+
+            extraConfig = ''
+              ${commonHeaders}
+
+              access_log /var/log/nginx/mas.${cfg.domain}-access.log;
+              error_log /var/log/nginx/mas.${cfg.domain}-error.log;
+            '';
+
+            locations = {
+              "/" = {
+                proxyPass = "http://127.0.0.1:8090";
+              };
+            }
+            // wellKnownAppleLocations "${cfg.domain}";
+          };
+        })
         // (lib.optionalAttrs cfg.matrix-sygnal.enable {
           "push.${cfg.domain}" = {
             root = "/dev/null";

@@ -80,8 +80,14 @@
     # https://(chat|matrix).uchar.uz
     matrix = {
       enable = true;
+
+      # Domain we are integrating to
       domain = "uchar.uz";
+
+      # We are using our own livekit
       call = "self-hosted";
+
+      # We need web client as this is public service
       client = true;
 
       synapse.extra-config-files = [

@@ -62,9 +62,17 @@
     # https://(chat|matrix).berk.uz
     matrix = {
       enable = true;
+
+      # Domain we are integrating to
       domain = "uzberk.uz";
-      cap = true;
+
+      # We are using IDM via MAS
+      auth = "oidc";
+
+      # We need web client as this is public service
       client = true;
+
+      # We are using our own livekit
       call = "self-hosted";
 
       synapse.extra-config-files = [

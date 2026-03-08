@@ -36,14 +36,24 @@
       domain = "ns3.uzberk.uz";
     };
 
-    # https://(chat|matrix).mg.uzberk.uz
+    # https://(matrix).mg.uzberk.uz
     matrix = {
       enable = true;
+
+      # Domain we are integrating to
       domain = "mg.uzberk.uz";
-      cap = true;
+
+      # We are using IDM via MAS
+      auth = "oidc";
+
+      # We are using our own livekit
       call = "self-hosted";
-      client = true;
+
+      # But it is here, not independent instance
       call-domain = "uzberk.uz";
+
+      # Nope, we already have centralized chat instance
+      client = false;
 
       synapse.extra-config-files = [
         config.sops.secrets."matrix/server".path

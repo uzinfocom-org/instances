@@ -243,7 +243,7 @@ in
         # https://element-hq.github.io/matrix-authentication-service/reference/configuration.html
         settings = {
           account =
-            if cfg.cap then
+            if (cfg.auth == "oidc") then
               {
                 email_change_allowed = false;
               }
@@ -296,7 +296,7 @@ in
             ];
           };
           passwords =
-            if cfg.cap then
+            if (cfg.auth == "oidc") then
               {
                 enabled = false;
               }

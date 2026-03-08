@@ -39,10 +39,20 @@
     # https://(chat|matrix).mg.uzberk.uz
     matrix = {
       enable = true;
+
+      # Domain we are integrating to
       domain = "plazma.uzberk.uz";
-      cap = true;
-      client = true;
+
+      # We are using IDM via MAS
+      auth = "oidc";
+
+      # Nope, we already have centralized chat instance
+      client = false;
+
+      # We are using our own livekit
       call = "self-hosted";
+
+      # But it is here, not independent instance
       call-domain = "uzberk.uz";
 
       synapse.extra-config-files = [

@@ -7,62 +7,52 @@
   imports = [
     # Top level abstractions
     outputs.nixosModules.web
-    # outputs.nixosModules.mail
-    outputs.nixosModules.matrix-py
+    # outputs.nixosModules.matrix-py
+    # outputs.nixosModules.matrix-live
   ];
 
-  sops.secrets = { };
+  sops.secrets = {
+    # Matrix oriented secrets
+    # "matrix/server" = {
+    #   format = "binary";
+    #   owner = "matrix-synapse";
+    #   sopsFile = ../../../secrets/uportal/matrix/server.hell;
+    # };
+  };
 
-  # https://ns1.berk.uz
+  # Uzinfocom Services
   uzinfocom = {
-    www = {
-      enable = true;
-      domain = "ns1.uzberk.uz";
-    };
+    # https://*
+    www.enable = true;
 
-    # https://(chat|matrix).berk.uz
-    matrix = {
-      enable = true;
-      domain = "uzberk.uz";
-      cap = true;
-      client = true;
-      call = "self-hosted";
+    # https://(matrix).berk.uz
+    # matrix = {
+    #   enable = false;
 
-      synapse.extra-config-files = [
-        config.sops.secrets."matrix/server".path
-      ];
+    #   # Root domain we are integrating to
+    #   domain = "uzinfocom.uz";
 
-      matrix-authentication-service.extra-config-files = [
-        config.sops.secrets."matrix/authentication".path
-      ];
+    #   # We are integrating to ldap
+    #   auth = "ldap";
 
-      matrix-sygnal = {
-        enable = true;
-        config-file = config.sops.secrets."matrix/push".path;
-      };
-    };
+    #   # We don't need web client, main product is client
+    #   client = false;
 
-    # https://auth.uzberk.uz
-    auth = rec {
-      enable = true;
-      realm = "uzberk.uz";
-      password = config.sops.secrets."auth/database".path;
-    };
+    #   # Yup, we are using our own livekit
+    #   call = "self-hosted";
 
-    # (smtp|imap)://mail.uzberk.uz
-    mail = {
-      enable = true;
-      domain = "uzberk.uz";
-      password = config.sops.secrets."mail/hashed".path;
-    };
+    #   # We don't have access to root domain
+    #   delegate = false;
 
-    # *://*
-    apps = {
-      # https://berk.uz
-      uchar.website = {
-        enable = true;
-        domain = "uzberk.uz";
-      };
-    };
+    #   synapse.extra-config-files = [
+    #     config.sops.secrets."matrix/server".path
+    #   ];
+    # };
+
+    # https://(livekit(-jwt)|call).uchar.uz
+    # matrix-live = {
+    #   enable = false;
+    #   homeserver = "uzinfocom.uz";
+    # };
   };
 }

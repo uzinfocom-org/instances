@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   ...
 }:
 let
@@ -84,7 +83,7 @@ let
   getWorkerHostsForResource =
     resource:
     lib.flatten (
-      builtins.map (
+      map (
         worker:
         let
           listener = lib.findFirst (
@@ -101,7 +100,7 @@ let
   getWorkerPortForResource =
     resource:
     lib.flatten (
-      builtins.map (
+      map (
         worker:
         let
           listener = lib.findFirst (
@@ -143,10 +142,21 @@ in
         description = "Domain to associate matrix network with.";
       };
 
-      cap = lib.mkOption {
+      delegate = lib.mkOption {
         type = lib.types.bool;
-        default = false;
-        example = true;
+        default = true;
+        example = false;
+        description = "Whether this server has access to parent domain.";
+      };
+
+      auth = lib.mkOption {
+        type = lib.types.enum [
+          "oidc"
+          "ldap"
+          "none"
+        ];
+        default = "none";
+        example = "oidc";
         description = "Setup matrix instance to use oidc/ldap.";
       };
 
@@ -297,6 +307,7 @@ in
           allow_guest_access = false;
           allow_public_rooms_over_federation = true;
           allow_public_rooms_without_auth = false;
+
           # auto_join_rooms = [
           #   "#community:${serverDomain}"
           #   "#general:${serverDomain}"
@@ -512,13 +523,20 @@ in
           "oidc"
         ];
 
-        plugins = with config.services.matrix-synapse.package.plugins; [
-          matrix-synapse-shared-secret-auth
-          synapse-http-antispam
-        ];
+        plugins =
+          with config.services.matrix-synapse.package.plugins;
+          (
+            [
+              matrix-synapse-shared-secret-auth
+              synapse-http-antispam
+            ]
+            ++ lib.optionals (cfg.auth == "ldap") [
+              matrix-synapse-ldap3
+            ]
+          );
       };
 
-      matrix-authentication-service = {
+      matrix-authentication-service = lib.mkIf (cfg.auth != "ldap") {
         enable = true;
         createDatabase = true;
         extraConfigFiles = config.uzinfocom.matrix.matrix-authentication-service.extra-config-files;
@@ -526,7 +544,7 @@ in
         # https://element-hq.github.io/matrix-authentication-service/reference/configuration.html
         settings = {
           account =
-            if cfg.cap then
+            if (cfg.auth == "oidc") then
               {
                 email_change_allowed = false;
               }
@@ -579,7 +597,7 @@ in
             ];
           };
           passwords =
-            if cfg.cap then
+            if (cfg.auth == "oidc") then
               {
                 enabled = false;
               }

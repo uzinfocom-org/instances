@@ -38,8 +38,14 @@
     # https://(chat|matrix).next.uchar.uz
     matrix = {
       enable = true;
+
+      # Domain we are integrating to
       domain = "next.uchar.uz";
+
+      # We are using our own livekit
       call = "self-hosted";
+
+      # Our pre-deployed livekit is located at:
       call-domain = "uchar.uz";
 
       synapse.extra-config-files = [
