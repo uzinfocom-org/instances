@@ -37,18 +37,16 @@ in
       };
 
       # Runners
-      "forgejo/oss" = runner-sm;
-      "github/uzinfocom" = runner-sm;
-      "github/xinux" = runner-sm;
-      "github/uchar" = runner-sm;
-      "github/bleur" = runner-sm;
+      "forgejo/deploying" = runner-sm;
+      "github/deploying/uzinfocom" = runner-sm;
+      "github/deploying/xinux" = runner-sm;
     };
 
     templates = {
       "gitea-forgejo-uzinfocom" = {
         owner = config.uzinfocom.runners.user;
         content = ''
-          TOKEN=${config.sops.placeholder."forgejo/oss"}
+          TOKEN=${config.sops.placeholder."forgejo/deploying"}
         '';
       };
     };
@@ -94,39 +92,30 @@ in
       };
     };
 
-    # * -> github.com
+    # * -> git*.*
     runners = {
       enable = true;
       instances = [
         {
           name = "Default";
+          type = "forgejo";
+          label = "deploying";
           url = "https://git.oss.uzinfocom.uz";
           token = config.sops.templates."gitea-forgejo-uzinfocom".path;
-          type = "forgejo";
         }
         {
           name = "Uzinfocom";
-          url = "https://github.com/uzinfocom-org";
-          token = config.sops.secrets."github/uzinfocom".path;
           type = "github";
+          label = "deploying";
+          url = "https://github.com/uzinfocom-org";
+          token = config.sops.secrets."github/deploying/uzinfocom".path;
         }
         {
           name = "Xinux";
+          type = "github";
+          label = "deploying";
           url = "https://github.com/xinux-org";
-          token = config.sops.secrets."github/xinux".path;
-          type = "github";
-        }
-        {
-          name = "Uchar";
-          url = "https://github.com/uchar-org";
-          token = config.sops.secrets."github/uchar".path;
-          type = "github";
-        }
-        {
-          name = "Bleur";
-          url = "https://github.com/bleur-org";
-          token = config.sops.secrets."github/bleur".path;
-          type = "github";
+          token = config.sops.secrets."github/deploying/xinux".path;
         }
       ];
     };

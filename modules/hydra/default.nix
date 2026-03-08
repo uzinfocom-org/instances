@@ -85,21 +85,6 @@ in
           ];
           maxJobs = 64;
         }
-        # {
-        #   hostName = "ns3.oss.uzinfocom.uz";
-        #   sshUser = "builder";
-        #   systems = [ "x86_64-linux" ];
-        #   protocol = "ssh-ng";
-        #   speedFactor = 1;
-        #   sshKey = config.sops.secrets."xinux/builder".path;
-        #   supportedFeatures = [
-        #     "kvm"
-        #     "nixos-test"
-        #     "big-parallel"
-        #     "benchmark"
-        #   ];
-        #   maxJobs = 24;
-        # }
       ];
     };
 

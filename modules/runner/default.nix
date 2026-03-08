@@ -14,7 +14,7 @@ let
         inherit (cfg) user group;
         tokenFile = param.token;
         replace = true;
-        extraLabels = [ param.name ];
+        extraLabels = [ param.name ] ++ (lib.optionals (param.label != null) [ param.label ]);
         package = pkgs.unstable.github-runner;
         workDir = "/srv/runner/github/${lib.toLower param.name}";
         extraPackages = with pkgs; [
@@ -42,7 +42,7 @@ let
       instances."Uzinfocom-${param.name}" = {
         inherit (param) enable name url;
         tokenFile = param.token;
-        labels = [ "native:host" ];
+        labels = [ "native:host" ] ++ (lib.optionals (param.label != null) [ param.label ]);
         hostPackages = with pkgs; [
           bash
           coreutils

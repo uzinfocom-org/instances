@@ -76,6 +76,12 @@ let
         example = false;
         description = "Whether to enable THIS runnner service.";
       };
+      label = lib.mkOption {
+        type = with lib.types; nullOr str;
+        default = null;
+        example = "test-only";
+        description = "Exclusive label for calling this runner.";
+      };
       url = lib.mkOption {
         type = lib.types.str;
         example = "https://git.example.com/some-org";
