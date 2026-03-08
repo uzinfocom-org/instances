@@ -103,14 +103,14 @@ in
           token = config.sops.templates."gitea-forgejo-uzinfocom".path;
         }
         {
-          name = "Uzinfocom";
+          name = "Uzinfocom-Deploying";
           type = "github";
           label = "deploying";
           url = "https://github.com/uzinfocom-org";
           token = config.sops.secrets."github/deploying/uzinfocom".path;
         }
         {
-          name = "Xinux";
+          name = "Xinux-Deploying";
           type = "github";
           label = "deploying";
           url = "https://github.com/xinux-org";

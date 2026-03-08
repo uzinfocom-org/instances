@@ -93,28 +93,28 @@ in
           token = config.sops.templates."gitea-forgejo-uzinfocom".path;
         }
         {
-          name = "Uzinfocom";
+          name = "Uzinfocom-Testing";
           type = "github";
           label = "testing";
           url = "https://github.com/uzinfocom-org";
           token = config.sops.secrets."github/testing/uzinfocom".path;
         }
         {
-          name = "Xinux";
+          name = "Xinux-Testing";
           type = "github";
           label = "testing";
           url = "https://github.com/xinux-org";
           token = config.sops.secrets."github/testing/xinux".path;
         }
         {
-          name = "Uchar";
+          name = "Uchar-Testing";
           type = "github";
           label = "testing";
           url = "https://github.com/uchar-org";
           token = config.sops.secrets."github/testing/uchar".path;
         }
         {
-          name = "Bleur";
+          name = "Bleur-Testing";
           type = "github";
           label = "testing";
           url = "https://github.com/bleur-org";
