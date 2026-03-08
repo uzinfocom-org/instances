@@ -42,7 +42,7 @@ let
       instances."Uzinfocom-${param.name}" = {
         inherit (param) enable name url;
         tokenFile = param.token;
-        labels = [ "native:host" ] ++ (lib.optionals (param.label != null) [ param.label ]);
+        labels = [ "native:host" ];
         hostPackages = with pkgs; [
           bash
           coreutils

@@ -97,9 +97,8 @@ in
       enable = true;
       instances = [
         {
-          name = "Default";
+          name = "Deploying";
           type = "forgejo";
-          label = "deploying";
           url = "https://git.oss.uzinfocom.uz";
           token = config.sops.templates."gitea-forgejo-uzinfocom".path;
         }
