@@ -1,0 +1,64 @@
+*.uzinfocom.uz
+==>
+uzinfocom.uz/.well-known/* | Nginx/JSON
+matrix.uzinfocom.uz        | 192.168.20.32
+mas.uzinfocom.uz           | 192.168.20.32
+livekit.uzinfocom.uz       | 192.168.20.32
+livekit-jwt.uzinfocom.uz   | 192.168.20.32
+call.uzinfocom.uz          | 192.168.20.32
+
+## JSON Endpoints
+
+Path: https://uzinfocom.uz/.well-known/matrix/server
+Response:
+```
+  {
+    "m.server": "matrix.uzinfocom.uz:8448"
+  }
+```
+
+Path: https://uzinfocom.uz/.well-known/matrix/client
+Response:
+```
+  {
+    "im.vector.riot.e2ee": {
+      "default": true
+    },
+    "io.element.e2ee": {
+      "default": true,
+      "secure_backup_required": false,
+      "secure_backup_setup_methods": []
+    },
+    "m.homeserver": {
+      "base_url": "https://matrix.uzinfocom.uz"
+    },
+    "m.identity_server": {
+      "base_url": "https://matrix.uzinfocom.uz"
+    },
+    "org.matrix.msc2965.authentication": {
+      "account": "https://mas.uchar.uz/account",
+      "issuer": "https://mas.uchar.uz/"
+    },
+    "org.matrix.msc4143.rtc_foci": [
+      {
+        "livekit_service_url": "https://livekit-jwt.uzinfocom.uz",
+        "type": "livekit"
+      }
+    ]
+  }
+```
+
+Path: https://uzinfocom.uz/.well-known/matrix/support
+Response:
+```
+  {
+    "contacts": [
+      {
+        "email_address": "support@oss.uzinfocom.uz",
+        "matrix_id": "@orzklv:uchar.uz",
+        "role": "m.role.admin"
+      }
+    ],
+    "support_page": "https://uchar.uz/about"
+  }
+```
